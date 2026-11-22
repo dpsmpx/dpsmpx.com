@@ -1,0 +1,20 @@
+# Каноническая сущность проекта (PLATFORM_VISION §7, Д28): страница из фактов реестра.
+# Периферийный проект — поручение автора 25.10.2026.
+schema: project/v1
+id: truejointtilemaker
+name: True Joint Tile Maker
+former_names: []
+weight: background
+brand: author
+order: 5
+page: true
+tagline: TJTM-WHAT
+status: TJTM-NOW
+facts:
+  - {label: status, facts: [TJTM-NOW]}
+  - {label: code, facts: [TJTM-OPEN]}
+links:
+  - {id: L-GH-TJTM, ru: репозиторий на GitHub, en: repository on GitHub}
+repository: https://github.com/dpsmpx/TrueJointTileMaker
+download: null
+media: []

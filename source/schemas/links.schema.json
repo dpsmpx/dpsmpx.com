@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "links/v1",
+  "title": "Проверенные публичные ссылки автора",
+  "description": "data/identity/links.yaml — адреса площадок с ролью, статусом и датой проверки без входа в аккаунты.",
+  "type": "object",
+  "required": ["schema", "links"],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {"const": "links/v1"},
+    "links": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "platform", "url", "role", "status", "checked"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"type": "string", "pattern": "^L-[A-Z0-9-]+$"},
+          "platform": {"type": "string"},
+          "url": {"type": ["string", "null"], "pattern": "^https://[^?#\\s]+$"},
+          "role": {"type": "string"},
+          "status": {"enum": ["ok", "limited", "auth_required", "broken_for_public", "stale"]},
+          "checked": {"type": "string", "format": "date"},
+          "channel_id": {"type": "string"},
+          "user_id": {"type": "string"},
+          "notes": {"type": "string"}
+        }
+      }
+    }
+  }
+}

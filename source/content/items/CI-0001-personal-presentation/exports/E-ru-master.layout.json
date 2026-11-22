@@ -1,0 +1,514 @@
+{
+ "width": 2560,
+ "height": 1440,
+ "fonts_loaded": [
+  "IBM Plex Sans",
+  "IBM Plex Mono"
+ ],
+ "external_requests": [],
+ "elements": [
+  {
+   "role": "eco-layer",
+   "group": "ecosystem",
+   "text": "Продукты",
+   "x": 112,
+   "y": 318.1875,
+   "w": 873.59375,
+   "h": 43.234375,
+   "text_box": {
+    "x": 112,
+    "y": 317.1875,
+    "w": 165.984375,
+    "h": 45
+   },
+   "font_px": 34.6,
+   "font_weight": 400,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "mist",
+   "bg": "ink",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.006022900252773424,
+    "max": 0.006484859349043907
+   }
+  },
+  {
+   "role": "eco-node",
+   "group": "ecosystem",
+   "text": "Galdhold · игра",
+   "x": 112,
+   "y": 378.71875,
+   "w": 354.59375,
+   "h": 64.28125,
+   "text_box": {
+    "x": 133.6875,
+    "y": 388.109375,
+    "w": 311.21875,
+    "h": 45
+   },
+   "font_px": 34.6,
+   "font_weight": 400,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "paper",
+   "bg": "line",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.029610887871347597,
+    "max": 0.029610887871347597
+   }
+  },
+  {
+   "role": "eco-node",
+   "group": "ecosystem",
+   "text": "DPlang",
+   "x": 483.890625,
+   "y": 378.71875,
+   "w": 167.859375,
+   "h": 64.28125,
+   "text_box": {
+    "x": 505.578125,
+    "y": 388.109375,
+    "w": 124.484375,
+    "h": 45
+   },
+   "font_px": 34.6,
+   "font_weight": 400,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "paper",
+   "bg": "line",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.029610887871347597,
+    "max": 0.029610887871347597
+   }
+  },
+  {
+   "role": "eco-layer",
+   "group": "ecosystem",
+   "text": "Инженерная основа",
+   "x": 112,
+   "y": 487.890625,
+   "w": 873.59375,
+   "h": 43.234375,
+   "text_box": {
+    "x": 112,
+    "y": 486.890625,
+    "w": 352.703125,
+    "h": 45
+   },
+   "font_px": 34.6,
+   "font_weight": 400,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "mist",
+   "bg": "ink",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.006022900252773424,
+    "max": 0.007006206538062393
+   }
+  },
+  {
+   "role": "eco-node",
+   "group": "ecosystem",
+   "text": "DP-Verify",
+   "x": 112,
+   "y": 548.421875,
+   "w": 230.109375,
+   "h": 64.28125,
+   "text_box": {
+    "x": 133.6875,
+    "y": 557.8125,
+    "w": 186.734375,
+    "h": 45
+   },
+   "font_px": 34.6,
+   "font_weight": 400,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "paper",
+   "bg": "line",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.029610887871347597,
+    "max": 0.029610887871347597
+   }
+  },
+  {
+   "role": "eco-layer",
+   "group": "ecosystem",
+   "text": "Знание и публикация",
+   "x": 112,
+   "y": 657.59375,
+   "w": 873.59375,
+   "h": 43.234375,
+   "text_box": {
+    "x": 112,
+    "y": 656.59375,
+    "w": 394.203125,
+    "h": 45
+   },
+   "font_px": 34.6,
+   "font_weight": 400,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "mist",
+   "bg": "ink",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.006022900252773424,
+    "max": 0.007469150592752586
+   }
+  },
+  {
+   "role": "eco-node",
+   "group": "ecosystem",
+   "text": "SocialMediaImage",
+   "x": 112,
+   "y": 718.125,
+   "w": 375.328125,
+   "h": 64.28125,
+   "text_box": {
+    "x": 133.6875,
+    "y": 727.515625,
+    "w": 331.953125,
+    "h": 45
+   },
+   "font_px": 34.6,
+   "font_weight": 400,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "paper",
+   "bg": "line",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.029610887871347597,
+    "max": 0.029610887871347597
+   }
+  },
+  {
+   "role": "eco-node",
+   "group": "ecosystem",
+   "text": "DPprofile",
+   "x": 504.625,
+   "y": 718.125,
+   "w": 230.109375,
+   "h": 64.28125,
+   "text_box": {
+    "x": 526.3125,
+    "y": 727.515625,
+    "w": 186.734375,
+    "h": 45
+   },
+   "font_px": 34.6,
+   "font_weight": 400,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "paper",
+   "bg": "line",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.029610887871347597,
+    "max": 0.029610887871347597
+   }
+  },
+  {
+   "role": "eco-node",
+   "group": "ecosystem",
+   "text": "DPlearn",
+   "x": 752.03125,
+   "y": 718.125,
+   "w": 188.609375,
+   "h": 64.28125,
+   "text_box": {
+    "x": 773.71875,
+    "y": 727.515625,
+    "w": 145.234375,
+    "h": 45
+   },
+   "font_px": 34.6,
+   "font_weight": 400,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "paper",
+   "bg": "line",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.029610887871347597,
+    "max": 0.029610887871347597
+   }
+  },
+  {
+   "role": "eco-node",
+   "group": "ecosystem",
+   "text": "DP_game_market",
+   "x": 112,
+   "y": 799.703125,
+   "w": 333.84375,
+   "h": 64.28125,
+   "text_box": {
+    "x": 133.6875,
+    "y": 809.09375,
+    "w": 290.46875,
+    "h": 45
+   },
+   "font_px": 34.6,
+   "font_weight": 400,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "paper",
+   "bg": "line",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.029610887871347597,
+    "max": 0.029610887871347597
+   }
+  },
+  {
+   "role": "eco-layer",
+   "group": "ecosystem",
+   "text": "Мета-уровень",
+   "x": 112,
+   "y": 908.875,
+   "w": 873.59375,
+   "h": 43.234375,
+   "text_box": {
+    "x": 112,
+    "y": 907.875,
+    "w": 248.96875,
+    "h": 45
+   },
+   "font_px": 34.6,
+   "font_weight": 400,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "mist",
+   "bg": "ink",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.006022900252773424,
+    "max": 0.006929017981958719
+   }
+  },
+  {
+   "role": "eco-node",
+   "group": "ecosystem",
+   "text": "DPmeta",
+   "x": 112,
+   "y": 969.40625,
+   "w": 167.859375,
+   "h": 64.28125,
+   "text_box": {
+    "x": 133.6875,
+    "y": 978.796875,
+    "w": 124.484375,
+    "h": 45
+   },
+   "font_px": 34.6,
+   "font_weight": 400,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "paper",
+   "bg": "line",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.029610887871347597,
+    "max": 0.029610887871347597
+   }
+  },
+  {
+   "role": "eco-note",
+   "group": "ecosystem",
+   "text": "+ 1 проект без публичного имени",
+   "x": 112,
+   "y": 1078.578125,
+   "w": 873.59375,
+   "h": 43.234375,
+   "text_box": {
+    "x": 112,
+    "y": 1077.578125,
+    "w": 643.15625,
+    "h": 45
+   },
+   "font_px": 34.6,
+   "font_weight": 400,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "mist",
+   "bg": "ink",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.006022900252773424,
+    "max": 0.00814579034236137
+   }
+  },
+  {
+   "role": "name",
+   "group": "name",
+   "text": "dpsmpx",
+   "x": 1100.796875,
+   "y": 250.375,
+   "w": 1347.1875,
+   "h": 195.796875,
+   "text_box": {
+    "x": 1100.796875,
+    "y": 220.375,
+    "w": 751.078125,
+    "h": 255
+   },
+   "font_px": 195.8,
+   "font_weight": 600,
+   "font_family": "\"IBM Plex Sans\", sans-serif",
+   "fg": "paper",
+   "bg": "ink",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.006022900252773424,
+    "max": 0.015753018331957032
+   }
+  },
+  {
+   "role": "role",
+   "group": "identity",
+   "text": "Разработчик нативных систем",
+   "x": 1100.796875,
+   "y": 508.859375,
+   "w": 1347.1875,
+   "h": 95.03125,
+   "text_box": {
+    "x": 1100.796875,
+    "y": 504.859375,
+    "w": 1159.859375,
+    "h": 103
+   },
+   "font_px": 79.2,
+   "font_weight": 500,
+   "font_family": "\"IBM Plex Sans\", sans-serif",
+   "fg": "paper",
+   "bg": "ink",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.006022900252773424,
+    "max": 0.018405560002963586
+   }
+  },
+  {
+   "role": "claim",
+   "group": "identity",
+   "text": "Из одной игры за 24 дня — экосистема из 9 репозиториев.",
+   "x": 1100.796875,
+   "y": 647.484375,
+   "w": 1347.1875,
+   "h": 205.90625,
+   "text_box": {
+    "x": 1100.796875,
+    "y": 646.484375,
+    "w": 1166.359375,
+    "h": 205.953125
+   },
+   "font_px": 79.2,
+   "font_weight": 400,
+   "font_family": "\"IBM Plex Sans\", sans-serif",
+   "fg": "paper",
+   "bg": "ink",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.006022900252773424,
+    "max": 0.018405560002963586
+   }
+  },
+  {
+   "role": "method",
+   "group": "identity",
+   "text": "ИИ — инструмент; архитектура и решения — мои.",
+   "x": 1100.796875,
+   "y": 892.984375,
+   "w": 1347.1875,
+   "h": 50.15625,
+   "text_box": {
+    "x": 1100.796875,
+    "y": 894.984375,
+    "w": 801.953125,
+    "h": 45
+   },
+   "font_px": 34.6,
+   "font_weight": 400,
+   "font_family": "\"IBM Plex Sans\", sans-serif",
+   "fg": "mist",
+   "bg": "ink",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.006022900252773424,
+    "max": 0.01167803924597011
+   }
+  },
+  {
+   "role": "evidence",
+   "group": "evidence",
+   "text": "на 05.10.2026: 344 тыс. строк кода, тестов и документов",
+   "x": 1100.796875,
+   "y": 1030.53125,
+   "w": 1347.1875,
+   "h": 44.96875,
+   "text_box": {
+    "x": 1100.796875,
+    "y": 1029.53125,
+    "w": 1141.09375,
+    "h": 45
+   },
+   "font_px": 34.6,
+   "font_weight": 400,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "mist",
+   "bg": "ink",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.006022900252773424,
+    "max": 0.013625329749460366
+   }
+  },
+  {
+   "role": "evidence",
+   "group": "evidence",
+   "text": "за 24 дня: 981 коммит, 83 % из них — сессии ИИ",
+   "x": 1100.796875,
+   "y": 1087.59375,
+   "w": 1347.1875,
+   "h": 44.96875,
+   "text_box": {
+    "x": 1100.796875,
+    "y": 1086.59375,
+    "w": 954.359375,
+    "h": 45
+   },
+   "font_px": 34.6,
+   "font_weight": 400,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "mist",
+   "bg": "ink",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.006022900252773424,
+    "max": 0.012354114539414079
+   }
+  },
+  {
+   "role": "evidence",
+   "group": "evidence",
+   "text": "на 05.10.2026: 210 записей в журналах решений",
+   "x": 1100.796875,
+   "y": 1144.65625,
+   "w": 1347.1875,
+   "h": 44.96875,
+   "text_box": {
+    "x": 1100.796875,
+    "y": 1143.65625,
+    "w": 933.625,
+    "h": 45
+   },
+   "font_px": 34.6,
+   "font_weight": 400,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "mist",
+   "bg": "ink",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.006022900252773424,
+    "max": 0.010168194412858832
+   }
+  }
+ ],
+ "spec": "content/items/CI-0001-personal-presentation/spec/variant-e.yaml",
+ "lang": "ru",
+ "format": "master"
+}

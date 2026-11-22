@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "releases/v1",
+  "title": "Релизы проекта",
+  "description": "data/releases/<проект>.yaml (RELEASE_DATA, Д28)",
+  "type": "object",
+  "required": [
+    "schema",
+    "project",
+    "releases"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {
+      "const": "releases/v1"
+    },
+    "project": {
+      "type": "string"
+    },
+    "releases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "version",
+          "date",
+          "status",
+          "source"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "version": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "status": {
+            "enum": [
+              "published",
+              "draft",
+              "withdrawn"
+            ]
+          },
+          "platforms": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "url": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "download": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "source": {
+            "type": "string"
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

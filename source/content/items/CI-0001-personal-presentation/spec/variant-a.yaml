@@ -1,0 +1,51 @@
+# Вариант A — professional. Обоснование — docs/content/products/personal_presentation/CREATIVE_DIRECTION.md;
+# критика и ревизия — CRITIQUE.md (A-1…A-13).
+schema: composition/v1
+variant: A
+label: professional
+layout: professional
+rationale: >-
+  Человек — самый крупный объект слева, кадр плотный (интерьер не читается); справа — имя и роль,
+  ниже — цепочка работ от замысла до продукта с решением человека на месте, внизу — два
+  доказательства с датой. Четыре группы текста, три размера.
+portrait:
+  input: A-001
+  focus: {x: 0.60, y: 0.29}
+  face: {w: 0.22, h: 0.20}
+  zoom: 1.9
+  vignette: 0.9
+  treatment: natural
+text:
+  ru:
+    name: dpsmpx
+    role: Разработчик нативных систем
+    sub: "Игра, движок и свой язык (в разработке).\nИИ — инструмент; архитектура и решения — мои."
+    pipeline:
+      - {label: Замысел, kind: intent}
+      - {label: Архитектура, kind: architecture}
+      - {label: Реализация с ИИ, kind: implementation}
+      - {label: Проверка, kind: verification}
+      - {label: Git, kind: git}
+      - {label: Продукт, kind: product}
+    gates:
+      - {after: 3, label: каждое изменение принимаю сам}
+    evidence:
+      - Galdhold — воксельная action-RPG · C++20 · Vulkan
+      - 150 000+ строк C++ · 5 000+ автоматических проверок · 10.2026
+  en:
+    name: dpsmpx
+    role: Native systems developer
+    sub: "A game, an engine and my own language (in development).\nAI is the instrument; architecture and decisions are mine."
+    pipeline:
+      - {label: Intent, kind: intent}
+      - {label: Architecture, kind: architecture}
+      - {label: AI implementation, kind: implementation}
+      - {label: Verification, kind: verification}
+      - {label: Git, kind: git}
+      - {label: Product, kind: product}
+    gates:
+      - {after: 3, label: I approve every merge}
+    evidence:
+      - Galdhold — voxel action-RPG · C++20 · Vulkan
+      - 150,000+ lines of C++ · 5,000+ automated checks · Oct 2026
+claims: [AU-HANDLE, AU-ROLE, AU-METHOD, AU-MEMORY, ME-NO-CI, GH-NAME, GH-GENRE, GH-TECH, GH-ENGINE, GH-LOC, GH-CHECKS, GH-COMMITS, DP-WHAT, DP-STAGE]

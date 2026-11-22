@@ -1,0 +1,154 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "site/v1",
+  "title": "Сайт",
+  "description": "data/website/site.yaml (Д21, Д32)",
+  "type": "object",
+  "required": [
+    "schema",
+    "canonical_base",
+    "languages",
+    "environments"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {
+      "const": "site/v1"
+    },
+    "title": {
+      "type": "object"
+    },
+    "path_section": {
+      "type": "object",
+      "description": "Д44: раздел «Путь» — путь автора по датам и конечная цель экосистемы (данные — path.yaml)",
+      "required": ["path", "data"],
+      "additionalProperties": false,
+      "properties": {
+        "path": {"type": "string", "pattern": "^/[a-z][a-z0-9-]*/$"},
+        "data": {"type": "string", "pattern": "^[A-Za-z0-9_./-]+$"}
+      }
+    },
+    "ecosystem": {
+      "type": "object",
+      "description": "Д43: раздел с интерактивной моделью экосистемы; комплект DPvisualisation (build --site)",
+      "required": ["path", "kit"],
+      "additionalProperties": false,
+      "properties": {
+        "path": {"type": "string", "pattern": "^/[a-z][a-z0-9-]*/$"},
+        "kit": {"type": "string", "pattern": "^[A-Za-z0-9_./-]+$"},
+        "roles": {"type": "object", "description": "ID факта роли; «ID@N» — N-я формулировка", "additionalProperties": {"type": "string", "pattern": "^[A-Z]{2,5}(-[A-Z0-9]+)+(@[0-9]+)?$"}},
+        "stages": {"type": "object", "additionalProperties": {"type": "string", "pattern": "^[A-Z]{2,5}(-[A-Z0-9]+)+$"}}
+      }
+    },
+    "canonical_base": {
+      "type": "string",
+      "pattern": "^https://"
+    },
+    "languages": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "ru",
+          "en"
+        ]
+      }
+    },
+    "environments": {
+      "type": "object",
+      "required": [
+        "staging",
+        "production"
+      ],
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "base_url",
+          "noindex"
+        ],
+        "properties": {
+          "base_url": {
+            "type": "string"
+          },
+          "noindex": {
+            "type": "boolean"
+          },
+          "drafts": {
+            "type": "boolean"
+          },
+          "deploy": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "required": [
+              "kind"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "kind": {
+                "enum": [
+                  "rsync",
+                  "command"
+                ]
+              },
+              "target_ref": {
+                "type": "string",
+                "pattern": "^CS_(DEV|STAGING|PROD)_[A-Z0-9_]+$"
+              },
+              "guard_suffix": {
+                "type": "string"
+              },
+              "protect": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "command": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "mark": {
+                "description": "Д41: водяной знак при выгрузке; required — без ключа метки выгрузка отказывает; tsa — служба RFC 3161",
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "required": {
+                    "type": "boolean"
+                  },
+                  "tsa": {
+                    "type": "string",
+                    "pattern": "^https://"
+                  }
+                }
+              }
+            }
+          },
+          "live": {
+            "type": "boolean",
+            "description": "Д34: выпуск разрешён автором (true); false — рабочая выгрузка отказывает (пробный прогон работает)"
+          }
+        }
+      }
+    },
+    "home": {
+      "type": "object"
+    },
+    "og_default": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "hosting": {
+      "enum": [
+        "beget",
+        "cloudflare_pages",
+        "netlify"
+      ],
+      "description": "Хостинг рабочего сайта (Д35): какой файл заголовков писать"
+    }
+  }
+}

@@ -1,0 +1,314 @@
+{
+ "width": 2560,
+ "height": 1440,
+ "fonts_loaded": [
+  "IBM Plex Sans",
+  "IBM Plex Mono"
+ ],
+ "external_requests": [],
+ "elements": [
+  {
+   "role": "name",
+   "group": "name",
+   "text": "dpsmpx",
+   "x": 532,
+   "y": 544.09375,
+   "w": 306.875,
+   "h": 80,
+   "text_box": {
+    "x": 532,
+    "y": 532.09375,
+    "w": 306.875,
+    "h": 104
+   },
+   "font_px": 80,
+   "font_weight": 600,
+   "font_family": "\"IBM Plex Sans\", sans-serif",
+   "fg": "paper",
+   "bg": "ink",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.006022900252773424,
+    "max": 0.010341704692441077
+   }
+  },
+  {
+   "role": "role",
+   "group": "identity",
+   "text": "Разработчик нативных систем · ИИ — инструмент, решения — мои",
+   "x": 532,
+   "y": 649.6875,
+   "w": 1496,
+   "h": 50.390625,
+   "text_box": {
+    "x": 532,
+    "y": 646.6875,
+    "w": 1328.703125,
+    "h": 55
+   },
+   "font_px": 42,
+   "font_weight": 500,
+   "font_family": "\"IBM Plex Sans\", sans-serif",
+   "fg": "mist",
+   "bg": "ink",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.006022900252773424,
+    "max": 0.014364178729932701
+   }
+  },
+  {
+   "role": "claim",
+   "group": "identity",
+   "text": "Из одной игры за 24 дня — экосистема из 9 репозиториев.",
+   "x": 532,
+   "y": 708.09375,
+   "w": 1496,
+   "h": 41.59375,
+   "text_box": {
+    "x": 532,
+    "y": 707.09375,
+    "w": 881.1875,
+    "h": 42
+   },
+   "font_px": 32,
+   "font_weight": 400,
+   "font_family": "\"IBM Plex Sans\", sans-serif",
+   "fg": "paper",
+   "bg": "ink",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.006022900252773424,
+    "max": 0.014973038084482165
+   }
+  },
+  {
+   "role": "eco-node",
+   "group": "ecosystem",
+   "text": "Galdhold · игра",
+   "x": 532,
+   "y": 771.6875,
+   "w": 328.390625,
+   "h": 59.578125,
+   "text_box": {
+    "x": 552.1875,
+    "y": 780.28125,
+    "w": 288.015625,
+    "h": 42
+   },
+   "font_px": 32,
+   "font_weight": 400,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "paper",
+   "bg": "line",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.029610887871347597,
+    "max": 0.029610887871347597
+   }
+  },
+  {
+   "role": "eco-node",
+   "group": "ecosystem",
+   "text": "DPlang",
+   "x": 876.390625,
+   "y": 771.6875,
+   "w": 155.578125,
+   "h": 59.578125,
+   "text_box": {
+    "x": 896.578125,
+    "y": 780.28125,
+    "w": 115.203125,
+    "h": 42
+   },
+   "font_px": 32,
+   "font_weight": 400,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "paper",
+   "bg": "line",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.029610887871347597,
+    "max": 0.029610887871347597
+   }
+  },
+  {
+   "role": "eco-node",
+   "group": "ecosystem",
+   "text": "DP-Verify",
+   "x": 1047.96875,
+   "y": 771.6875,
+   "w": 213.1875,
+   "h": 59.578125,
+   "text_box": {
+    "x": 1068.15625,
+    "y": 780.28125,
+    "w": 172.8125,
+    "h": 42
+   },
+   "font_px": 32,
+   "font_weight": 400,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "paper",
+   "bg": "line",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.029610887871347597,
+    "max": 0.029610887871347597
+   }
+  },
+  {
+   "role": "eco-node",
+   "group": "ecosystem",
+   "text": "SocialMediaImage",
+   "x": 1277.15625,
+   "y": 771.6875,
+   "w": 347.578125,
+   "h": 59.578125,
+   "text_box": {
+    "x": 1297.34375,
+    "y": 780.28125,
+    "w": 307.203125,
+    "h": 42
+   },
+   "font_px": 32,
+   "font_weight": 400,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "paper",
+   "bg": "line",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.029610887871347597,
+    "max": 0.029610887871347597
+   }
+  },
+  {
+   "role": "eco-node",
+   "group": "ecosystem",
+   "text": "DPprofile",
+   "x": 1640.734375,
+   "y": 771.6875,
+   "w": 213.1875,
+   "h": 59.578125,
+   "text_box": {
+    "x": 1660.921875,
+    "y": 780.28125,
+    "w": 172.8125,
+    "h": 42
+   },
+   "font_px": 32,
+   "font_weight": 400,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "paper",
+   "bg": "line",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.029610887871347597,
+    "max": 0.029610887871347597
+   }
+  },
+  {
+   "role": "eco-node",
+   "group": "ecosystem",
+   "text": "DPlearn",
+   "x": 532,
+   "y": 847.265625,
+   "w": 174.78125,
+   "h": 59.578125,
+   "text_box": {
+    "x": 552.1875,
+    "y": 855.859375,
+    "w": 134.40625,
+    "h": 42
+   },
+   "font_px": 32,
+   "font_weight": 400,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "paper",
+   "bg": "line",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.029610887871347597,
+    "max": 0.029610887871347597
+   }
+  },
+  {
+   "role": "eco-node",
+   "group": "ecosystem",
+   "text": "DP_game_market",
+   "x": 722.78125,
+   "y": 847.265625,
+   "w": 309.1875,
+   "h": 59.578125,
+   "text_box": {
+    "x": 742.96875,
+    "y": 855.859375,
+    "w": 268.8125,
+    "h": 42
+   },
+   "font_px": 32,
+   "font_weight": 400,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "paper",
+   "bg": "line",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.029610887871347597,
+    "max": 0.029610887871347597
+   }
+  },
+  {
+   "role": "eco-node",
+   "group": "ecosystem",
+   "text": "DPmeta",
+   "x": 1047.96875,
+   "y": 847.265625,
+   "w": 155.578125,
+   "h": 59.578125,
+   "text_box": {
+    "x": 1068.15625,
+    "y": 855.859375,
+    "w": 115.203125,
+    "h": 42
+   },
+   "font_px": 32,
+   "font_weight": 400,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "paper",
+   "bg": "line",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.029610887871347597,
+    "max": 0.029610887871347597
+   }
+  },
+  {
+   "role": "eco-note",
+   "group": "ecosystem",
+   "text": "+ 1 проект без публичного имени",
+   "x": 1219.546875,
+   "y": 857.046875,
+   "w": 595.203125,
+   "h": 40,
+   "text_box": {
+    "x": 1219.546875,
+    "y": 856.046875,
+    "w": 595.203125,
+    "h": 42
+   },
+   "font_px": 32,
+   "font_weight": 400,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "mist",
+   "bg": "ink",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.006022900252773424,
+    "max": 0.01584702605681078
+   }
+  }
+ ],
+ "spec": "content/items/CI-0001-personal-presentation/spec/variant-e.yaml",
+ "lang": "ru",
+ "format": "youtube_banner"
+}

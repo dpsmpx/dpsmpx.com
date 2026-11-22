@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "campaign/v1",
+  "title": "Кампания",
+  "description": "data/campaigns/CMP-NNNN.yaml (PLATFORM_VISION §12, §28, §74)",
+  "type": "object",
+  "required": [
+    "schema",
+    "id",
+    "title",
+    "objective",
+    "items",
+    "status"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {
+      "const": "campaign/v1"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^CMP-[0-9]{4}$"
+    },
+    "title": {
+      "type": "string"
+    },
+    "objective": {
+      "type": "string",
+      "minLength": 10
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^CI-[0-9]{4}$"
+      },
+      "minItems": 1
+    },
+    "launch": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "planned",
+        "running",
+        "done",
+        "cancelled"
+      ]
+    },
+    "schedule": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "item",
+          "variant"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "item": {
+            "type": "string"
+          },
+          "variant": {
+            "type": "string"
+          },
+          "destination": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "na": {
+            "type": "string"
+          },
+          "note": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "experiments": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "results": {
+      "type": "object"
+    },
+    "source_event": {
+      "type": "object"
+    },
+    "notes": {
+      "type": "string"
+    }
+  }
+}

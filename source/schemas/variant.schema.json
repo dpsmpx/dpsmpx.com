@@ -1,0 +1,216 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "variant/v1",
+  "title": "Вариант площадки (заголовок variants/<площадка>.<язык>.md)",
+  "description": "Д22, Д12: производная канона; approval — одобрение автора с sha256 содержимого.",
+  "type": "object",
+  "required": [
+    "schema",
+    "item",
+    "platform",
+    "lang",
+    "format",
+    "version",
+    "status"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {
+      "const": "variant/v1"
+    },
+    "item": {
+      "type": "string",
+      "pattern": "^CI-[0-9]{4}$"
+    },
+    "platform": {
+      "enum": [
+        "website",
+        "telegram",
+        "vk",
+        "youtube",
+        "discord",
+        "github",
+        "tiktok"
+      ]
+    },
+    "lang": {
+      "enum": [
+        "ru",
+        "en"
+      ]
+    },
+    "format": {
+      "enum": [
+        "page",
+        "post",
+        "photo_post",
+        "album",
+        "description",
+        "announcement",
+        "release_note",
+        "clip_caption",
+        "readme"
+      ]
+    },
+    "source_version": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 1
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "ready",
+        "rejected",
+        "superseded"
+      ]
+    },
+    "trust": {
+      "enum": [
+        "unverified",
+        "validated"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string",
+      "maxLength": 300
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "media": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "media_alt": {
+      "description": "Текст-замена медиа (alt) — по одному на файл media, в том же порядке; подстановки {{fact:…}} как в тексте (Д28)",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "link": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "cta": {
+      "type": "string"
+    },
+    "generation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "provider"
+      ],
+      "properties": {
+        "provider": {
+          "enum": [
+            "session",
+            "template",
+            "human",
+            "external"
+          ]
+        },
+        "model": {
+          "type": "string"
+        },
+        "prompt": {
+          "type": "string"
+        },
+        "cache_key": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "deps": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "facts": {
+          "type": "object",
+          "additionalProperties": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "links": {
+          "type": "object",
+          "additionalProperties": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "releases": {
+          "type": "object",
+          "additionalProperties": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "approval": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "required": [
+        "by",
+        "date",
+        "sha256"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "by": {
+          "const": "author"
+        },
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "note": {
+      "type": "string"
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "факты, на которые текст опирается без подстановки (для устаревания)"
+    }
+  }
+}

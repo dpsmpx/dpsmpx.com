@@ -1,0 +1,337 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "progress_dataset/v1",
+ "title": "Набор данных прогресса (Д38; строит tools/cs/progress/collect.py)",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "schema",
+  "id",
+  "period",
+  "method",
+  "days",
+  "repos"
+ ],
+ "properties": {
+  "schema": {
+   "const": "progress/v1"
+  },
+  "id": {
+   "type": "string",
+   "pattern": "^\\d{4}-\\d\\d-\\d\\d[a-z0-9-]*$"
+  },
+  "period": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "start",
+    "end",
+    "timezone",
+    "cutoff"
+   ],
+   "properties": {
+    "start": {
+     "type": "string",
+     "format": "date"
+    },
+    "end": {
+     "type": "string",
+     "format": "date"
+    },
+    "timezone": {
+     "type": "string"
+    },
+    "cutoff": {
+     "type": "string"
+    }
+   }
+  },
+  "method": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "version",
+    "active_hours",
+    "tool"
+   ],
+   "properties": {
+    "version": {
+     "type": "integer",
+     "minimum": 1
+    },
+    "active_hours": {
+     "type": "integer"
+    },
+    "tool": {
+     "type": "string"
+    },
+    "open_prs_source": {
+     "type": [
+      "string",
+      "null"
+     ]
+    }
+   }
+  },
+  "days": {
+   "type": "array",
+   "items": {
+    "type": "string",
+    "format": "date"
+   },
+   "minItems": 1
+  },
+  "repos": {
+   "type": "object",
+   "additionalProperties": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "head",
+     "main",
+     "history",
+     "created",
+     "first_commit_in_period",
+     "daily",
+     "lines",
+     "counters",
+     "reported",
+     "pr_minutes",
+     "branches_now"
+    ],
+    "properties": {
+     "head": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+     },
+     "main": {
+      "type": "string"
+     },
+     "history": {
+      "enum": [
+       "complete",
+       "partial"
+      ]
+     },
+     "created": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "format": "date"
+     },
+     "first_commit_in_period": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "format": "date"
+     },
+     "daily": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "commits",
+       "ai",
+       "human",
+       "mainline",
+       "branch_only",
+       "docs_only",
+       "merges",
+       "branches"
+      ],
+      "properties": {
+       "commits": {
+        "type": "array",
+        "items": {
+         "type": "integer",
+         "minimum": 0
+        }
+       },
+       "ai": {
+        "type": "array",
+        "items": {
+         "type": "integer",
+         "minimum": 0
+        }
+       },
+       "human": {
+        "type": "array",
+        "items": {
+         "type": "integer",
+         "minimum": 0
+        }
+       },
+       "mainline": {
+        "type": "array",
+        "items": {
+         "type": "integer",
+         "minimum": 0
+        }
+       },
+       "branch_only": {
+        "type": "array",
+        "items": {
+         "type": "integer",
+         "minimum": 0
+        }
+       },
+       "docs_only": {
+        "type": "array",
+        "items": {
+         "type": "integer",
+         "minimum": 0
+        }
+       },
+       "merges": {
+        "type": "array",
+        "items": {
+         "type": "integer",
+         "minimum": 0
+        }
+       },
+       "branches": {
+        "type": "array",
+        "items": {
+         "type": "integer",
+         "minimum": 0
+        }
+       }
+      }
+     },
+     "lines": {
+      "type": "array",
+      "items": {
+       "type": [
+        "object",
+        "null"
+       ],
+       "additionalProperties": false,
+       "required": [
+        "code",
+        "tests",
+        "docs",
+        "other"
+       ],
+       "properties": {
+        "code": {
+         "type": "integer",
+         "minimum": 0
+        },
+        "tests": {
+         "type": "integer",
+         "minimum": 0
+        },
+        "docs": {
+         "type": "integer",
+         "minimum": 0
+        },
+        "other": {
+         "type": "integer",
+         "minimum": 0
+        }
+       }
+      }
+     },
+     "counters": {
+      "type": "object",
+      "required": [
+       "decisions"
+      ],
+      "additionalProperties": {
+       "type": "array",
+       "items": {
+        "type": [
+         "integer",
+         "null"
+        ],
+        "minimum": 0
+       }
+      }
+     },
+     "reported": {
+      "type": "object",
+      "additionalProperties": {
+       "type": "array",
+       "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+         "date",
+         "value"
+        ],
+        "properties": {
+         "date": {
+          "type": "string",
+          "format": "date"
+         },
+         "value": {
+          "type": "integer"
+         },
+         "carried": {
+          "type": "boolean"
+         }
+        }
+       }
+      }
+     },
+     "pr_minutes": {
+      "type": "array",
+      "items": {
+       "type": "integer",
+       "minimum": 0
+      }
+     },
+     "branches_now": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "in_review",
+       "in_review_commits",
+       "active",
+       "active_commits",
+       "docs",
+       "docs_commits",
+       "deferred",
+       "deferred_commits"
+      ],
+      "properties": {
+       "in_review": {
+        "type": "integer",
+        "minimum": 0
+       },
+       "in_review_commits": {
+        "type": "integer",
+        "minimum": 0
+       },
+       "active": {
+        "type": "integer",
+        "minimum": 0
+       },
+       "active_commits": {
+        "type": "integer",
+        "minimum": 0
+       },
+       "docs": {
+        "type": "integer",
+        "minimum": 0
+       },
+       "docs_commits": {
+        "type": "integer",
+        "minimum": 0
+       },
+       "deferred": {
+        "type": "integer",
+        "minimum": 0
+       },
+       "deferred_commits": {
+        "type": "integer",
+        "minimum": 0
+       }
+      }
+     }
+    }
+   }
+  }
+ }
+}

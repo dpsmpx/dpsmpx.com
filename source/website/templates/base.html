@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="$lang">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>$title</title>
+<meta name="description" content="$description">
+$head
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="$theme" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="$theme_light" media="(prefers-color-scheme: light)">
+<link rel="alternate" type="application/atom+xml" title="Atom" href="/feed.xml">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="/rss.xml">
+<link rel="alternate" type="application/feed+json" title="JSON Feed" href="/feed.json">
+</head>
+<body>
+<a class="skip" href="#main">$skip</a>
+$banner
+<header class="site-header">
+  <a class="brand" href="$home">$brand<span class="dot">.</span></a>
+  <nav aria-label="$nav_label">$nav</nav>
+</header>
+<main id="main" tabindex="-1">
+$main
+</main>
+<footer class="site-footer">
+$footer
+</footer>
+</body>
+</html>

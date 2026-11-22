@@ -1,0 +1,263 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "progress_scope/v1",
+ "title": "Границы страницы прогресса (Д38)",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "schema",
+  "timezone",
+  "authors",
+  "layers",
+  "repos",
+  "excluded",
+  "relations"
+ ],
+ "properties": {
+  "schema": {
+   "const": "progress_scope/v1"
+  },
+  "timezone": {
+   "type": "string",
+   "pattern": "^[+-]\\d\\d:\\d\\d$"
+  },
+  "decision_heading": {
+   "type": "string"
+  },
+  "authors": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "ai",
+    "human"
+   ],
+   "properties": {
+    "ai": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     },
+     "minItems": 1
+    },
+    "human": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     },
+     "minItems": 1
+    }
+   }
+  },
+  "layers": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "id",
+     "ru",
+     "en"
+    ],
+    "properties": {
+     "id": {
+      "type": "string"
+     },
+     "ru": {
+      "type": "string"
+     },
+     "en": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  "repos": {
+   "type": "array",
+   "minItems": 1,
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "key",
+     "slug",
+     "name",
+     "group",
+     "visibility",
+     "layer"
+    ],
+    "properties": {
+     "key": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*$"
+     },
+     "slug": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$"
+     },
+     "name": {
+      "type": [
+       "string",
+       "null"
+      ]
+     },
+     "group": {
+      "enum": [
+       "core",
+       "control",
+       "sync",
+       "support"
+      ]
+     },
+     "visibility": {
+      "enum": [
+       "public",
+       "private",
+       "undisclosed"
+      ]
+     },
+     "layer": {
+      "type": "string"
+     },
+     "what": {
+      "type": "string"
+     },
+     "what_idx": {
+      "type": "integer",
+      "minimum": 0
+     },
+     "project": {
+      "type": "string"
+     },
+     "former_names": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     },
+     "reported": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "additionalProperties": false,
+       "required": [
+        "id",
+        "file",
+        "pattern"
+       ],
+       "properties": {
+        "id": {
+         "type": "string"
+        },
+        "file": {
+         "type": "string"
+        },
+        "pattern": {
+         "type": "string"
+        }
+       }
+      }
+     },
+     "counters": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "additionalProperties": false,
+       "required": [
+        "id"
+       ],
+       "properties": {
+        "id": {
+         "type": "string"
+        },
+        "glob": {
+         "type": "string"
+        },
+        "file": {
+         "type": "string"
+        },
+        "pattern": {
+         "type": "string"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "excluded": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "slug",
+     "kind",
+     "reason"
+    ],
+    "properties": {
+     "slug": {
+      "type": "string"
+     },
+     "kind": {
+      "enum": [
+       "fork",
+       "profile",
+       "personal",
+       "script",
+       "archive"
+      ]
+     },
+     "reason": {
+      "type": "string"
+     },
+     "key": {
+      "type": "string"
+     },
+     "why": {
+      "enum": [
+       "early",
+       "removed"
+      ]
+     }
+    }
+   }
+  },
+  "relations": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "from",
+     "to",
+     "source",
+     "ru",
+     "en"
+    ],
+    "properties": {
+     "from": {
+      "type": "string"
+     },
+     "to": {
+      "type": "string"
+     },
+     "both": {
+      "type": "boolean"
+     },
+     "planned": {
+      "type": "boolean"
+     },
+     "source": {
+      "type": "string"
+     },
+     "ru": {
+      "type": "string"
+     },
+     "en": {
+      "type": "string"
+     }
+    }
+   }
+  }
+ }
+}

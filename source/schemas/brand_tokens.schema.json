@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "brand_tokens/v1",
+  "title": "Токены визуальной системы",
+  "description": "assets/brand/tokens.json — цвета, шрифты, шкала и пределы (docs/brand/VISUAL_SYSTEM.md). Пределы читает tools/cs/visual.py.",
+  "type": "object",
+  "required": ["schema", "version", "updated", "color", "semantic", "font", "allowed_fonts", "type_scale", "limits"],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {"const": "brand_tokens/v1"},
+    "version": {"type": "string"},
+    "updated": {"type": "string", "format": "date"},
+    "note": {"type": "string"},
+    "color": {
+      "type": "object",
+      "required": ["ink", "graphite", "line", "mist", "paper", "human", "ai", "verified"],
+      "additionalProperties": {
+        "type": "object", "required": ["hex", "role"], "additionalProperties": false,
+        "properties": {"hex": {"type": "string", "pattern": "^#[0-9A-F]{6}$"}, "role": {"type": "string"}}
+      }
+    },
+    "site_light": {
+      "type": "object", "description": "Светлая тема страниц сайта (Д49): те же роли, что у color.",
+      "required": ["color"], "additionalProperties": false,
+      "properties": {
+        "note": {"type": "string"},
+        "color": {
+          "type": "object",
+          "required": ["ink", "graphite", "line", "mist", "paper", "human", "ai", "verified"],
+          "additionalProperties": {
+            "type": "object", "required": ["hex", "role"], "additionalProperties": false,
+            "properties": {"hex": {"type": "string", "pattern": "^#[0-9A-F]{6}$"}, "role": {"type": "string"}}
+          }
+        }
+      }
+    },
+    "semantic": {"type": "object", "additionalProperties": {"enum": ["ink", "graphite", "line", "mist", "paper", "human", "ai", "verified"]}},
+    "font": {"type": "object"},
+    "allowed_fonts": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+    "type_scale": {"type": "object"},
+    "limits": {
+      "type": "object",
+      "required": ["max_text_groups", "min_text_px_at_720", "min_contrast_normal", "min_contrast_large"],
+      "additionalProperties": false,
+      "properties": {
+        "max_text_groups": {"type": "integer", "minimum": 1},
+        "min_text_px_at_720": {"type": "number", "minimum": 1},
+        "min_contrast_normal": {"type": "number", "minimum": 1},
+        "min_contrast_large": {"type": "number", "minimum": 1}
+      }
+    }
+  }
+}

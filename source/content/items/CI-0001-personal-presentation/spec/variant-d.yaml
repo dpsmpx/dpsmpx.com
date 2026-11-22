@@ -1,0 +1,35 @@
+# Вариант D — minimal: без портрета, только типографика и цепочка.
+schema: composition/v1
+variant: D
+label: minimal
+layout: minimal
+rationale: >-
+  Проверить, держится ли образ без лица: знак, роль и цепочка работ. Запасной вариант для
+  мест, где лицо не нужно (превью репозитория).
+portrait: null
+text:
+  ru:
+    name: dpsmpx
+    role: Разработчик нативных систем · ИИ как инструмент
+    pipeline:
+      - {label: Замысел, kind: intent}
+      - {label: Архитектура, kind: architecture}
+      - {label: Реализация с ИИ, kind: implementation}
+      - {label: Проверка, kind: verification}
+      - {label: Git, kind: git}
+      - {label: Продукт, kind: product}
+    gates:
+      - {after: 3, label: принимаю сам}
+  en:
+    name: dpsmpx
+    role: Native systems developer · AI as an instrument
+    pipeline:
+      - {label: Intent, kind: intent}
+      - {label: Architecture, kind: architecture}
+      - {label: AI implementation, kind: implementation}
+      - {label: Verification, kind: verification}
+      - {label: Git, kind: git}
+      - {label: Product, kind: product}
+    gates:
+      - {after: 3, label: I approve}
+claims: [AU-HANDLE, AU-ROLE, AU-METHOD, AU-MEMORY, ME-NO-CI]

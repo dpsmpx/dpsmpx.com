@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "forbidden/v1",
+  "title": "Запрещённые и устаревшие формулировки",
+  "description": "data/facts/forbidden.yaml — правила проверки публикуемого текста (Д6, Д7; tools/cs/claims.py).",
+  "type": "object",
+  "required": ["schema", "rules"],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {"const": "forbidden/v1"},
+    "rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "severity", "pattern", "reason"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"type": "string", "pattern": "^[A-Z]{2,4}(-[A-Z0-9]+)+$"},
+          "severity": {"enum": ["fatal", "major", "minor"]},
+          "pattern": {"type": "string", "minLength": 1},
+          "unless": {"type": "string"},
+          "reason": {"type": "string", "minLength": 5},
+          "instead": {"type": "string"}
+        }
+      }
+    }
+  }
+}

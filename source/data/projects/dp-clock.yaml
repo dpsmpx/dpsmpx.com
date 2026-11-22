@@ -1,0 +1,19 @@
+# Каноническая сущность проекта (PLATFORM_VISION §7, Д28): страница из фактов реестра.
+# Периферийный проект — поручение автора 25.10.2026.
+schema: project/v1
+id: dp-clock
+name: DP_Clock
+former_names: []
+weight: background
+brand: author
+order: 4
+page: true
+tagline: CLK-WHAT
+status: CLK-STAGE
+facts:
+  - {label: status, facts: [CLK-STAGE]}
+  - {label: code, facts: [CLK-PRIVATE]}
+links: []
+repository: null
+download: null
+media: []

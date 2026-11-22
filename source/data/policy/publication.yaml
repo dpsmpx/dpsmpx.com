@@ -1,0 +1,37 @@
+# Политика публикации (Д12, Д24–Д26, Д30; docs/content/GOVERNANCE.md).
+schema: policy/v1
+approval:
+  by: author
+  required: {production: true, staging: false, development: false}
+# Классы контента с автопубликацией без одобрения каждой версии (§19).
+# Пусто: автопубликации нет ни для одного класса, пока здесь нет решения (Д12).
+auto_publish_classes: []
+roles:                      # §87
+  author: [reader, editor, reviewer, publisher, admin]
+  session: [reader, generator, reviewer]   # сессия ИИ: черновики и критика, без одобрения и рабочих токенов (Д26)
+  tool: [reader]
+session_modes: [dry-run, development]   # что можно запускать из сессии ИИ
+# Д36: площадки, на которые ЛОКАЛЬНАЯ сессия Claude Code может публиковать в production —
+# после «да» автора на каждую команду (.claude/settings.json, ask). Облачная — никогда.
+local_session_production: [website]
+retry:                      # Д24
+  max_attempts: 3
+  max_total_attempts: 5
+  base_delay_s: 2
+  multiplier: 2
+  max_delay_s: 300
+  jitter: 0.2
+on_update: edit             # новая версия опубликованного варианта: edit | new | manual
+outage:                     # §67, §108
+  require_canonical_in_git: true
+  require_website_published_before_social: false   # true — после запуска рабочего сайта (ОР-11)
+utm:                        # §79–80: канонический адрес чистый; метки — только по решению
+  enabled: false
+retention:                  # §64 — подробно docs/content/GOVERNANCE.md, §5
+  immutable:
+    - data/publications/*.jsonl
+    - зафиксированные версии канона (sha256 в item.yaml)
+    - одобрения (approval в вариантах) и provenance.yaml
+  keep_in_git: [отклонённые варианты и их рендеры, черновики объектов]
+  build_cache_days: 30
+  logs_days: 90

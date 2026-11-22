@@ -1,0 +1,53 @@
+# Вариант E — ecosystem (версия 2 объекта, без лица). Обоснование —
+# docs/content/products/personal_presentation/BRIEF_V2.md, CREATIVE_DIRECTION_V2.md;
+# критика v2 и ревизия — CRITIQUE.md, «Версия 2» (E-1…E-14).
+schema: composition/v1
+variant: E
+label: ecosystem
+layout: ecosystem
+rationale: >-
+  Без лица (решение автора 05.10.2026): на месте портрета — карта ядра экосистемы слоями, без
+  стрелок зависимостей (META-NO-DEPS), Galdhold — исток; справа — имя, роль, ключевая фраза
+  размером роли, метод с решением человека цветом human и три доказательства с базой и датой.
+  Закрытый проект без публичного имени — только в сумме и строкой под картой (Д38, Д39). Новые
+  репозитории ядра на карточке — по решению автора (ОР-12, исключение CI-0001). Четыре группы
+  текста, три размера.
+portrait: null
+text:
+  ru:
+    name: dpsmpx
+    role: Разработчик нативных систем
+    claim: Из одной игры за 24 дня — экосистема из 9 репозиториев.
+    method: ИИ — инструмент; архитектура и решения — мои.
+    method_short: ИИ — инструмент, решения — мои
+    accent: [архитектура и решения — мои, решения — мои]
+    ecosystem:
+      layers:
+        - {label: Продукты, nodes: [{name: Galdhold, caption: игра, origin: true}, {name: DPlang}]}
+        - {label: Инженерная основа, nodes: [{name: DP-Verify}]}
+        - {label: Знание и публикация, nodes: [{name: SocialMediaImage}, {name: DPprofile}, {name: DPlearn}, {name: DP_game_market}]}
+        - {label: Мета-уровень, nodes: [{name: DPmeta}]}
+      note: + 1 проект без публичного имени
+    evidence:
+      - "на 05.10.2026: 344 тыс. строк кода, тестов и документов"
+      - "за 24 дня: 981 коммит, 83 % из них — сессии ИИ"
+      - "на 05.10.2026: 210 записей в журналах решений"
+  en:
+    name: dpsmpx
+    role: Native systems developer
+    claim: From one game to an ecosystem of 9 repositories in 24 days.
+    method: AI is the instrument; architecture and decisions are mine.
+    method_short: AI is the instrument; decisions are mine
+    accent: [architecture and decisions are mine, decisions are mine]
+    ecosystem:
+      layers:
+        - {label: Products, nodes: [{name: Galdhold, caption: game, origin: true}, {name: DPlang}]}
+        - {label: Engineering foundation, nodes: [{name: DP-Verify}]}
+        - {label: Knowledge and publishing, nodes: [{name: SocialMediaImage}, {name: DPprofile}, {name: DPlearn}, {name: DP_game_market}]}
+        - {label: Meta layer, nodes: [{name: DPmeta}]}
+      note: + 1 project without a public name
+    evidence:
+      - "as of 5 Oct 2026: 344k lines of code, tests and docs"
+      - "in 24 days: 981 commits, 83% by AI sessions"
+      - "as of 5 Oct 2026: 210 decision records"
+claims: [AU-HANDLE, AU-ROLE, AU-METHOD, CORE-SCALE-2026-10-05, GH-NAME, DP-WHAT, VRF-WHAT, SMI-WHAT, PRF-WHAT, LRN-WHAT, MKT-WHAT, META-WHAT, META-NO-DEPS]

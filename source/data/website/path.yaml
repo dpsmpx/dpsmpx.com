@@ -1,0 +1,118 @@
+# Раздел «Путь» сайта (Д44; docs/platforms/WEBSITE.md, «Путь»): путь автора по датам и конечная
+# цель экосистемы, как её записал автор. Код — tools/cs/site/path.py; схема — schemas/path.schema.json.
+#
+# Тексты страницы — только из реестра фактов (fact: id, idx — номер формулировки в
+# allowed_wording) и из вех страницы прогресса (milestone: id; data/progress/milestones.yaml) —
+# у каждой есть источник и дата. Здесь — только порядок, подписи станций и направлений и имена.
+# Сборка проверяет: факты публичные и с формулировкой на языке страницы, вехи есть, дата станции
+# совпадает с датами её вех, подписи и тексты проходят anti-hype (forbidden.yaml), выход — фильтр Д39.
+#
+# Проект без публичного имени — только «ещё 1 проект без публичного имени» (Д42, Д43); личные
+# заметки — без имени репозитория (Д2, ОР-8); ранние открытые проекты — одной станцией «2023», по именам
+# (слово автора 10.10.2026, Д44): текстом, без квадратов. Andors-Love и True Joint Tile Maker с работой
+# в октябре — с 25.10.2026 снова в текущей системе: квадратами с станции «Ещё четыре проекта» (Д44).
+# «Всё в одном» (DPmetaApp D-28, 10.10.2026; П2-28): DP_AI_Orcestrator — подсистема DPmetaApp, а не
+# отдельный проект: на маршруте с этой станции без своего квадрата (merged), в цели — подсистема ИИ.
+schema: path/v1
+as_of: 2026-10-25                       # «сейчас» на маршруте
+
+# Кто есть на пути и в цели. group — цвет квадрата на маршруте: game — игра, core — ядро на срезе
+# 5 октября, new — репозитории после среза, periphery — свои проекты вне ядра с работой в октябре (Д43,
+# DPvisualisation D-23), hidden — без публичного имени. kind: repo | service | other.
+# role, stage — факты (как роли раздела «Экосистема», site.yaml ecosystem.roles); plan: true — ещё не начато.
+nodes:
+  galdhold:        {name: Galdhold, kind: repo, group: game, role: {fact: GH-GENRE}, stage: {fact: GH-STAGES}}
+  dplang:          {name: DPlang, kind: repo, group: core, role: {fact: DP-WHAT}, stage: {fact: DP-STAGE}}
+  smi:             {name: SocialMediaImage, kind: repo, group: core, role: {fact: SMI-WHAT}, stage: {fact: SMI-SITE}}
+  dpverify:        {name: DP-Verify, kind: repo, group: core, role: {fact: VRF-WHAT}, stage: {fact: VRF-NOW}}
+  dpprofile:       {name: DPprofile, kind: repo, group: core, role: {fact: PRF-WHAT}, stage: {fact: PRF-STAGE}}
+  dplearn:         {name: DPlearn, kind: repo, group: core, role: {fact: LRN-WHAT}, stage: {fact: LRN-STAGE}}
+  market:          {name: {ru: анализ рынка игр, en: game market analysis}, kind: repo, group: core, role: {fact: MKT-WHAT}, stage: {fact: MKT-NOW}}
+  undisclosed:     {name: {ru: ещё 1 проект без публичного имени, en: 1 more project without a public name}, kind: repo, group: hidden}
+  dpmeta:          {name: DPmeta, kind: repo, group: core, role: {fact: META-WHAT}, stage: {fact: META-STAGE}}
+  dpmetaapp:       {name: DPmetaApp, kind: repo, group: new, role: {fact: APP-NOW}}
+  dpmonetization:  {name: DPmonetization, kind: repo, group: new, role: {fact: MON-WHAT}}
+  dpvisualisation: {name: DPvisualisation, kind: repo, group: new, role: {fact: VIS-WHAT, idx: 1}}
+  orchestrator:    {name: DP_AI_Orcestrator, kind: repo, group: new, role: {fact: ORC-WHAT}}
+  dpai:            {name: {ru: подсистема ИИ в DPmetaApp, en: the AI subsystem in DPmetaApp}, kind: other, role: {fact: ORC-WHAT}}
+  aimtrainer:      {name: DP AIM Trainer, kind: repo, group: periphery, role: {fact: AIM-WHAT}, stage: {fact: AIM-STAGE}}
+  dpclock:         {name: DP_Clock, kind: repo, group: periphery, role: {fact: CLK-WHAT}, stage: {fact: CLK-STAGE}}
+  tjtm:            {name: True Joint Tile Maker, kind: repo, group: periphery, role: {fact: TJTM-WHAT}, stage: {fact: TJTM-NOW}}
+  andorslove:      {name: Andors-Love, kind: repo, group: periphery, role: {fact: AL-WHAT}}
+  github:          {name: GitHub, kind: service}
+  site:            {name: {ru: сайт dpsmpx.com, en: the dpsmpx.com site}, kind: service}
+  sessions:        {name: {ru: сессии Claude, en: Claude sessions}, kind: other}
+  notes:           {name: {ru: заметки и инструменты к ним, en: notes and their tools}, kind: other}
+  dplang_ide:      {name: {ru: среда разработки DPlang, en: a DPlang IDE}, kind: other, plan: true}
+
+# Маршрут: станции по порядку. date — день станции (date_to — конец промежутка); вехи станции должны
+# попадать в эти дни. repos — что появилось на станции (квадраты маршрута). plan: true — впереди.
+stations:
+  - id: start
+    date: 2023-03-03
+    when: {ru: "2023", en: "2023"}
+    title: {ru: Начало, en: Start}
+    texts: [{fact: AU-START}, {fact: AU-EARLY}]
+  - id: game
+    date: 2026-09-11
+    title: {ru: Игра, en: The game}
+    repos: [galdhold]
+    texts: [{milestone: M-01}, {fact: AU-ORIGIN, idx: 1}]
+  - id: method
+    date: 2026-09-25
+    date_to: 2026-09-29
+    title: {ru: Метод, en: The method}
+    texts: [{milestone: M-07}, {milestone: M-09}, {fact: AU-MEMORY}]
+  - id: systems
+    date: 2026-10-03
+    date_to: 2026-10-04
+    title: {ru: Новые системы, en: New systems}
+    repos: [dplang, smi, dpverify, dpprofile, dplearn, market, undisclosed]
+    texts: [{milestone: M-13}, {milestone: M-15}, {milestone: M-16}]
+  - id: ecosystem
+    date: 2026-10-05
+    title: {ru: Экосистема, en: An ecosystem}
+    repos: [dpmeta, dpmetaapp, dpmonetization, dpvisualisation]
+    texts: [{fact: CORE-SCALE-2026-10-05}, {milestone: M-17}, {milestone: M-19}, {fact: ECO-NEW-2026-10-06}]
+  - id: goal
+    date: 2026-10-06
+    title: {ru: Цель записана, en: Goal written down}
+    repos: [orchestrator]
+    texts: [{fact: GOAL-PLAN, idx: 3}, {fact: ECO-NEW-2026-10-06, idx: 1}]
+  - id: all-in-one
+    date: 2026-10-10
+    title: {ru: Всё в одном, en: All in one}
+    merged: {orchestrator: dpmetaapp}
+    texts: [{fact: APP-NOW}]
+  - id: periphery
+    date: 2026-10-25
+    title: {ru: Ещё четыре проекта, en: Four more projects}
+    repos: [aimtrainer, dpclock, tjtm, andorslove]     # слово автора 25.10.2026: и в «Пути» (DPvisualisation D-23)
+    texts: [{fact: ECO-PERIPHERY-2026-10-25}]
+  - id: phase-a
+    plan: true
+    when: {ru: "фаза A", en: "phase A"}
+    title: {ru: Законченные системы, en: Finished systems}
+    texts: [{fact: GOAL-PLAN}, {fact: GOAL-PLAN, idx: 2}]
+  - id: phase-b
+    plan: true
+    when: {ru: "фаза B", en: "phase B"}
+    title: {ru: Одно приложение, en: One app}
+    started: {date: 2026-10-11, text: {fact: APP-PHASE-B}}   # ответ автора 25.10.2026: фаза B — «идёт» (DPmetaApp D-29)
+    texts: [{fact: GOAL-PLAN, idx: 1}]
+
+# Конечная цель (GOAL-ARCH): DPmetaApp, два ядра, пять направлений, визуализация под всеми.
+goal:
+  source: GOAL-ARCH
+  app: {node: dpmetaapp, text: {fact: GOAL-PLAN, idx: 1}}
+  cores:
+    - {title: {ru: Общее ядро, en: Shared core}, text: {fact: GOAL-ARCH}}
+    - {title: {ru: Локальное ядро ИИ, en: Local AI core}, text: {fact: GOAL-ARCH, idx: 1}}
+  domains:
+    - {id: dev, title: {ru: Разработка, en: Development}, nodes: [galdhold, dplang, dplang_ide, dpverify, dpmeta, github, undisclosed]}
+    - {id: knowledge, title: {ru: Знание, en: Knowledge}, nodes: [notes, dpprofile, dplearn]}
+    - {id: ai, title: {ru: ИИ, en: AI}, nodes: [dpai, sessions]}
+    - {id: analytics, title: {ru: Аналитика, en: Analytics}, nodes: [market, dpmonetization]}
+    - {id: content, title: {ru: Контент, en: Content}, nodes: [smi, site]}
+  base: {node: dpvisualisation, text: {fact: GOAL-ARCH, idx: 2}}
+  rule: {fact: GOAL-RULE}

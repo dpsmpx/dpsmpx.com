@@ -1,0 +1,30 @@
+# Вариант C — cinematic: портрет на весь кадр, минимум текста.
+schema: composition/v1
+variant: C
+label: cinematic
+layout: cinematic
+rationale: >-
+  Максимум человека и настроения: портрет на всю ширину, тёплый дуотон, имя поверх тени,
+  схема — тонкой линией из трёх шагов.
+portrait:
+  input: A-001
+  focus: {x: 0.60, y: 0.29}
+  face: {w: 0.22, h: 0.20}
+  zoom: 1.0
+  treatment: duotone
+text:
+  ru:
+    name: dpsmpx
+    role: Строю сложные системы — с ИИ, но решения мои
+    pipeline:
+      - {label: Решение, kind: architecture}
+      - {label: ИИ, kind: implementation}
+      - {label: Проверка, kind: verification}
+  en:
+    name: dpsmpx
+    role: I build complex systems — with AI, decisions are mine
+    pipeline:
+      - {label: Decision, kind: architecture}
+      - {label: AI, kind: implementation}
+      - {label: Verification, kind: verification}
+claims: [AU-HANDLE, AU-METHOD]

@@ -1,0 +1,25 @@
+# Каноническая сущность проекта (PLATFORM_VISION §7, Д28). Страница проекта на
+# сайте собирается из фактов реестра по id — числа и состояния не переписываются.
+schema: project/v1
+id: galdhold
+name: Galdhold
+former_names: [VoxelRPG]
+weight: primary            # docs/identity/PROJECT_MAP.md (Д5)
+brand: galdhold
+order: 1
+page: true
+tagline: GH-GENRE
+status: GH-STAGES
+facts:
+  - {label: technology, facts: [GH-TECH, GH-ENGINE, GH-ASSETS]}
+  - {label: platforms, facts: [GH-ANDROID, GH-RELEASE-PLAN, GH-WINDOWS]}
+  - {label: status, facts: [GH-STAGES]}
+  - {label: scale, facts: [GH-LOC, GH-CHECKS]}
+  - {label: code, facts: [GH-PRIVATE]}
+links:
+  - {id: L-TG-DEVLOG, ru: дневник разработки, en: dev log (in Russian)}
+  - {id: L-YT-PRESENTATION, ru: "видео: показ игры (под прежним именем)", en: "video: gameplay (under the former name)"}
+  - {id: L-YT-CHANNEL, ru: канал YouTube, en: YouTube channel}
+repository: null           # закрыт (GH-PRIVATE, Д17)
+download: null             # выпуска нет (GH-RELEASE-PLAN)
+media: []                  # снимки игры — после записи в реестр ассетов (docs/PROVENANCE.md)

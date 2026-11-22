@@ -1,0 +1,250 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "capabilities/v1",
+  "title": "Возможности площадок",
+  "description": "data/platforms/capabilities.yaml (Д33)",
+  "type": "object",
+  "required": [
+    "schema",
+    "checked",
+    "platforms"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {
+      "const": "capabilities/v1"
+    },
+    "checked": {
+      "type": "string",
+      "format": "date"
+    },
+    "research": {
+      "type": "string"
+    },
+    "platforms": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "automation",
+          "operations",
+          "sources"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "adapter": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "adapter_status": {
+            "enum": [
+              "implemented",
+              "stub",
+              "none"
+            ]
+          },
+          "automation": {
+            "enum": [
+              "FULLY_AUTOMATED",
+              "SEMI_AUTOMATED",
+              "MANUAL_APPROVAL_REQUIRED",
+              "MANUAL_ONLY",
+              "UNSUPPORTED"
+            ]
+          },
+          "auth": {
+            "type": "string"
+          },
+          "blocked_by": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "operations": {
+            "type": "object",
+            "required": [
+              "read",
+              "create",
+              "edit",
+              "delete",
+              "media",
+              "schedule",
+              "analytics"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "read": {
+                "type": "object",
+                "required": [
+                  "status"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "api",
+                      "restricted",
+                      "own",
+                      "manual",
+                      "no"
+                    ]
+                  },
+                  "note": {
+                    "type": "string"
+                  }
+                }
+              },
+              "create": {
+                "type": "object",
+                "required": [
+                  "status"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "api",
+                      "restricted",
+                      "own",
+                      "manual",
+                      "no"
+                    ]
+                  },
+                  "note": {
+                    "type": "string"
+                  }
+                }
+              },
+              "edit": {
+                "type": "object",
+                "required": [
+                  "status"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "api",
+                      "restricted",
+                      "own",
+                      "manual",
+                      "no"
+                    ]
+                  },
+                  "note": {
+                    "type": "string"
+                  }
+                }
+              },
+              "delete": {
+                "type": "object",
+                "required": [
+                  "status"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "api",
+                      "restricted",
+                      "own",
+                      "manual",
+                      "no"
+                    ]
+                  },
+                  "note": {
+                    "type": "string"
+                  }
+                }
+              },
+              "media": {
+                "type": "object",
+                "required": [
+                  "status"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "api",
+                      "restricted",
+                      "own",
+                      "manual",
+                      "no"
+                    ]
+                  },
+                  "note": {
+                    "type": "string"
+                  }
+                }
+              },
+              "schedule": {
+                "type": "object",
+                "required": [
+                  "status"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "api",
+                      "restricted",
+                      "own",
+                      "manual",
+                      "no"
+                    ]
+                  },
+                  "note": {
+                    "type": "string"
+                  }
+                }
+              },
+              "analytics": {
+                "type": "object",
+                "required": [
+                  "status"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "api",
+                      "restricted",
+                      "own",
+                      "manual",
+                      "no"
+                    ]
+                  },
+                  "note": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "limits": {
+            "type": "object"
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          }
+        }
+      }
+    }
+  }
+}

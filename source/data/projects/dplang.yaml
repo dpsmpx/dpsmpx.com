@@ -1,0 +1,18 @@
+# Каноническая сущность проекта (PLATFORM_VISION §7, Д28).
+schema: project/v1
+id: dplang
+name: DPlang
+former_names: []
+weight: secondary
+brand: dplang
+order: 2
+page: true
+tagline: DP-WHAT
+status: DP-STAGE
+facts:
+  - {label: status, facts: [DP-STAGE]}
+  - {label: code, facts: [DP-PRIVATE]}
+links: []
+repository: null
+download: null
+media: []

@@ -1,0 +1,47 @@
+# Бренды в публикации (Д27, Д9; PLATFORM_VISION §91–94).
+#
+# Объект выбирает режим (brand.mode) и бренды (brand.brands):
+#   PERSONAL — только author («Я создал DPlang»)
+#   PROJECT  — один проект («DPlang v0.1 released»)
+#   MIXED    — автор и один проект («Почему я решил создать собственный язык»)
+# Адресат принимает только свои бренды (accepts_brands в destinations.yaml).
+schema: brands/v1
+brands:
+  - id: author
+    kind: PERSONAL
+    name: {ru: dpsmpx, en: dpsmpx}            # Д40: имени автора нет нигде
+    tone: спокойный, конкретный, от первого лица; без рекламных штампов (AUTHOR_MASTER_CONTEXT, «Голос»)
+    visual: docs/brand/VISUAL_SYSTEM.md — графит, коралловый человек, бирюзовый ИИ, IBM Plex (Д9)
+    topics_allowed: [PERSON, PROJECT, ENGINEERING, AI_DEVELOPMENT, RESULT, PROCESS, RESEARCH, EDUCATION, MILESTONE, RELEASE, OPINION, COMMUNITY]
+    topics_forbidden:
+      - личное (работа, учёба, город, семья) без решения ОР-8
+      - оценки ИИ как доказательство (Д7)
+      - код и снимки редактора закрытых проектов (Д17)
+      - несколько аккаунтов сервисов ИИ (ОР-9)
+    cta: [дневник разработки, видео на YouTube, сайт dpsmpx.com]
+    official_links: [L-GH-PROFILE, L-TG-AUTHOR, L-YT-CHANNEL, L-TT-PROFILE]
+  - id: galdhold
+    kind: PROJECT
+    project: galdhold
+    name: {ru: Galdhold, en: Galdhold}
+    tone: показывать игру, а не обещать; первая строка — что изменилось для игрока (docs/platforms/TELEGRAM.md)
+    visual: снимки и видео настоящего рендера «в рамке» (Д9, Д11); палитра интерфейса игры — у проекта, не у автора
+    topics_allowed: [PROJECT, RESULT, PROCESS, ENGINEERING, MILESTONE, RELEASE, COMMUNITY]
+    topics_forbidden:
+      - код, выдержки, снимки редактора (Д17, Galdhold Р12)
+      - даты выпуска, которые не решены (GH-RELEASE-PLAN — без дат)
+      - зависимость от DPlang (IC-06, DP-INDEPENDENT)
+    cta: [дневник разработки, видео]
+    official_links: [L-TG-DEVLOG, L-YT-PRESENTATION]
+  - id: dplang
+    kind: PROJECT
+    project: dplang
+    name: {ru: DPlang, en: DPlang}
+    tone: исследовательский; только доказуемая стадия с датой (DP-STAGE)
+    visual: типографика и схемы в стиле автора; кода закрытого репозитория — нет (Д17)
+    topics_allowed: [PROJECT, RESEARCH, ENGINEERING, PROCESS, MILESTONE, RELEASE]
+    topics_forbidden:
+      - обещания возможностей языка, которых нет (Д5)
+      - код и выдержки (Д17, лицензия DPlang)
+    cta: [сайт dpsmpx.com]
+    official_links: []

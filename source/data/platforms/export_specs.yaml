@@ -1,0 +1,111 @@
+# Требования экспорта площадок (Д13).
+#
+# Каждый формат — с источником, классом источника и датой проверки.
+# source_class: official | primary_research | professional | community
+# verified: true — подтверждено официальным источником на дату checked.
+# safe_area: прямоугольник, где обязаны быть лицо, имя и смысловые надписи
+#            (x, y, w, h в пикселях формата).
+# Порядок проверки — docs/content/QUALITY_MODEL.md, гейт Platform.
+schema: export_specs/v1
+# Языки экспорта по площадкам — Д8: русский — Telegram, VK, YouTube, TikTok (Д19); английский — GitHub.
+# internal (мастер) — на всех языках объекта.
+platform_languages:
+  internal: [ru, en]
+  github: [en]
+  telegram: [ru]
+  youtube: [ru]
+  vk: [ru]
+  discord: [ru]
+  tiktok: [ru]
+formats:
+  master:
+    platform: internal
+    width: 2560
+    height: 1440
+    file: png
+    purpose: мастер-файл, из него не масштабируют, а рендерят форматы заново
+    source: внутреннее решение (Д11)
+    source_class: official
+    verified: true
+    checked: 2026-10-04
+  youtube_thumbnail:
+    platform: youtube
+    width: 3840
+    height: 2160
+    min_width: 640
+    max_bytes: 2097152          # 2 МБ — при загрузке с телефона; с компьютера — 50 МБ
+    file: jpg
+    notes: >-
+      справка на 04.10.2026 рекомендует 3840×2160 для видео (2160×3840 для Shorts), 16:9,
+      ширина ≥ 640; прежняя запись 1280×720 устарела
+    source: https://support.google.com/youtube/answer/72431
+    source_class: official
+    verified: true
+    checked: 2026-10-04
+  youtube_banner:
+    platform: youtube
+    width: 2560
+    height: 1440
+    max_bytes: 6291456          # 6 МБ
+    file: jpg
+    safe_area: {x: 508, y: 508, w: 1544, h: 423}   # 1235×338 при 2048×1152, масштаб 1.25, по центру
+    source: https://support.google.com/youtube/answer/10456525
+    source_class: official
+    verified: true
+    checked: 2026-10-04
+  telegram_post:
+    platform: telegram
+    width: 1280
+    height: 720
+    file: jpg
+    notes: обычное фото сжимается до ≤ 1280 по стороне (тип y); HD — до 2560 (тип w)
+    source: https://core.telegram.org/constructor/photoSize
+    source_class: official
+    verified: true
+    checked: 2026-10-04
+  vk_post:
+    platform: vk
+    width: 1280
+    height: 720
+    file: jpg
+    notes: официальная справка VK из сессии недоступна; 16:9 с безопасным центром до проверки
+    source: сторонние справочники (Canva, Unisender) — не официальные
+    source_class: community
+    verified: false
+    checked: 2026-10-04
+  discord_announcement:
+    platform: discord
+    width: 1280
+    height: 720
+    file: png
+    notes: изображение во вложении сообщения; отдельного требования к размеру нет — 16:9 для превью
+    source: внутреннее решение; требования Discord к баннеру сервера — проверить при создании (ОР-6)
+    source_class: community
+    verified: false
+    checked: 2026-10-04
+  github_social:
+    platform: github
+    width: 1280
+    height: 640
+    min_width: 640
+    max_bytes: 1048576          # < 1 МБ
+    file: png
+    notes: без прозрачности — превью показываются на светлом и тёмном фоне
+    source: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/customizing-your-repositorys-social-media-preview
+    source_class: official
+    verified: true
+    checked: 2026-10-04
+  tiktok_vertical:
+    platform: tiktok
+    width: 1080
+    height: 1920
+    min_width: 540
+    file: jpg
+    notes: >-
+      обложка клипа и фото-публикация 9:16. Официальные размеры даны только для рекламы
+      (9:16 ≥ 540×960); безопасная зона — шаблоны Ads Manager, без входа не получены (UNKNOWN):
+      надписи — в центре, вне нижней трети и правого края
+    source: https://ads.tiktok.com/help/article/tiktok-auction-in-feed-ads (обновлено в июне 2026)
+    source_class: official
+    verified: false
+    checked: 2026-10-04

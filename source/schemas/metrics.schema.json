@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "metrics/v1",
+  "title": "Метрики публикации",
+  "description": "data/metrics/<item>/<platform>-<date>.yaml — нормализованная выгрузка аналитики площадки (Д15).",
+  "type": "object",
+  "required": [
+    "schema",
+    "item",
+    "platform",
+    "period",
+    "source_file_sha256",
+    "values"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {
+      "const": "metrics/v1"
+    },
+    "item": {
+      "type": "string",
+      "pattern": "^CI-[0-9]{4}$"
+    },
+    "variant": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "platform": {
+      "enum": [
+        "github",
+        "telegram",
+        "youtube",
+        "vk",
+        "discord",
+        "tiktok"
+      ]
+    },
+    "publication_url": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "period": {
+      "type": "object",
+      "required": [
+        "from",
+        "to"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "from": {
+          "type": "string",
+          "format": "date"
+        },
+        "to": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "source_file": {
+      "type": "string"
+    },
+    "source_file_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "values": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "impressions": {
+          "type": "number"
+        },
+        "ctr": {
+          "type": "number"
+        },
+        "views": {
+          "type": "number"
+        },
+        "watch_time_hours": {
+          "type": "number"
+        },
+        "avg_view_duration_s": {
+          "type": "number"
+        },
+        "retention_30s": {
+          "type": "number"
+        },
+        "reactions": {
+          "type": "number"
+        },
+        "comments": {
+          "type": "number"
+        },
+        "shares": {
+          "type": "number"
+        },
+        "subscribers_gained": {
+          "type": "number"
+        },
+        "clicks": {
+          "type": "number"
+        }
+      }
+    },
+    "unmapped": {
+      "type": "object"
+    },
+    "campaign": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^CMP-[0-9]{4}$"
+    },
+    "publication_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^PUB-[0-9a-f]{12}$"
+    }
+  }
+}

@@ -1,0 +1,1158 @@
+# Реестр утверждений (Content Facts / Claims / Evidence).
+#
+# Единственный источник фактов для контента (Д1, Д6). Контент ссылается
+# на факты по id; утверждение без записи здесь — неподтверждённое.
+# Правила — docs/content/CLAIM_POLICY.md; схема — schemas/facts.schema.json.
+#
+# class:        FACT | INTERPRETATION | HYPOTHESIS
+# risk:         high (числа, «собственный», «работает на», сроки, сравнения) | medium | low
+# public:       можно ли использовать в публичном контенте
+# verification: re-measured (перемерено в сессии) | reported (из документа
+#               проекта, не перепроверено) | observed (видно на площадке) |
+#               decision (записанное решение) | self-reported (сказано автором)
+# recheck_by:   дата, после которой число/состояние перепроверяется перед использованием
+schema: facts/v1
+as_of: 2026-10-12
+# Выведенные из реестра id: ссылки на них в документах — история; в контент
+# они не подставляются (подстановка их не знает).
+retired:
+  - {id: AU-NAME, date: 2026-10-05, reason: "Д40: имени автора нет нигде — факт удалён вместе с именем"}
+facts:
+  # ---------------------------------------------------------------- автор
+  - id: AU-HANDLE
+    subject: author
+    class: FACT
+    risk: low
+    public: true
+    statement: Публичный псевдоним автора — dpsmpx; в профиле GitHub также «DP» и «DearPixel».
+    allowed_wording:
+      ru: ["dpsmpx"]
+      en: ["dpsmpx (aka DP, DearPixel)"]
+    evidence:
+      - {kind: platform_page, source: "github.com/dpsmpx — README dpsmpx/dpsmpx", ref: "433f627", date: 2026-10-04, verification: observed}
+  - id: AU-ROLE
+    subject: author
+    class: FACT
+    risk: medium
+    public: true
+    statement: Автор описывает себя как независимого разработчика нативных игровых технологий, системных игр и инструментов.
+    allowed_wording:
+      ru: ["независимый разработчик", "разрабатываю игру, движок и язык программирования", "разработчик нативных систем"]
+      en: ["independent developer building native game technology, systems-driven games and developer tools", "native systems developer"]
+    evidence:
+      - {kind: platform_page, source: "README dpsmpx/dpsmpx", ref: "433f627", date: 2026-10-04, verification: self-reported}
+    notes: «Разработчик нативных систем» — короткая роль из позиционирования (Д4, CONTENT_STRATEGY §1), сжатие самоописания автора.
+  - id: AU-STACK
+    subject: author
+    class: FACT
+    risk: low
+    public: true
+    statement: Основные языки — C++ и Python; ранние проекты — также PascalABC.NET и C.
+    allowed_wording:
+      ru: ["C++ и Python"]
+      en: ["C++ and Python"]
+    evidence:
+      - {kind: platform_page, source: "README dpsmpx/dpsmpx, раздел Technology", ref: "433f627", date: 2026-10-04, verification: self-reported}
+      - {kind: code, source: "открытые репозитории: Andors-Love (C++11), PixRogue (Python), TrueJointTileMaker (PascalABC.NET), dpcalls (C99)", date: 2026-10-04, verification: observed}
+  - id: AU-METHOD
+    subject: author
+    class: FACT
+    risk: medium
+    public: true
+    statement: >-
+      Код Galdhold в основном пишут сессии ИИ (Claude Code) по заданиям автора; архитектурные
+      решения, постановки задач и приёмка каждого слияния — за автором и записаны в репозитории.
+    allowed_wording:
+      ru: ["ИИ пишет большую часть кода, архитектуру и решения определяю я", "каждое изменение принимаю сам"]
+      en: ["AI agents write most of the code; architecture and final decisions stay with me"]
+    evidence:
+      - {kind: doc, source: "dpsmpx/Galdhold docs/PROVENANCE.md §2–§3", ref: "f2ba263", date: 2026-10-04, verification: reported}
+      - {kind: decision, source: "dpsmpx/Galdhold docs/direction/DECISIONS.md Р0–Р20", ref: "f2ba263", date: 2026-10-04, verification: decision}
+  - id: AU-MEMORY
+    subject: author
+    class: FACT
+    risk: low
+    public: true
+    statement: >-
+      Контекст проектов хранится в репозитории (Git, DECISIONS, ROADMAP, TODO, проверки);
+      новая сессия ИИ восстанавливает состояние из него, а не из памяти прошлой сессии.
+    allowed_wording:
+      ru: ["ИИ может забывать сессию — проект не обязан забывать", "память проекта — в Git, решениях и проверках"]
+      en: ["the AI can forget the session; the project does not have to"]
+    evidence:
+      - {kind: doc, source: "dpsmpx/Galdhold CLAUDE.md «Не терять работу между сессиями», .claude/hooks/session-start.sh", ref: "f2ba263", date: 2026-10-04, verification: observed}
+      - {kind: public_post, source: "Telegraph «Почему разработка с ИИ для меня оказалась намного сильнее обычной» (дневник, № 79)", date: 2026-10-04, verification: self-reported}
+  - id: AU-ORIGIN
+    subject: author
+    class: FACT
+    risk: low
+    public: true
+    statement: >-
+      Игру автор начал ради интереса: братья сказали, что было бы классно поиграть в воксельную
+      RPG на телефоне; проект вырос дальше планов.
+    allowed_wording:
+      ru: ["начал игру ради интереса — братья хотели воксельную RPG на телефоне", "игру начал ради интереса — проект вырос дальше планов"]
+      en: ["I started the game out of interest — my brothers wanted a voxel RPG on their phones", "I started the game out of interest — the project grew beyond the plans"]
+    notes: >-
+      В оригинале названа чужая игра (Cube World). По правилу оригинальности Galdhold чужое имя —
+      только как история, не в заголовке и не как сравнение.
+    evidence:
+      - {kind: public_post, source: "t.me/gh_3D_Voxel_OpenWorld_RPG/80", date: 2026-10-04, verification: self-reported}
+
+  # ---------------------------------------------------------------- Galdhold
+  - id: GH-NAME
+    subject: galdhold
+    class: FACT
+    risk: medium
+    public: true
+    statement: Игра называется Galdhold (прежнее рабочее название — VoxelRPG); решение автора 4 октября 2026.
+    allowed_wording:
+      ru: ["Galdhold", "Galdhold (прежде VoxelRPG)"]
+      en: ["Galdhold", "Galdhold (formerly VoxelRPG)"]
+    evidence:
+      - {kind: decision, source: "dpsmpx/Galdhold docs/direction/DECISIONS.md Р20", ref: "f2ba263", date: 2026-10-04, verification: decision}
+  - id: GH-GENRE
+    subject: galdhold
+    class: FACT
+    risk: low
+    public: true
+    statement: Galdhold — воксельная action-RPG с открытым процедурным миром, живыми поселениями и регионами, погодой и сменой суток.
+    allowed_wording:
+      ru: ["воксельная action-RPG с открытым процедурным миром"]
+      en: ["a voxel action-RPG with an open procedural world"]
+    evidence:
+      - {kind: doc, source: "dpsmpx/Galdhold docs/direction/DECISIONS.md §1, ROADMAP этапы 3–4", ref: "f2ba263", date: 2026-10-04, verification: reported}
+  - id: GH-COMBAT
+    subject: galdhold
+    class: FACT
+    risk: low
+    public: true
+    statement: В описании Galdhold (README игры) — боевая система и прокачка.
+    allowed_wording:
+      ru: ["боевая система"]
+      en: ["a combat system"]
+    evidence:
+      - {kind: doc, source: "dpsmpx/Galdhold README.md, строка 3", ref: "517e411", date: 2026-10-12, verification: reported}
+  - id: GH-TECH
+    subject: galdhold
+    class: FACT
+    risk: low
+    public: true
+    statement: Технологии — C++20, Vulkan 1.1, EnTT, toml++; на Android — NDK и AAudio, на компьютере — SDL3.
+    allowed_wording:
+      ru: ["C++20 и Vulkan"]
+      en: ["C++20 and Vulkan"]
+    evidence:
+      - {kind: code, source: "dpsmpx/Galdhold — исходники и сборка", ref: "f2ba263", date: 2026-10-04, verification: observed}
+  - id: GH-LOC
+    subject: galdhold
+    class: FACT
+    risk: high
+    public: true
+    statement: >-
+      Около 157 тысяч строк C++ (.cpp/.h/.hpp, wc -l, с пустыми строками и комментариями) на коммит
+      f2ba263, 4 октября 2026. README Galdhold на ту же дату: «около 167 тысяч строк собственного
+      кода, 154 тысячи — C++» (другой способ счёта).
+    allowed_wording:
+      ru: ["больше 150 тысяч строк C++ (октябрь 2026)"]
+      en: ["over 150,000 lines of C++ (October 2026)"]
+    supersedes: ["115 000 строк (описание YouTube, 28.09.2026)", "≈130 тыс. строк (дневник № 38, 29.09.2026)", "153k (пример из постановки)"]
+    recheck_by: 2026-11-04
+    evidence:
+      - {kind: measurement, source: "find … -name '*.cpp' -o -name '*.h' -o -name '*.hpp' | xargs cat | wc -l → 156 809", ref: "dpsmpx/Galdhold f2ba263", date: 2026-10-04, verification: re-measured}
+      - {kind: doc, source: "dpsmpx/Galdhold README.md, «Технологии»", ref: "f2ba263", date: 2026-10-04, verification: reported}
+  - id: GH-CHECKS
+    subject: galdhold
+    class: FACT
+    risk: high
+    public: true
+    statement: "5453 автоматические проверки логики (hostcheck): 579 — движка, 4695 — игры, 179 — полигона; на 3 октября 2026."
+    allowed_wording:
+      ru: ["больше 5 000 автоматических проверок", "5 453 автоматические проверки (октябрь 2026)"]
+      en: ["over 5,000 automated checks"]
+    recheck_by: 2026-11-04
+    evidence:
+      - {kind: doc, source: "dpsmpx/Galdhold README.md, «Состояние проекта» (числа из прогона hostcheck)", ref: "f2ba263", date: 2026-10-04, verification: reported}
+    notes: В этой сессии hostcheck не запускался; число — из документа проекта.
+  - id: GH-ENGINE
+    subject: galdhold
+    class: FACT
+    risk: high
+    public: true
+    statement: >-
+      Движок собственный и логически отделён от игры: не зависит ни от Galdhold, ни от полигона;
+      граница проверяется автоматически; полигон — отдельный синтетический потребитель движка.
+    allowed_wording:
+      ru: ["собственный движок, отделённый от игры", "граница движка и игры проверяется автоматически"]
+      en: ["my own engine, kept separate from the game"]
+    evidence:
+      - {kind: decision, source: "dpsmpx/Galdhold DECISIONS.md Р1, Р5", ref: "f2ba263", date: 2026-10-04, verification: decision}
+      - {kind: code, source: "dpsmpx/Galdhold tools/hostcheck/check_engine_boundary.py", ref: "f2ba263", date: 2026-10-04, verification: observed}
+  - id: GH-ASSETS
+    subject: galdhold
+    class: FACT
+    risk: high
+    public: true
+    statement: >-
+      Графика, звук и музыка генерируются кодом; растровых и звуковых сторонних ассетов в проекте нет
+      (растровые картинки запрещены проверкой). Происхождение встроенного шрифта 5×7 автор ещё уточняет.
+    allowed_wording:
+      ru: ["графика, звук и музыка генерируются процедурно"]
+      en: ["graphics, sound and music are generated procedurally"]
+    evidence:
+      - {kind: doc, source: "dpsmpx/Galdhold docs/PROVENANCE.md §5", ref: "f2ba263", date: 2026-10-04, verification: reported}
+      - {kind: code, source: "dpsmpx/Galdhold tools/hostcheck/check_raster.py", ref: "f2ba263", date: 2026-10-04, verification: observed}
+    notes: «Ни одного чужого ассета» не писать, пока не закрыт вопрос о шрифте 5×7.
+  - id: GH-ANDROID
+    subject: galdhold
+    class: FACT
+    risk: high
+    public: true
+    statement: APK запускался и проверялся на телефонах Redmi Note 13 и Poco X7 Pro 5G.
+    allowed_wording:
+      ru: ["проверялась на Android-телефонах (Redmi Note 13, Poco X7 Pro 5G)"]
+      en: ["tested on Android phones (Redmi Note 13, Poco X7 Pro 5G)"]
+    evidence:
+      - {kind: doc, source: "dpsmpx/Galdhold README.md, «Состояние проекта»", ref: "f2ba263", date: 2026-10-04, verification: reported}
+  - id: GH-PERF-2026-09-30
+    subject: galdhold
+    class: FACT
+    risk: high
+    public: true
+    statement: >-
+      Замер 30 сентября 2026 на телефоне (окно 2306×1080): автопресет начинает с Medium
+      (GPU 18–23 мс) и сходит на Low — GPU 11,6–12,4 мс, 55–68 кадров/с.
+    allowed_wording:
+      ru: ["55–68 кадров/с на пресете Low (замер 30.09.2026)"]
+    supersedes: ["80–100+ FPS на Poco X7 Pro (дневник № 9, 26.09.2026)"]
+    recheck_by: 2026-11-04
+    evidence:
+      - {kind: doc, source: "dpsmpx/Galdhold README.md; DECISIONS.md, история, 30.09.2026", ref: "f2ba263", date: 2026-10-04, verification: reported}
+  - id: GH-WINDOWS
+    subject: galdhold
+    class: FACT
+    risk: high
+    public: true
+    statement: Windows-версия собирается кросс-компиляцией на Linux; на настоящей Windows игра ещё не запускалась (на 3 октября 2026).
+    allowed_wording:
+      ru: ["готовится версия для Windows"]
+      en: ["a Windows version is in progress"]
+    recheck_by: 2026-11-04
+    evidence:
+      - {kind: doc, source: "dpsmpx/Galdhold README.md, «Состояние проекта»", ref: "f2ba263", date: 2026-10-04, verification: reported}
+  - id: GH-RELEASE-PLAN
+    subject: galdhold
+    class: FACT
+    risk: medium
+    public: true
+    statement: Первый выпуск планируется на Android и Windows (Steam); дат нет.
+    allowed_wording:
+      ru: ["выйдет на Android и Windows (Steam) — план, без дат"]
+      en: ["planned for Android and Windows (Steam)"]
+    evidence:
+      - {kind: decision, source: "dpsmpx/Galdhold DECISIONS.md Р2, Р14", ref: "f2ba263", date: 2026-10-04, verification: decision}
+  - id: GH-STAGES
+    subject: galdhold
+    class: FACT
+    risk: medium
+    public: true
+    statement: Этапы 1–4 закрыты — движок, полигон, живое поселение, регионы; идёт этап 5 — коммерческая версия 1 и выпуск.
+    allowed_wording:
+      ru: ["закрыты этапы: движок, живое поселение, регионы; идёт подготовка версии 1"]
+      en: ["completed stages: the engine, a living settlement, regions; version 1 is in preparation"]
+    recheck_by: 2026-11-04
+    evidence:
+      - {kind: doc, source: "dpsmpx/Galdhold ROADMAP/ROADMAP.md, «Этапы развития»", ref: "f2ba263", date: 2026-10-04, verification: reported}
+  - id: GH-READINESS
+    subject: galdhold
+    class: FACT
+    risk: high
+    public: false
+    statement: "Оценка готовности к первому релизу в Steam — 43 %, по всем задачам — 31 % (3 октября 2026, check_progress.py); на 17 октября 2026 оценка не пересчитывалась, счёт закрытых пунктов ROADMAP — 250 из 465 к релизу, 250 из 537 по всем задачам."
+    recheck_by: 2026-11-04
+    evidence:
+      - {kind: doc, source: "dpsmpx/Galdhold README.md, блок готовности", ref: "f2ba263", date: 2026-10-04, verification: reported}
+      - {kind: doc, source: "dpsmpx/Galdhold README.md, блок готовности (пишет tools/hostcheck/check_progress.py --write): оценка на 3 октября 2026, счёт пунктов ROADMAP", ref: "11bf957", date: 2026-10-17, verification: reported}
+    notes: Внутренняя оценка; публично проценты без определения не используются (аудит, § 4).
+  - id: GH-REPO-START
+    subject: galdhold
+    class: FACT
+    risk: medium
+    public: true
+    statement: >-
+      Репозиторий создан 11 сентября 2026; первый коммит — 30 801 строка, созданная до
+      репозитория (происхождение — в закрытой записи автора).
+    allowed_wording:
+      ru: ["репозиторий начат 11 сентября 2026"]
+      en: ["the repository started on 11 September 2026"]
+    evidence:
+      - {kind: doc, source: "dpsmpx/Galdhold docs/PROVENANCE.md §2", ref: "f2ba263", date: 2026-10-04, verification: reported}
+  - id: GH-FROM-ZERO
+    subject: galdhold
+    class: INTERPRETATION
+    risk: high
+    public: true
+    statement: >-
+      «С нуля за 23 дня» — толкование автора. Репозиторий начат 11.09.2026, но с первым коммитом
+      в 30 801 строку, написанным до репозитория.
+    allowed_wording:
+      ru: ["с 11 сентября 2026 — от первого коммита до …"]
+    evidence:
+      - {kind: doc, source: "dpsmpx/Galdhold docs/PROVENANCE.md §2", ref: "f2ba263", date: 2026-10-04, verification: reported}
+    notes: «С нуля» — только с оговоркой о первом коммите или без слова «нуль».
+  - id: GH-COMMITS
+    subject: galdhold
+    class: FACT
+    risk: medium
+    public: true
+    statement: >-
+      На 1 октября 2026 в main 563 коммита: 352 — сессии Claude Code по заданиям автора,
+      152 — слияния запросов, принятые автором, 58 — коммиты автора.
+    allowed_wording:
+      ru: ["за три недели — больше 560 коммитов; каждое слияние принимал сам"]
+    recheck_by: 2026-11-04
+    evidence:
+      - {kind: doc, source: "dpsmpx/Galdhold docs/PROVENANCE.md §2", ref: "f2ba263", date: 2026-10-04, verification: reported}
+  - id: GH-PRIVATE
+    subject: galdhold
+    class: FACT
+    risk: medium
+    public: true
+    statement: Исходный код Galdhold закрыт с 1 октября 2026; посторонним — только по письменному разрешению.
+    allowed_wording:
+      ru: ["код закрыт"]
+      en: ["closed source"]
+    evidence:
+      - {kind: decision, source: "dpsmpx/Galdhold DECISIONS.md Р12", ref: "f2ba263", date: 2026-10-04, verification: decision}
+  - id: GH-ROSPATENT
+    subject: galdhold
+    class: FACT
+    risk: high
+    public: true
+    statement: 2 октября 2026 подана заявка на государственную регистрацию программы для ЭВМ (под рабочим названием VoxelRPG); свидетельства пока нет.
+    allowed_wording:
+      ru: ["подал заявку на регистрацию программы в Роспатенте"]
+    evidence:
+      - {kind: doc, source: "dpsmpx/Galdhold docs/PROVENANCE.md §2.1", ref: "f2ba263", date: 2026-10-04, verification: reported}
+    notes: Это не патент. «Запатентовал» и «зарегистрировал» — до свидетельства запрещено.
+  - id: GH-BUSINESS
+    subject: galdhold
+    class: FACT
+    risk: medium
+    public: true
+    statement: Модель продаж — премиум, один раз; без доната, гачи, рекламы и обязательных покупок.
+    allowed_wording:
+      ru: ["игра покупается один раз — без доната и рекламы"]
+    evidence:
+      - {kind: decision, source: "dpsmpx/Galdhold DECISIONS.md Р13", ref: "f2ba263", date: 2026-10-04, verification: decision}
+  - id: GH-AI-TEXTS
+    subject: galdhold
+    class: FACT
+    risk: medium
+    public: true
+    statement: Тексты игры (диалоги, предметы, интерфейс) созданы с помощью ИИ; это раскрывается в анкете Steam.
+    evidence:
+      - {kind: doc, source: "dpsmpx/Galdhold docs/PROVENANCE.md §5", ref: "f2ba263", date: 2026-10-04, verification: reported}
+  - id: GH-SPEEDUP
+    subject: galdhold
+    class: HYPOTHESIS
+    risk: high
+    public: false
+    statement: ИИ ускорил разработку в N раз по сравнению с работой без ИИ.
+    evidence: []
+    notes: Методики сравнения нет. Не публикуется ни в каком виде (Д7).
+
+  # ---------------------------------------------------------------- DPlang
+  - id: DP-WHAT
+    subject: dplang
+    class: FACT
+    risk: medium
+    public: true
+    statement: >-
+      DPlang — собственный язык программирования автора; приоритеты — надёжность, детерминизм и
+      контролируемость, затем проверяемость, скорость разработки и сборки, работа с ИИ.
+    allowed_wording:
+      ru: ["разрабатываю собственный язык программирования — DPlang"]
+      en: ["I'm designing my own programming language, DPlang"]
+    evidence:
+      - {kind: doc, source: "dpsmpx/DPlang README.md", ref: "66e461c", date: 2026-10-04, verification: reported}
+  - id: DP-STAGE
+    subject: dplang
+    class: FACT
+    risk: high
+    public: true
+    statement: "v0.0 «замер до компилятора» пройдена 4 октября 2026; v0.1 «ядро-срез» закрыта с оговоркой 10 октября; ворота v0.2 «native-срез» пройдены 19 октября: программы собираются для Linux, Windows (проверка под Wine) и Android, кадр графической программы совпадает с эталоном; идёт v0.3 «память и параллелизм». Выпущенного компилятора нет."
+    allowed_wording:
+      ru: ["язык на ранней стадии: компилятор в разработке, собирает программы для Linux, Windows и Android"]
+      en: ["early stage: the compiler is in development and builds programs for Linux, Windows and Android"]
+    recheck_by: 2026-11-08
+    evidence:
+      - {kind: doc, source: "dpsmpx/DPlang ROADMAP/ROADMAP.md, docs/CHANGELOG.md", ref: "66e461c", date: 2026-10-04, verification: reported}
+      - {kind: doc, source: "dpsmpx/DPlang ROADMAP/ROADMAP.md: v0.1 [x], v0.2 [+] (ворота пройдены 19.10.2026, аудит docs/audits/2026-10-17-v0.2-audit.md), v0.3 — в работе", ref: "eac5a87", date: 2026-10-25, verification: reported}
+    notes: Смена текста 25.10.2026 — ответ автора «сменить и переодобрить»; варианты CI-0001 и CI-0002 — новыми версиями, одобряет автор. README DPlang («v0.2 — следующая, не начата») отстал от ROADMAP.
+  - id: DP-COMPILER
+    subject: dplang
+    class: FACT
+    risk: high
+    public: true
+    statement: >-
+      Компилятор DPlang — в разработке: каталог compiler/ в main с 5 октября 2026; v0.1 «ядро-срез» закрыта
+      с оговоркой 10 октября 2026; C-бэкенд переводит программу в C11. Выпущенного компилятора нет,
+      публичный запуск онлайн-компилятора выключен.
+    allowed_wording:
+      ru: ["язык программирования и компилятор (в разработке)"]
+      en: ["a programming language and compiler (in development)"]
+    recheck_by: 2026-11-12
+    evidence:
+      - {kind: doc, source: "dpsmpx/DPlang README.md, «Готовность»: v0.1, компилятор, онлайн-компилятор", ref: "b525c5f", date: 2026-10-12, verification: reported}
+      - {kind: code, source: "dpsmpx/DPlang compiler/ в main (слияние #11)", ref: "715ab0c", date: 2026-10-05, verification: observed}
+  - id: DP-DOCS
+    subject: dplang
+    class: FACT
+    risk: medium
+    public: true
+    statement: >-
+      У DPlang формализованы постановка, требования и решения (Р0–Р60), видение, архитектура, политики,
+      критерии готовности (DoD v1.0), риски, аудит и спецификация ядра v0.1.
+    allowed_wording:
+      ru: ["формализованы требования, решения, спецификация, архитектура, политики и критерии готовности"]
+      en: ["requirements, decisions, specification, architecture, policies and definition of done are written down"]
+    evidence:
+      - {kind: doc, source: "dpsmpx/DPlang README.md, «Готовность»", ref: "b525c5f", date: 2026-10-12, verification: reported}
+  - id: DP-EXPERIMENT
+    subject: dplang
+    class: FACT
+    risk: high
+    public: true
+    statement: >-
+      Синтаксис выбран экспериментом: модель ИИ решала 14 эталонных задач на трёх вариантах записи
+      и на C++; в прогоне r1 приняты 56 из 56 решений с первой попытки. Набор оказался слишком
+      лёгким, чтобы различить варианты — для v0.1 нужен сложнее.
+    allowed_wording:
+      ru: ["синтаксис выбирал не на вкус, а замером: 14 задач, три варианта записи"]
+    evidence:
+      - {kind: doc, source: "dpsmpx/DPlang docs/audits/2026-10-04-syntax-experiment.md, ROADMAP v0.0", ref: "66e461c", date: 2026-10-04, verification: reported}
+    notes: «ИИ пишет на DPlang лучше, чем на C++» — не доказано (все варианты сдали 100 %).
+  - id: DP-INDEPENDENT
+    subject: dplang
+    class: FACT
+    risk: medium
+    public: true
+    statement: Galdhold не зависит от DPlang; перенос игры на язык — не раньше v1.0 и только отдельным решением.
+    evidence:
+      - {kind: decision, source: "dpsmpx/Galdhold DECISIONS.md Р18; dpsmpx/DPlang DECISIONS.md Р22", date: 2026-10-04, verification: decision}
+  - id: DP-PRIVATE
+    subject: dplang
+    class: FACT
+    risk: low
+    public: true
+    statement: DPlang — закрытый проект с временной проприетарной лицензией.
+    allowed_wording:
+      ru: ["код закрыт"]
+      en: ["closed source"]
+    evidence:
+      - {kind: doc, source: "dpsmpx/DPlang README.md, LICENSE", ref: "66e461c", date: 2026-10-04, verification: reported}
+
+  # ---------------------------------------------------------------- прочие проекты
+  - id: AL-WHAT
+    subject: andors_love
+    class: FACT
+    risk: low
+    public: true
+    statement: Andors-Love — пошаговая RPG на C++11 с двумя оболочками над одной логикой — терминальной и на SDL2.
+    allowed_wording:
+      ru: ["пошаговая RPG на C++"]
+      en: ["turn-based RPG in C++"]
+    evidence:
+      - {kind: code, source: "github.com/dpsmpx/Andors-Love README.md", date: 2026-10-04, verification: observed}
+  - id: TJTM-WHAT
+    subject: truejointtilemaker
+    class: FACT
+    risk: low
+    public: true
+    statement: TrueJointTileMaker — редактор пиксельной графики и карт локаций для Andors-Love на PascalABC.NET.
+    allowed_wording:
+      ru: ["редактор пиксельной графики и карт для Andors-Love"]
+      en: ["pixel-art and map editor for Andors-Love"]
+    notes: >-
+      Срез на 04.10.2026: «на PascalABC.NET» — до переноса; с версии 1.6 — C++ и SDL3 (TJTM-NOW).
+      Формулировка для сайта верна и сейчас; утверждение не меняется — на него ссылается CI-0003.
+    evidence:
+      - {kind: code, source: "github.com/dpsmpx/TrueJointTileMaker README.md", date: 2026-10-04, verification: observed}
+  - id: TJTM-PORT
+    subject: truejointtilemaker
+    class: FACT
+    risk: low
+    public: true
+    statement: >-
+      С 5 октября 2026 TrueJointTileMaker переносится с PascalABC.NET на C++: версия 0.6.0 лежит в pascal/
+      как эталон, перенос сверяется с ней по снимкам окна.
+    allowed_wording:
+      ru: ["переводится на новую архитектурную основу"]
+      en: ["is being moved to a new architectural base"]
+    evidence:
+      - {kind: code, source: "github.com/dpsmpx/TrueJointTileMaker README.md, docs/porting.md", ref: "46beb45", date: 2026-10-05, verification: observed}
+  - id: PIX-WHAT
+    subject: pixrogue
+    class: FACT
+    risk: low
+    public: true
+    statement: PixRogue — классический Rogue в пиксельном стиле для вертикального экрана и касаний, Python + Pygame, GPLv3.
+    allowed_wording:
+      ru: ["классический Rogue в пиксельном стиле, Python"]
+      en: ["a pixel-art classic Rogue in Python"]
+    evidence:
+      - {kind: code, source: "github.com/dpsmpx/PixRogue README.md", date: 2026-10-04, verification: observed}
+  - id: ECO-WHAT
+    subject: dp_ecosystem
+    class: FACT
+    risk: low
+    public: true
+    statement: DP_Ecosystem — пошаговая клеточная симуляция экосистемы (вода, растения, травоядные, хищники), Python + Pygame.
+    allowed_wording:
+      ru: ["клеточная симуляция экосистемы, Python"]
+      en: ["a cellular ecosystem simulation in Python"]
+    evidence:
+      - {kind: code, source: "github.com/dpsmpx/DP_Ecosystem README.md", date: 2026-10-04, verification: observed}
+
+  # ---------------------------------------------------------------- экосистема (страница прогресса, Д38)
+  - id: SMI-WHAT
+    subject: socialmediaimage
+    class: FACT
+    risk: low
+    public: true
+    statement: SocialMediaImage — система исследования, создания, проверки и публикации контента автора; сайт dpsmpx.com собирает её генератор.
+    allowed_wording:
+      ru: ["система контента и сайт dpsmpx.com"]
+      en: ["the content system behind dpsmpx.com"]
+    evidence:
+      - {kind: doc, source: "dpsmpx/SocialMediaImage README.md, docs/platforms/WEBSITE.md", ref: "e286ff8", date: 2026-10-05, verification: observed}
+  - id: SMI-SITE
+    subject: socialmediaimage
+    class: FACT
+    risk: medium
+    public: true
+    statement: Домен dpsmpx.com зарегистрирован 5 октября 2026; в тот же день — первая штатная выгрузка сайта на хостинг. HTTPS — после сертификата.
+    allowed_wording:
+      ru: ["сайт выгружен на хостинг 5 октября 2026"]
+      en: ["the site went live on its host on 5 October 2026"]
+    recheck_by: 2026-11-05
+    evidence:
+      - {kind: doc, source: "dpsmpx/SocialMediaImage ROADMAP/ROADMAP.md, П2-01 и П2-02", ref: "e286ff8", date: 2026-10-05, verification: reported}
+  - id: VRF-WHAT
+    subject: dp_verify
+    class: FACT
+    risk: low
+    public: true
+    statement: DP-Verify — общий каркас инженерных проверок и проектной дисциплины для репозиториев автора.
+    allowed_wording:
+      ru: ["общий каркас проверок для репозиториев автора"]
+      en: ["a shared engineering-checks framework for the author's repositories"]
+    evidence:
+      - {kind: doc, source: "dpsmpx/DP-Verify README.md", ref: "c3d3d3e", date: 2026-10-05, verification: reported}
+  - id: VRF-STAGE
+    subject: dp_verify
+    class: FACT
+    risk: medium
+    public: true
+    statement: >-
+      Версия 0.3.0 на 5 октября 2026: этапы 0–3 из 0–8 сделаны — каркас, обязательный набор из
+      десяти проверок, выбор проверок по изменениям; другие репозитории его пока не подключили.
+    allowed_wording:
+      ru: ["версия 0.3.0: этапы 0–3 из 0–8; другие репозитории его пока не подключили"]
+      en: ["version 0.3.0: stages 0–3 of 0–8; not yet adopted by other repositories"]
+    notes: Срез на 5 октября 2026 (страница прогресса CI-0002, статья CI-0003 — «по 5 октября»); нынешняя стадия — VRF-NOW.
+    evidence:
+      - {kind: doc, source: "dpsmpx/DP-Verify ROADMAP/ROADMAP.md, README.md", ref: "c3d3d3e", date: 2026-10-05, verification: reported}
+  - id: VRF-NOW
+    subject: dp_verify
+    class: FACT
+    risk: medium
+    public: true
+    statement: >-
+      На 11 октября 2026 года DP-Verify — версия 1.0.0-rc2, кандидат 1.0: этапы 0–7 из 0–8 сделаны
+      (каркас, обязательный набор, выбор по изменениям, необязательные проверки, process-kit, два
+      пилотных подключения); его проверки подключены в Galdhold. Выпуск 1.0.0 — этап 8.
+    allowed_wording:
+      ru: ["кандидат версии 1.0; его проверки подключены в Galdhold"]
+      en: ["a 1.0 release candidate; its checks run in Galdhold"]
+    recheck_by: 2026-11-08
+    evidence:
+      - {kind: doc, source: "dpsmpx/DP-Verify README.md («Состояние»), ROADMAP/ROADMAP.md (этапы 0–7 — [+], этап 8 — [ ])", ref: "6c57f07", date: 2026-10-25, verification: reported}
+      - {kind: doc, source: "dpsmpx/Galdhold CLAUDE.md: проверки через DP Verify (Р21)", ref: "5aebe330", date: 2026-10-25, verification: reported}
+  - id: PRF-WHAT
+    subject: dpprofile
+    class: FACT
+    risk: low
+    public: true
+    statement: DPprofile — проверяемая история пути разработки автора и его проектов — источники, атомарные факты со ссылками на коммиты и файлы, хронология, выводы.
+    allowed_wording:
+      ru: ["проверяемая история пути разработки — источники, факты, хронология"]
+      en: ["a verifiable history of the development path — sources, facts, timeline"]
+    evidence:
+      - {kind: doc, source: "dpsmpx/DPprofile README.md", ref: "3e76c10", date: 2026-10-04, verification: reported}
+  - id: PRF-STAGE
+    subject: dpprofile
+    class: FACT
+    risk: medium
+    public: true
+    statement: На 5 октября 2026 выполнено 4 этапа из 6; идёт этап 4 — структура будущей книги без прозы. Текст книги не пишется (шлюз D-02).
+    allowed_wording:
+      ru: ["выполнено 4 этапа из 6; текст книги не пишется"]
+      en: ["4 of 6 stages complete; the book itself is not being written"]
+    recheck_by: 2026-11-08
+    evidence:
+      - {kind: doc, source: "dpsmpx/DPprofile README.md, блок состояния (строит tools/verify/readme_status.py)", ref: "3e76c10", date: 2026-10-04, verification: reported}
+      - {kind: doc, source: "dpsmpx/DPprofile main — без новых коммитов с 4 октября (сверено)", ref: "3e76c10", date: 2026-10-25, verification: reported}
+  - id: LRN-WHAT
+    subject: dplearn
+    class: FACT
+    risk: low
+    public: true
+    statement: DPlearn — персональная система обучения, где статус «освоено» не записывают, а вычисляют из доказательств.
+    allowed_wording:
+      ru: ["система обучения, где «освоено» вычисляется из доказательств"]
+      en: ["a learning system where “mastered” is computed from evidence"]
+    evidence:
+      - {kind: doc, source: "dpsmpx/DPlearn README.md", ref: "d2565dd", date: 2026-10-04, verification: reported}
+  - id: LRN-STAGE
+    subject: dplearn
+    class: FACT
+    risk: medium
+    public: true
+    statement: Версия 0.1.0 — ядро, протоколы, роли ИИ, проверки и пилотный домен готовы; своих целей и карты у автора в системе пока нет.
+    allowed_wording:
+      ru: ["версия 0.1.0: ядро и пилотный домен готовы"]
+      en: ["version 0.1.0: the core and a pilot domain are ready"]
+    recheck_by: 2026-11-08
+    evidence:
+      - {kind: doc, source: "dpsmpx/DPlearn README.md, «Состояние»", ref: "d2565dd", date: 2026-10-04, verification: reported}
+      - {kind: doc, source: "dpsmpx/DPlearn main — без новых коммитов с 4 октября (сверено)", ref: "d2565dd", date: 2026-10-25, verification: reported}
+  - id: MKT-WHAT
+    subject: dp_game_market
+    class: FACT
+    risk: low
+    public: true
+    statement: DP_game_market_analytic_system — воспроизводимый анализ рынка игр с явной неопределённостью — наблюдения, факты, метрики, гипотезы, решения.
+    allowed_wording:
+      ru: ["воспроизводимый анализ рынка игр"]
+      en: ["reproducible game market analysis"]
+    evidence:
+      - {kind: doc, source: "dpsmpx/DP_game_market_analytic_system docs/ARCHITECTURE.md", ref: "2fd2abe", date: 2026-10-04, verification: reported}
+  - id: MKT-STAGE
+    subject: dp_game_market
+    class: FACT
+    risk: medium
+    public: true
+    statement: На 4 октября 2026 написаны фазы 0–6 из 0–10; тесты есть у фаз 0–4; интерфейса командной строки пока нет.
+    allowed_wording:
+      ru: ["написаны фазы 0–6 из 0–10, тесты — у 0–4"]
+      en: ["phases 0–6 of 0–10 written, 0–4 with tests"]
+    notes: Срез на 4 октября 2026 (страница прогресса CI-0002, статья CI-0003); нынешняя стадия — MKT-NOW.
+    evidence:
+      - {kind: doc, source: "dpsmpx/DP_game_market_analytic_system docs/HANDOFF.md", ref: "2fd2abe", date: 2026-10-04, verification: reported}
+  - id: MKT-NOW
+    subject: dp_game_market
+    class: FACT
+    risk: medium
+    public: true
+    statement: >-
+      На 16 октября 2026 года — версия 0.3.0 до выпуска: командная строка dpm (рынок сегмента,
+      конкуренты, тренды, возможности, прогноз сценариями, бэктест); 358 тестов; все данные в
+      репозитории синтетические — реальные подключаются отдельно.
+    allowed_wording:
+      ru: ["версия 0.3.0 до выпуска: командная строка, 358 тестов, данные пока синтетические"]
+      en: ["version 0.3.0, pre-release: a command-line tool, 358 tests, synthetic data so far"]
+    recheck_by: 2026-11-08
+    evidence:
+      - {kind: doc, source: "dpsmpx/DP_game_market_analytic_system docs/HANDOFF.md (версии, тесты), README.md (команды dpm, синтетические данные)", ref: "a04506a", date: 2026-10-25, verification: reported}
+  - id: META-WHAT
+    subject: dpmeta
+    class: FACT
+    risk: low
+    public: true
+    statement: DPmeta — мета-репозиторий — карта репозиториев и их границ, контракты между ними, общие принципы, риски на суд автора; ни один репозиторий от него не зависит.
+    allowed_wording:
+      ru: ["карта экосистемы, контракты между репозиториями и риски"]
+      en: ["the ecosystem map, contracts between repositories and risks"]
+    evidence:
+      - {kind: doc, source: "dpsmpx/DPmeta README.md, docs/DECISIONS.md M-01", ref: "b03e9bc", date: 2026-10-05, verification: reported}
+  - id: APP-WHAT
+    subject: dpmetaapp
+    class: FACT
+    risk: low
+    public: true
+    statement: >-
+      DPmetaApp — управление экосистемой: личное приложение автора для Android, пульт над проектами,
+      ходом разработки и сайтом. По мастер-ТЗ автора строится после того, как проекты станут
+      законченными системами; на 09.10.2026 — этап ТЗ.
+    allowed_wording:
+      ru: ["управление экосистемой: личный пульт автора для Android — на этапе ТЗ"]
+      en: ["ecosystem control: the author's personal Android app — at the specification stage"]
+    evidence:
+      - {kind: doc, source: "dpsmpx/DPmetaApp docs/direction/TECHNICAL_TASK.md (ветка claude/vigilant-franklin-61x8kq, черновик этапа 0)", ref: "2812482", date: 2026-10-06, verification: reported}
+      - {kind: doc, source: "dpsmpx/DPmetaApp MESTER_TECHNICAL_TASK_ROADMAP.md (main): сначала законченные системы, затем приложение", ref: "4dcc27a", date: 2026-10-06, verification: reported}
+      - {kind: decision, source: "dpsmpx/DPmetaApp docs/direction/DECISIONS.md D-25 (ветка claude/dreamy-bardeen-xe4k6r): управление экосистемой, фаза B мастер-ТЗ; слово автора 09.10.2026", ref: "ed0df9b", date: 2026-10-09, verification: decision}
+    recheck_by: 2026-11-09
+  - id: APP-NOW
+    subject: dpmetaapp
+    class: FACT
+    risk: low
+    public: true
+    statement: >-
+      С 10 октября 2026 года DPmetaApp — одно приложение автора: первая подсистема «AI» (бывший
+      DP_AI_Orcestrator, каталог dpai/ с его историей) уже внутри, её ядро — ядро приложения, её
+      Android-оболочка — первая форма приложения на телефоне автора; прежний репозиторий оркестратора
+      заморожен. Этап 1 (сборка и ядро) сделан, идёт этап 2 — данные экосистемы.
+    allowed_wording:
+      ru: ["управление экосистемой: одно приложение автора для Android; внутри уже подсистема ИИ для параллельных сессий"]
+      en: ["ecosystem control: the author's single Android app, already with an AI subsystem for parallel sessions inside"]
+    notes: Решение «всё в одном» — слово автора 10.10.2026 в сессии DPmetaApp. APP-WHAT — о DPmetaApp на 9 октября (страница прогресса).
+    evidence:
+      - {kind: decision, source: "dpsmpx/DPmetaApp docs/direction/DECISIONS.md D-28 (всё в одном: dpai/, репозиторий оркестратора заморожен) и D-29 (фаза B — сейчас)", ref: "4116a95", date: 2026-10-12, verification: decision}
+      - {kind: doc, source: "dpsmpx/DPmetaApp README.md, ROADMAP/ROADMAP.md (этап 1 — [+]), TODO.md (на телефоне — com.dpsmpx.dpai)", ref: "4116a95", date: 2026-10-12, verification: reported}
+      - {kind: doc, source: "dpsmpx/DPmetaApp ROADMAP/ROADMAP.md: этап 1 — [+], этап 2 — [ ] (сверено)", ref: "9c6f0890", date: 2026-10-25, verification: reported}
+    recheck_by: 2026-11-08
+  - id: APP-PHASE-B
+    subject: dpmetaapp
+    class: FACT
+    risk: low
+    public: true
+    statement: >-
+      С 11 октября 2026 года фаза B плана начата для самого приложения: DPmetaApp строит свои функции
+      по одной, не дожидаясь, пока все системы станут законченными (решение D-29, слово автора).
+    allowed_wording:
+      ru: ["фаза B начата: приложение строит свои функции по одной, не дожидаясь законченных систем"]
+      en: ["phase B has started: the app is built one function at a time, without waiting for every system to be finished"]
+    recheck_by: 2026-11-08
+    evidence:
+      - {kind: decision, source: "dpsmpx/DPmetaApp docs/direction/DECISIONS.md D-29 (фаза B для DPmetaApp — сейчас, по одной функции)", ref: "9c6f0890", date: 2026-10-11, verification: decision}
+  - id: MON-WHAT
+    subject: dpmonetization
+    class: FACT
+    risk: low
+    public: true
+    statement: "DPmonetization — Strategic Project Intelligence — слой анализа портфеля проектов (доказательства → состояние → готовность → ценность → риск → решение); на 06.10.2026 — каркас ядра."
+    allowed_wording:
+      ru: ["анализ портфеля проектов: от доказательств к решению — каркас ядра"]
+      en: ["project portfolio analysis: from evidence to decision — core skeleton"]
+    evidence:
+      - {kind: doc, source: "dpsmpx/DPmonetization tools/dpmon/__init__.py", ref: "f6d30fe", date: 2026-10-06, verification: reported}
+    recheck_by: 2026-11-06
+  - id: VIS-WHAT
+    subject: dpvisualisation
+    class: FACT
+    risk: low
+    public: true
+    statement: "DPvisualisation — интерактивная модель экосистемы: потоки информации и работа инфраструктуры на реальных данных истории git; её публичная выжимка — раздел «Экосистема» сайта (Д43)."
+    allowed_wording:
+      ru: ["интерактивная модель экосистемы на реальных данных — эта схема", "интерактивная модель экосистемы на реальных данных"]
+      en: ["an interactive model of the ecosystem on real data — this diagram", "an interactive model of the ecosystem on real data"]
+    evidence:
+      - {kind: doc, source: "dpsmpx/DPvisualisation docs/direction/REQUEST.md, docs/direction/DECISIONS.md D-01, D-15", ref: "4bbe5ac", date: 2026-10-06, verification: reported}
+  - id: META-NO-DEPS
+    subject: dpmeta
+    class: FACT
+    risk: medium
+    public: true
+    statement: >-
+      На 5 октября 2026 зависимостей сборки и исполнения между репозиториями экосистемы нет:
+      каждый собирается и проверяется сам; связи — решения, контракты и факты.
+    allowed_wording:
+      ru: ["зависимостей сборки и исполнения между репозиториями нет"]
+      en: ["no repository depends on another to build or run"]
+    recheck_by: 2026-11-05
+    evidence:
+      - {kind: doc, source: "dpsmpx/DPmeta docs/ECOSYSTEM.md, §3 «Связи», наблюдения", ref: "b03e9bc", date: 2026-10-05, verification: reported}
+  - id: META-SYNC
+    subject: dpmeta
+    class: FACT
+    risk: low
+    public: true
+    statement: >-
+      DPmeta ведёт очередь согласований (расхождения между репозиториями — с местом и предлагаемой правкой),
+      делает межрепозиторные проходы со срезами (05.10.2026) и помечает каждую запись видом: наблюдение,
+      рекомендация, решение или открытый вопрос (M-03).
+    allowed_wording:
+      ru: ["очередь согласований и межрепозиторные аудиты", "различать наблюдение, рекомендацию, решение и открытый вопрос"]
+      en: ["a reconciliation queue and cross-repository audits"]
+    evidence:
+      - {kind: doc, source: "dpsmpx/DPmeta docs/DECISIONS.md M-03, docs/SYNC_QUEUE.md, docs/reports/2026-10-05-*-xref.md", ref: "fec807c", date: 2026-10-12, verification: reported}
+  - id: META-SOT
+    subject: dpmeta
+    class: FACT
+    risk: low
+    public: true
+    statement: >-
+      Принцип DPmeta (M-02): о себе каждый репозиторий — сам себе источник истины; DPmeta описывает только
+      то, что между ними, и при расхождении с репозиторием исправляется сам.
+    allowed_wording:
+      ru: ["каждый репозиторий сам является источником истины о себе, а мета-уровень хранит только знание о связях между репозиториями"]
+      en: ["each repository is the source of truth about itself; the meta level only knows the links between them"]
+    evidence:
+      - {kind: decision, source: "dpsmpx/DPmeta README.md; docs/DECISIONS.md M-02", ref: "fec807c", date: 2026-10-12, verification: decision}
+  - id: META-PROCESS
+    subject: dpmeta
+    class: FACT
+    risk: low
+    public: true
+    statement: >-
+      В DPmeta записаны правила для активных веток (M-04: перед правкой — ветки, открытые PR и активные
+      сессии; активный репозиторий — только чтение) и общие принципы репозиториев, среди них журнал решений
+      как источник истины (E-01, docs/PRINCIPLES.md).
+    allowed_wording:
+      ru: ["правила активных веток", "единая модель решений"]
+      en: ["rules for active branches", "a shared decision model"]
+    evidence:
+      - {kind: decision, source: "dpsmpx/DPmeta docs/DECISIONS.md M-04; docs/PRINCIPLES.md E-01", ref: "fec807c", date: 2026-10-12, verification: decision}
+  - id: META-STAGE
+    subject: dpmeta
+    class: FACT
+    risk: low
+    public: true
+    statement: Три прохода консолидации экосистемы — 5 октября 2026 (первый, повторный и третий).
+    allowed_wording:
+      ru: ["три прохода по экосистеме — 5 октября 2026"]
+      en: ["three passes over the ecosystem on 5 October 2026"]
+    evidence:
+      - {kind: doc, source: "dpsmpx/DPmeta docs/reports/2026-10-05-ECOSYSTEM_HEALTH.md, 2026-10-05-2-ECOSYSTEM_HEALTH.md", ref: "b03e9bc", date: 2026-10-05, verification: reported}
+      - {kind: doc, source: "dpsmpx/DPmeta docs/reports/2026-10-05-3-ECOSYSTEM_HEALTH.md (третий проход, main)", ref: "f166b47", date: 2026-10-05, verification: reported}
+  - id: CORE-SCALE-2026-10-05
+    subject: ecosystem
+    class: FACT
+    risk: high
+    public: true
+    statement: >-
+      С 11 сентября по 5 октября 2026 (24 дня, срез 5 октября) ядро экосистемы выросло из
+      одного репозитория — игры Galdhold — до 9 репозиториев с работой; 8 из них созданы за
+      период; у одного нет публичного имени (закрыты все девять). За период — 981 коммит автора и Claude во всех
+      ветках, из них 819 (83 %) — сессии Claude; 225 слияний PR в основные ветки. В основных
+      ветках ядра на момент среза — 344 тыс. строк кода, тестов и документов (81 тыс. — тесты)
+      и 210 записей в журналах решений.
+    allowed_wording:
+      ru: ["из одной игры за 24 дня — экосистема из 9 репозиториев", "за 24 дня: 981 коммит, 83 % из них — сессии ИИ",
+           "225 слияний PR", "на 05.10.2026: 344 тыс. строк кода, тестов и документов",
+           "на 05.10.2026: 210 записей в журналах решений", "+ 1 проект без публичного имени",
+           "981 коммит за 24 дня, 83 % из них — сессии ИИ", "210 записей на 5 октября 2026 года",
+           "344 тыс. строк кода, тестов и документов на 5 октября 2026 года",
+           "с 11 сентября по 5 октября 2026 года из одной игры выросла экосистема из 9 репозиториев"]
+      en: ["from one game to an ecosystem of 9 repositories in 24 days", "in 24 days: 981 commits, 83% by AI sessions",
+           "225 merged pull requests", "as of 5 Oct 2026: 344k lines of code, tests and docs",
+           "as of 5 Oct 2026: 210 decision records", "+ 1 project without a public name",
+           "981 commits in 24 days, 83% of them by AI sessions", "210 entries as of 5 October 2026",
+           "344k lines of code, tests and docs as of 5 October 2026",
+           "between 11 September and 5 October 2026, one game grew into an ecosystem of 9 repositories"]
+    recheck_by: 2026-11-05
+    notes: >-
+      Величины посчитаны в сессии 05.10.2026 по сохранённому набору прогресса формулами METRICS
+      (repos_core, repos_core_new, span_days, commits, commits_ai, ai_share, merges, lines_end,
+      tests_end, decisions_end); клоны не пересобирались. В первый день периода в ядре был один
+      репозиторий — Galdhold. Закрытый репозиторий без имени — только в суммах (Д38, Д39).
+    evidence:
+      - {kind: measurement, source: "data/progress/datasets/2026-10-05.json; формулы — tools/cs/progress/dataset.py, METRICS", ref: "34e4681", date: 2026-10-05, verification: reported}
+
+  # ---------------------------------------------------------------- путь и конечная цель (Д44)
+  - id: AU-START
+    subject: author
+    class: FACT
+    risk: low
+    public: true
+    statement: >-
+      Аккаунт GitHub dpsmpx создан 3 марта 2023 года; первый открытый проект — пошаговая RPG на C++
+      (первый коммит — 13 апреля 2023 года). До сентября 2026 года — малые открытые проекты: игры,
+      редактор пиксельной графики и утилиты на C++, Python и PascalABC.NET.
+    allowed_wording:
+      ru: ["аккаунт GitHub и первые открытые проекты: игры, редактор и утилиты на C++, Python и PascalABC.NET"]
+      en: ["a GitHub account and the first open projects: games, an editor and utilities in C++, Python and PascalABC.NET"]
+    evidence:
+      - {kind: doc, source: "dpsmpx/DPprofile docs/facts/F-0001.md (created_at аккаунта — 2023-03-03), F-0008, F-0009 (первые коммиты Andors-Love — 2023-04-13, TrueJointTileMaker — 2024-02-21)", ref: "3e76c10", date: 2026-10-04, verification: reported}
+      - {kind: code, source: "открытые репозитории: Andors-Love (C++11), PixRogue (Python), TrueJointTileMaker (PascalABC.NET)", date: 2026-10-04, verification: observed}
+  - id: AU-EARLY
+    subject: author
+    class: FACT
+    risk: low
+    public: true
+    statement: >-
+      Ранние открытые проекты автора до репозитория игры: Andors-Love — пошаговая RPG на C++11 (первый
+      коммит — 13 апреля 2023 года); TrueJointTileMaker — редактор пиксельной графики и карт локаций для
+      Andors-Love на PascalABC.NET (первый коммит — 21 февраля 2024 года); PixRogue — классический Rogue в
+      пиксельном стиле на Python (первый коммит — 2 сентября 2026 года). Их репозитории открыты.
+    allowed_wording:
+      ru: ["ранние открытые проекты: Andors-Love — пошаговая RPG на C++ (2023), TrueJointTileMaker — редактор пиксельной графики и карт для неё (2024), PixRogue — Rogue в пиксельном стиле на Python (2026)"]
+      en: ["early open projects: Andors-Love, a turn-based RPG in C++ (2023); TrueJointTileMaker, a pixel-art and map editor for it (2024); PixRogue, a pixel-art Rogue in Python (2026)"]
+    evidence:
+      - {kind: code, source: "github.com/dpsmpx/Andors-Love, github.com/dpsmpx/TrueJointTileMaker, github.com/dpsmpx/PixRogue — README.md", date: 2026-10-04, verification: observed}
+      - {kind: doc, source: "dpsmpx/DPprofile docs/facts/F-0008, F-0009 (первые коммиты Andors-Love — 2023-04-13, TrueJointTileMaker — 2024-02-21)", ref: "3e76c10", date: 2026-10-04, verification: reported}
+      - {kind: code, source: "история git dpsmpx/PixRogue: первый коммит — 2026-09-02", date: 2026-10-10, verification: observed}
+    notes: Называются открыто по слову автора 10.10.2026 (Д44) — их репозитории открыты; в счёт страницы прогресса не входят (архив, Д38). tanks_blitz_stat_chat здесь не назван — публичного факта о нём нет, а связь с чужой игрой допускает только упоминание как опыта (Д44; PROJECT_MAP §3, RIGHTS_MATRIX).
+  - id: ECO-NEW-2026-10-06
+    subject: ecosystem
+    class: FACT
+    risk: low
+    public: true
+    statement: >-
+      После среза 5 октября 2026 года к ядру добавились новые закрытые репозитории: 5 октября —
+      DPmetaApp, DPmonetization и DPvisualisation, 6 октября — DP_AI_Orcestrator. В счёт страницы
+      прогресса они ещё не входят (DPmeta SQ-23, `TODO.md`).
+    allowed_wording:
+      ru: ["5 октября начаты DPmetaApp, DPmonetization и DPvisualisation", "6 октября начат DP_AI_Orcestrator"]
+      en: ["DPmetaApp, DPmonetization and DPvisualisation started on 5 October", "DP_AI_Orcestrator started on 6 October"]
+    evidence:
+      - {kind: code, source: "первые коммиты: DPmetaApp 31ffc56 (05.10.2026), DPvisualisation 9769a94 (05.10.2026), DP_AI_Orcestrator 3ea2aea (06.10.2026)", date: 2026-10-07, verification: re-measured}
+      - {kind: doc, source: "dpsmpx/DPmeta docs/ECOSYSTEM.md §2 — DPmonetization с 5 октября 2026", ref: "fec807c", date: 2026-10-05, verification: reported}
+  - id: ORC-WHAT
+    subject: dp_ai_orcestrator
+    class: FACT
+    risk: low
+    public: true
+    statement: >-
+      DP_AI_Orcestrator — управляющий слой для параллельных сессий ИИ (Claude Code): задачи и их
+      зависимости, контекст и передача между сессиями, проверка результата, продолжение работы после
+      смены сессии; управление — из Android-приложения. По ТЗ автора — первый специализированный
+      управляющий слой будущего DPmetaApp, а не конечный продукт экосистемы.
+    allowed_wording:
+      ru: ["управляющий слой для параллельных сессий ИИ: задачи, контекст, проверка результата, продолжение после смены сессии"]
+      en: ["a control layer for parallel AI sessions: tasks, context, result checks, continuing after a session ends"]
+    notes: Тема нескольких аккаунтов сервиса ИИ в публичные формулировки не входит (ОР-9). С 10.10.2026 оркестратор — подсистема «AI» DPmetaApp (каталог dpai/, его Android-оболочка — первая форма приложения DPmetaApp), прежний репозиторий заморожен (DPmetaApp D-28); утверждение — о нём на 7 октября. Публичная формулировка о приложении не говорит. О DPmetaApp сейчас — APP-NOW.
+    evidence:
+      - {kind: doc, source: "dpsmpx/DP_AI_Orcestrator MASTER_TECHNICAL_TASK.md §0–§3, §156", ref: "2f3d55e", date: 2026-10-06, verification: self-reported}
+  - id: ORC-STAGE
+    subject: dp_ai_orcestrator
+    class: FACT
+    risk: medium
+    public: true
+    statement: >-
+      На 7 октября 2026 года первая версия DP_AI_Orcestrator в разработке: в рабочей ветке записаны
+      выполненными 14 этапов из 21; в основной ветке — ТЗ автора.
+    allowed_wording:
+      ru: ["первая версия в разработке"]
+      en: ["the first version is in development"]
+    notes: Срез на 7 октября 2026; с 10 октября репозиторий заморожен, подсистема — в DPmetaApp (APP-NOW, DPmetaApp D-28). Держит его только страница прогресса CI-0002 (набор на 9 октября).
+    evidence:
+      - {kind: doc, source: "dpsmpx/DP_AI_Orcestrator README.md, раздел «Прогресс» (рабочая ветка)", ref: "a2434cd", date: 2026-10-07, verification: reported}
+  - id: GOAL-PLAN
+    subject: ecosystem
+    class: FACT
+    risk: medium
+    public: true
+    statement: >-
+      6 октября 2026 года автор записал долгосрочный план экосистемы в две фазы. Фаза A — довести
+      каждый проект до законченной самостоятельной системы: реализация, тесты, документация, решения,
+      проверенное состояние, известные ограничения и контракт интеграции. Фаза B — после этого
+      построить DPmetaApp: одно мобильное приложение над законченными системами с общей моделью
+      состояния, событий, знаний, проверок и инструментов; проекты при этом остаются самостоятельными.
+      Порядок работ задан базовый и меняется по фактическому состоянию.
+    allowed_wording:
+      ru: ["довести каждый проект до законченной самостоятельной системы: тесты, документация, решения, контракт интеграции",
+           "DPmetaApp — одно мобильное приложение над законченными системами: общая модель состояния, событий и знаний",
+           "проекты остаются самостоятельными",
+           "записан план экосистемы: сначала законченные системы, затем одно приложение над ними"]
+      en: ["bring every project to a finished standalone system: tests, documentation, decisions, an integration contract",
+           "DPmetaApp — one mobile app over the finished systems: a shared model of state, events and knowledge",
+           "the projects stay standalone",
+           "the ecosystem plan is written down: finished systems first, then one app over them"]
+    evidence:
+      - {kind: doc, source: "dpsmpx/DPmetaApp MESTER_TECHNICAL_TASK_ROADMAP.md §0, §1.1, §1.3, §7, §49", ref: "4dcc27a", date: 2026-10-06, verification: self-reported}
+  - id: GOAL-ARCH
+    subject: ecosystem
+    class: FACT
+    risk: medium
+    public: true
+    statement: >-
+      Конечная архитектура по плану автора (6 октября 2026 года): DPmetaApp — общее ядро экосистемы
+      (состояние, события, происхождение данных) и локальное ядро ИИ (поиск, рассуждение,
+      маршрутизация); под ними направления: разработка (GitHub, DPmeta, DP-Verify, DPlang и среда
+      разработки для него, Galdhold и движок, проект без публичного имени), знание (заметки и
+      инструменты к ним, DPprofile, DPlearn), ИИ (DP_AI_Orcestrator и сессии Claude), аналитика
+      (анализ рынка игр, DPmonetization), контент (SocialMediaImage и сайт); визуализация
+      (DPvisualisation) показывает всю систему. DP_AI_Orcestrator — первый управляющий слой, после
+      завершения остальных систем — одна из центральных подсистем DPmetaApp.
+    allowed_wording:
+      ru: ["состояние, события, происхождение данных", "поиск, рассуждение, маршрутизация",
+           "визуализация видит всю систему"]
+      en: ["state, events, data provenance", "search, reasoning, routing",
+           "visualisation sees the whole system"]
+    notes: >-
+      Схема раздела «Путь» (data/website/path.yaml, goal) повторяет эту запись. Личные заметки — без
+      имени репозитория (Д2, ОР-8); проект без публичного имени — только так (Д42).
+    evidence:
+      - {kind: doc, source: "dpsmpx/DPmetaApp MESTER_TECHNICAL_TASK_ROADMAP.md §11, §33", ref: "4dcc27a", date: 2026-10-06, verification: self-reported}
+      - {kind: doc, source: "dpsmpx/DP_AI_Orcestrator MASTER_TECHNICAL_TASK.md §156", ref: "2f3d55e", date: 2026-10-06, verification: self-reported}
+  - id: GOAL-RULE
+    subject: ecosystem
+    class: FACT
+    risk: low
+    public: true
+    statement: >-
+      Принцип плана автора (DPmetaApp, §50): «Сначала построить качественные самостоятельные системы.
+      Затем заставить их корректно понимать друг друга. И только после этого построить единое
+      приложение…»
+    allowed_wording:
+      ru: ["Сначала построить качественные самостоятельные системы. Затем заставить их корректно понимать друг друга. И только после этого построить единое приложение"]
+      en: ["First build solid standalone systems. Then make them understand each other correctly. Only after that, build a single application"]
+    notes: Английская формулировка — перевод сессии.
+    evidence:
+      - {kind: doc, source: "dpsmpx/DPmetaApp MESTER_TECHNICAL_TASK_ROADMAP.md §50", ref: "4dcc27a", date: 2026-10-06, verification: self-reported}
+
+  # ---------------------------------------------------------------- площадки (внутреннее)
+  - id: CH-AUDIENCE-2026-10-04
+    subject: channels
+    class: FACT
+    risk: low
+    public: false
+    statement: "На 4 октября 2026: канал-дневник Telegram — 5 подписчиков; YouTube — 84 подписчика, 1 видео, 27 просмотров канала."
+    recheck_by: 2026-11-04
+    evidence:
+      - {kind: platform_page, source: "t.me/s/gh_3D_Voxel_OpenWorld_RPG; youtube.com/@dpsmpx/about", date: 2026-10-04, verification: observed}
+  - id: CH-TIKTOK-2026-10-04
+    subject: channels
+    class: FACT
+    risk: low
+    public: false
+    statement: "На 4 октября 2026: TikTok @dpsmpx — 69 подписчиков, 6 видео, 33 лайка; аккаунт создан 11 марта 2023."
+    recheck_by: 2026-11-04
+    evidence:
+      - {kind: platform_page, source: "tiktok.com/@dpsmpx (данные страницы без входа)", date: 2026-10-04, verification: observed}
+  - id: ME-NO-CI
+    subject: method
+    class: FACT
+    risk: medium
+    public: true
+    statement: С 3 октября 2026 GitHub Actions в Galdhold не используются; каждую правку проверяет hostcheck в сессии.
+    allowed_wording:
+      ru: ["каждую правку проверяет набор автоматических проверок перед слиянием"]
+    evidence:
+      - {kind: decision, source: "dpsmpx/Galdhold DECISIONS.md Р12", ref: "f2ba263", date: 2026-10-04, verification: decision}
+    notes: «CI» о нынешнем состоянии не писать.
+  # --- Периферийные проекты на сайте (поручение автора 25.10.2026: страницы проектов) ---
+  - id: AIM-WHAT
+    subject: aim_trainer
+    class: FACT
+    risk: low
+    public: true
+    statement: >-
+      DP AIM Trainer — программа для замера реакции и разминки перед шутерами: замер собирается
+      из опций конструктора, рекорды и среднее — по набору параметров, лучшие замеры сохраняются
+      реплеями (D-37…D-39). Первая версия на PascalABC.NET — в архиве репозитория.
+    allowed_wording:
+      ru: ["замер реакции и разминка перед шутерами: конструктор замеров, рекорды по параметрам, реплеи лучших попыток"]
+      en: ["reaction testing and warm-up before shooters: a test builder, records per settings, replays of the best attempts"]
+    recheck_by: 2026-11-25
+    evidence:
+      - {kind: decision, source: "dpsmpx/AIM_Trainer_pas docs/direction/DECISIONS.md D-37, D-38, D-39, D-09; CLAUDE.md", ref: "443a3ea", date: 2026-10-25, verification: decision}
+  - id: AIM-STAGE
+    subject: aim_trainer
+    class: FACT
+    risk: medium
+    public: true
+    statement: >-
+      На 25 октября 2026 года — версия на C++ и SDL3 для Windows и Linux (D-08, D-10); в ROADMAP
+      выполнено 22 задачи из 30; прогон на Windows делает автор.
+    allowed_wording:
+      ru: ["C++ и SDL3 для Windows и Linux; выполнено 22 задачи плана из 30"]
+      en: ["C++ and SDL3 for Windows and Linux; 22 of 30 planned tasks done"]
+    recheck_by: 2026-11-08
+    evidence:
+      - {kind: doc, source: "dpsmpx/AIM_Trainer_pas ROADMAP/ROADMAP.md (задачи [+] и [ ]), DECISIONS.md D-08, D-10", ref: "443a3ea", date: 2026-10-25, verification: reported}
+  - id: AIM-PRIVATE
+    subject: aim_trainer
+    class: FACT
+    risk: low
+    public: true
+    statement: Код закрыт — «© 2026 dpsmpx. Все права защищены» (D-91); репозиторий закрыт.
+    allowed_wording:
+      ru: ["код закрыт"]
+      en: ["closed source"]
+    evidence:
+      - {kind: decision, source: "dpsmpx/AIM_Trainer_pas DECISIONS.md D-91, LICENSE; репозиторий private (список репозиториев GitHub)", ref: "443a3ea", date: 2026-10-25, verification: decision}
+  - id: CLK-WHAT
+    subject: dp_clock
+    class: FACT
+    risk: low
+    public: true
+    statement: >-
+      DP_Clock — своё Android-приложение часов, разрабатываемое с нуля: будильники со сменными
+      графиками и подтверждением пробуждения, таймеры, секундомер, мировые часы с погодой, виджеты;
+      код чужих приложений часов не копируется.
+    allowed_wording:
+      ru: ["своё приложение часов для Android: будильники, таймеры, мировые часы, виджеты"]
+      en: ["my own Android clock app: alarms, timers, world clock, widgets"]
+    recheck_by: 2026-11-25
+    evidence:
+      - {kind: doc, source: "dpsmpx/DP_Clock README.md («Статус»), DECISIONS/D-003-ORIGINAL-IMPLEMENTATION.md", ref: "a1bbb85", date: 2026-10-25, verification: reported}
+  - id: CLK-STAGE
+    subject: dp_clock
+    class: FACT
+    risk: medium
+    public: true
+    statement: >-
+      Версия 0.11.0 на 25 октября 2026 года: MVP, будильник целиком, графики и исключения, мировые
+      часы и погода, виджеты, оформление, большие экраны и доступность (D-006…D-022); выпуска нет —
+      только отладочные сборки.
+    allowed_wording:
+      ru: ["версия 0.11.0: MVP и будильник целиком; выпуска пока нет"]
+      en: ["version 0.11.0: the MVP and the full alarm; not released yet"]
+    recheck_by: 2026-11-08
+    evidence:
+      - {kind: doc, source: "dpsmpx/DP_Clock README.md («Статус»), DECISIONS/D-005-DEBUG-BUILDS.md", ref: "a1bbb85", date: 2026-10-25, verification: reported}
+  - id: CLK-PRIVATE
+    subject: dp_clock
+    class: FACT
+    risk: low
+    public: true
+    statement: Код закрыт — репозиторий закрыт.
+    allowed_wording:
+      ru: ["код закрыт"]
+      en: ["closed source"]
+    evidence:
+      - {kind: doc, source: "dpsmpx/DP_Clock — репозиторий private (список репозиториев GitHub)", ref: "a1bbb85", date: 2026-10-25, verification: observed}
+  - id: TJTM-NOW
+    subject: truejointtilemaker
+    class: FACT
+    risk: low
+    public: true
+    statement: >-
+      Версия 1.6 на 25 октября 2026 года: перенос с PascalABC.NET на C++ и SDL3 для Windows и Linux;
+      слои, кадры и анимация, палитра до 256 цветов, свой формат проекта .tjt (PNG с проектом внутри),
+      редактор карт Andors-Love.
+    allowed_wording:
+      ru: ["версия 1.6: перенесён на C++ и SDL3, для Windows и Linux"]
+      en: ["version 1.6: ported to C++ and SDL3, for Windows and Linux"]
+    recheck_by: 2026-11-25
+    evidence:
+      - {kind: doc, source: "github.com/dpsmpx/TrueJointTileMaker README.md («Версия 1.6»)", ref: "abe887a", date: 2026-10-25, verification: observed}
+  - id: TJTM-OPEN
+    subject: truejointtilemaker
+    class: FACT
+    risk: low
+    public: true
+    statement: Код открыт — репозиторий публичный, лицензия GPL-3.0.
+    allowed_wording:
+      ru: ["код в открытом доступе, лицензия GPL-3.0"]
+      en: ["public repository, GPL-3.0 license"]
+    evidence:
+      - {kind: code, source: "github.com/dpsmpx/TrueJointTileMaker LICENSE (GNU GPL v3)", ref: "abe887a", date: 2026-10-25, verification: observed}
+  - id: AL-OPEN
+    subject: andors_love
+    class: FACT
+    risk: low
+    public: true
+    statement: Код виден на GitHub — репозиторий публичный; файла лицензии нет.
+    allowed_wording:
+      ru: ["код виден на GitHub"]
+      en: ["source visible on GitHub"]
+    evidence:
+      - {kind: code, source: "github.com/dpsmpx/Andors-Love — публичный, без LICENSE", ref: "0e231a3", date: 2026-10-25, verification: observed}
+  - id: ECO-PERIPHERY-2026-10-25
+    subject: ecosystem
+    class: FACT
+    risk: low
+    public: true
+    statement: >-
+      25 октября 2026 года в текущую систему вошли ещё четыре проекта с работой в октябре:
+      DP AIM Trainer, DP_Clock, True Joint Tile Maker и Andors-Love (слово автора; DPvisualisation D-23).
+    allowed_wording:
+      ru: ["в систему вошли ещё четыре проекта с работой в октябре: AIM Trainer, DP_Clock, True Joint Tile Maker и Andors-Love"]
+      en: ["four more projects with work in October joined the system: AIM Trainer, DP_Clock, True Joint Tile Maker and Andors-Love"]
+    evidence:
+      - {kind: decision, source: "dpsmpx/SocialMediaImage docs/direction/DECISIONS.md, история 25.10.2026 (опрос автора); dpsmpx/DPvisualisation D-23", ref: "66a2537", date: 2026-10-25, verification: decision}

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+<title>dpsmpx</title>
+<link>http://localhost:8000/</link>
+<description>Записи: новости, дневник, релизы</description>
+<language>ru</language>
+<atom:link href="http://localhost:8000/rss.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>Нейросети и нейропластичность</title>
+<link>http://localhost:8000/articles/neyroseti-i-neyroplastichnost/</link>
+<guid isPermaLink="true">http://localhost:8000/articles/neyroseti-i-neyroplastichnost/</guid>
+<pubDate>Mon, 05 Oct 2026 00:00:00 +0000</pubDate>
+<description>Когда искусственный интеллект становится не просто инструментом, а средой для перестройки мышления.</description>
+<category>article</category>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,166 @@
+# Объект контента (docs/content/CANONICAL_MODEL.md). Схема — schemas/content_item.schema.json.
+# Страница прогресса экосистемы на сайте (Д38): текст — канон и варианты website,
+# числа — подстановки {{progress:…}}, графики — {{figure:…}} из набора data/progress/.
+schema: content_item/v2
+id: CI-0002
+slug: ecosystem-progress
+title: Прогресс экосистемы
+type: page
+pillar: PROCESS
+category: page
+brand:
+  mode: PERSONAL
+  brands:
+  - author
+website:
+  path: /progress/
+  nav: progress
+  toc: true
+topic: как одна игра выросла в экосистему репозиториев — ядро, управление, слой синхронизации и поддерживающий
+  слой — по измерениям и документам
+objective: За несколько минут показать посетителю сайта, сколько построено с первого коммита игры, как
+  одна игра выросла в экосистему из независимых репозиториев, как параллельно шли проекты и как созрели
+  проверки, документы и архитектура — только по доказательствам, с методикой и границами данных.
+audiences:
+- professional
+- collaborators
+- developers
+- ai_developers
+platforms:
+- website
+languages:
+- ru
+- en
+tone: спокойный, точный, описательный; без эпитетов; числа — с датой и источником
+owner: author
+created: '2026-10-05'
+claims:
+- fact: GH-NAME
+- fact: META-NO-DEPS
+canonical:
+  lang: ru
+  current: 5
+  versions:
+  - version: 1
+    file: canonical/v1.md
+    date: '2026-10-05'
+    note: 'первая версия: текст страницы прогресса без фигур'
+    sha256: 5859b00b4688c5dc9bfef5d3b8ad4b3a74d380eb7b7b1f9f9c900a7017181007
+    deps:
+      facts:
+        GH-NAME: 18e9e8bc34f1c9f0
+        PRF-WHAT: 774e3cfe896d3a27
+        META-WHAT: d86fda377e1113a5
+        META-NO-DEPS: 538aa32a19a5c5ea
+      links: {}
+      releases: {}
+      datasets:
+        '2026-10-05': b4eb09f271093055
+  - version: 2
+    file: canonical/v2.md
+    date: 2026-10-05
+    note: 'v2: ветки — рабочие, без основных (найдено проверкой progress); остальное как в v1'
+    sha256: 910ca5429bc43369cd015b5c53bcbbce64f4c242aeef55ceacacb2880c56cf1d
+    deps:
+      facts:
+        GH-NAME: 18e9e8bc34f1c9f0
+        PRF-WHAT: 774e3cfe896d3a27
+        META-WHAT: d86fda377e1113a5
+        META-NO-DEPS: 538aa32a19a5c5ea
+      links: {}
+      releases: {}
+      datasets:
+        '2026-10-05': b4eb09f271093055
+  - version: 3
+    file: canonical/v3.md
+    date: 2026-10-09
+    sha256: 7ad3428d739bc28d694f3f1204a0eddb8e6119552245d07fd381d417f335dbf6
+    deps:
+      facts:
+        GH-NAME: 18e9e8bc34f1c9f0
+        PRF-WHAT: 774e3cfe896d3a27
+        META-WHAT: d86fda377e1113a5
+        APP-WHAT: e0a79055d2da5359
+        VIS-WHAT: be359c822796fc5c
+        MON-WHAT: 58d9b24a09124db2
+        META-NO-DEPS: 538aa32a19a5c5ea
+      links: {}
+      releases: {}
+      datasets:
+        '2026-10-09': aa3b4fb071f1aeab
+  - version: 4
+    file: canonical/v4.md
+    date: 2026-10-10
+    sha256: 917b104b4e5e63239c08c33871fe5ca9d284d4921d8cb1ba59f6ef31fa19d214
+    deps:
+      facts:
+        GH-NAME: 18e9e8bc34f1c9f0
+        PRF-WHAT: 774e3cfe896d3a27
+        META-WHAT: d86fda377e1113a5
+        APP-WHAT: e0a79055d2da5359
+        VIS-WHAT: be359c822796fc5c
+        MON-WHAT: 58d9b24a09124db2
+        META-NO-DEPS: 538aa32a19a5c5ea
+      links: {}
+      releases: {}
+      datasets:
+        '2026-10-09': d3208297fceaac2e
+  - version: 5
+    file: canonical/v5.md
+    date: 2026-10-10
+    sha256: 0fb30556d0374f3a61360e8ca70d2b4e944f9aa4f168daccdf470531e2ed436b
+    deps:
+      facts:
+        GH-NAME: 18e9e8bc34f1c9f0
+        PRF-WHAT: 774e3cfe896d3a27
+        META-WHAT: d86fda377e1113a5
+        APP-WHAT: e0a79055d2da5359
+        VIS-WHAT: be359c822796fc5c
+        MON-WHAT: 58d9b24a09124db2
+        META-NO-DEPS: 538aa32a19a5c5ea
+      links: {}
+      releases: {}
+      datasets:
+        '2026-10-09': b073b7b647576d05
+source_projects:
+- galdhold
+- dplang
+brief: docs/content/products/ecosystem_progress/BRIEF.md
+provenance: provenance.yaml
+targets:
+- variant: website.ru
+  destination: site-production
+- variant: website.en
+  destination: site-production
+state: GENERATED
+history:
+- date: '2026-10-05'
+  state: IDEA
+  note: 'объект заведён по поручению автора: страница прогресса экосистемы за 24 дня (Д38)'
+- date: '2026-10-05'
+  state: RESEARCHED
+  note: 'исследование — набор данных data/progress/datasets/2026-10-05.json из клонов 15 репозиториев,
+    вехи с источниками, факты о новых проектах; ответы автора: DPpass без имени, выпуск после одобрения'
+- date: '2026-10-05'
+  state: BRIEFED
+  note: бриф — docs/content/products/ecosystem_progress/BRIEF.md
+- date: '2026-10-05'
+  state: GENERATED
+  note: канон v1 → v2 (сверка с рядами набора, ветки — рабочие); варианты website.ru и website.en с 12
+    фигурами; фильтр чувствительных данных (Д39) — сборка чистая. Дальше — критика отдельным проходом
+    (не эта сессия)
+- date: '2026-10-09'
+  state: GENERATED
+  note: 'канон v3 и варианты website.ru и website.en v2 — новый набор 2026-10-09 (13 репозиториев, 29
+    дней, срез 09.10.2026 19:00 МСК) и новый текст по слову автора 09.10.2026: только текущая система,
+    новые репозитории в счёте с именами, архив — только числом (Д38). Дальше — критика отдельным проходом
+    (не эта сессия)'
+- date: '2026-10-10'
+  state: GENERATED
+  note: 'канон v4 и варианты v3 — правки по проверке отдельным проходом: граница архива (и убранные автором),
+    «до 3 октября в счёте был только Galdhold», таблица среза — ядро, затем управление и поддерживающий
+    слой; роль DPvisualisation на странице — без «эта схема». Критика — по-прежнему отдельным проходом'
+- date: '2026-10-10'
+  state: GENERATED
+  note: 'канон v5 и варианты v4 — ответы автора 10.10.2026: DPmeta — слой синхронизации (четыре части, ядро
+    без DPmeta); ранние открытые проекты названы в методике по именам. Критика — отдельным проходом'

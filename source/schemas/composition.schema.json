@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "composition/v1",
+  "title": "Спецификация композиции изображения",
+  "description": "Вход рендера (tools/cs/render.py): макет, портрет, тексты по языкам, схема, карта экосистемы, доказательства с фактами.",
+  "type": "object",
+  "required": ["schema", "variant", "label", "layout", "text", "claims"],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {"const": "composition/v1"},
+    "variant": {"type": "string"},
+    "label": {"type": "string"},
+    "layout": {"enum": ["professional", "technical", "cinematic", "minimal", "ecosystem"]},
+    "rationale": {"type": "string"},
+    "portrait": {
+      "type": ["object", "null"],
+      "required": ["input", "focus", "treatment"],
+      "additionalProperties": false,
+      "properties": {
+        "input": {"type": "string", "pattern": "^A-[0-9]{3}$"},
+        "focus": {"type": "object", "required": ["x", "y"], "additionalProperties": false, "properties": {"x": {"type": "number", "minimum": 0, "maximum": 1}, "y": {"type": "number", "minimum": 0, "maximum": 1}}},
+        "zoom": {"type": "number", "minimum": 1, "maximum": 4},
+        "face": {"type": "object", "required": ["w", "h"], "additionalProperties": false, "description": "размер лица на фото, доли кадра: маркер лица в раскладке (проверки размера и безопасной зоны)", "properties": {"w": {"type": "number", "exclusiveMinimum": 0, "maximum": 1}, "h": {"type": "number", "exclusiveMinimum": 0, "maximum": 1}}},
+        "vignette": {"type": "number", "minimum": 0.5, "maximum": 1.6, "description": "сила затемнения вокруг лица: меньше — плотнее (интерьер не читается, Д18); по умолчанию 1"},
+        "treatment": {"enum": ["natural", "duotone", "mono"]}
+      }
+    },
+    "text": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": false,
+      "patternProperties": {
+        "^(ru|en)$": {
+          "type": "object",
+          "required": ["name", "role"],
+          "additionalProperties": false,
+          "properties": {
+            "name": {"type": "string"},
+            "role": {"type": "string"},
+            "sub": {"type": "string"},
+            "claim": {"type": "string", "description": "ключевая фраза макета ecosystem (размер title)"},
+            "method": {"type": "string", "description": "метод одной строкой (макет ecosystem)"},
+            "method_short": {"type": "string", "description": "метод для строки роли на шапке"},
+            "accent": {"type": "array", "items": {"type": "string"}, "description": "фрагменты method/method_short цветом human — первый найденный"},
+            "pipeline": {"type": "array", "items": {"type": "object", "required": ["label", "kind"], "additionalProperties": false, "properties": {"label": {"type": "string"}, "kind": {"enum": ["intent", "architecture", "implementation", "verification", "git", "product"]}}}},
+            "gates": {"type": "array", "items": {"type": "object", "required": ["after", "label"], "additionalProperties": false, "properties": {"after": {"type": "integer", "minimum": 0}, "label": {"type": "string"}}}},
+            "legend": {"type": "array", "items": {"type": "object", "required": ["token", "label"], "additionalProperties": false, "properties": {"token": {"type": "string"}, "label": {"type": "string"}}}},
+            "evidence": {"type": "array", "items": {"type": "string"}},
+            "ecosystem": {"type": "object", "required": ["layers"], "additionalProperties": false, "description": "карта экосистемы для макета ecosystem: слои и узлы из data/progress/scope.yaml (Д38); закрытый проект без имени — только в note", "properties": {
+              "layers": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["label", "nodes"], "additionalProperties": false, "properties": {"label": {"type": "string"}, "nodes": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["name"], "additionalProperties": false, "properties": {"name": {"type": "string"}, "caption": {"type": "string"}, "origin": {"type": "boolean", "description": "исток экосистемы: рамка ярче"}}}}}}},
+              "note": {"type": "string"}
+            }}
+          }
+        }
+      }
+    },
+    "claims": {"type": "array", "items": {"type": "string"}}
+  }
+}

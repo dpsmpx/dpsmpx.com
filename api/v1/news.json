@@ -1,0 +1,25 @@
+{
+ "version": 1,
+ "news": [
+  {
+   "id": "CI-0003",
+   "url": "http://localhost:8000/articles/neyroseti-i-neyroplastichnost/",
+   "title": "Нейросети и нейропластичность",
+   "summary": "Когда искусственный интеллект становится не просто инструментом, а средой для перестройки мышления.",
+   "date": "2026-10-05",
+   "category": "article",
+   "tags": [
+    "ai",
+    "method",
+    "neuroplasticity",
+    "ecosystem"
+   ],
+   "projects": [
+    "galdhold",
+    "dplang"
+   ],
+   "lang": "ru",
+   "draft": true
+  }
+ ]
+}

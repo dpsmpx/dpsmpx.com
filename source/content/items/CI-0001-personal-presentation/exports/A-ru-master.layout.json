@@ -1,0 +1,365 @@
+{
+ "width": 2560,
+ "height": 1440,
+ "fonts_loaded": [
+  "IBM Plex Sans",
+  "IBM Plex Mono"
+ ],
+ "external_requests": [],
+ "elements": [
+  {
+   "role": "portrait",
+   "group": "person",
+   "text": null,
+   "x": 0,
+   "y": 0,
+   "w": 1075.1875,
+   "h": 1440,
+   "text_box": null,
+   "font_px": 16,
+   "font_weight": 400,
+   "font_family": "\"IBM Plex Sans\", sans-serif",
+   "fg": null,
+   "bg": null,
+   "overflow": false,
+   "bg_luminance": null
+  },
+  {
+   "role": "face",
+   "group": "person",
+   "text": null,
+   "x": 376.390625,
+   "y": 244.796875,
+   "w": 451.390625,
+   "h": 547.1875,
+   "text_box": null,
+   "font_px": 16,
+   "font_weight": 400,
+   "font_family": "\"IBM Plex Sans\", sans-serif",
+   "fg": null,
+   "bg": null,
+   "overflow": false,
+   "bg_luminance": null
+  },
+  {
+   "role": "name",
+   "group": "name",
+   "text": "dpsmpx",
+   "x": 1152,
+   "y": 244.796875,
+   "w": 469.515625,
+   "h": 122.40625,
+   "text_box": {
+    "x": 1152,
+    "y": 225.796875,
+    "w": 469.515625,
+    "h": 159
+   },
+   "font_px": 122.4,
+   "font_weight": 600,
+   "font_family": "\"IBM Plex Sans\", sans-serif",
+   "fg": "paper",
+   "bg": "ink",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.006022900252773424,
+    "max": 0.01415583689396417
+   }
+  },
+  {
+   "role": "role",
+   "group": "identity",
+   "text": "Разработчик нативных систем",
+   "x": 1152,
+   "y": 397.796875,
+   "w": 1296,
+   "h": 62.15625,
+   "text_box": {
+    "x": 1152,
+    "y": 394.796875,
+    "w": 758.671875,
+    "h": 67
+   },
+   "font_px": 51.8,
+   "font_weight": 500,
+   "font_family": "\"IBM Plex Sans\", sans-serif",
+   "fg": "paper",
+   "bg": "ink",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.006022900252773424,
+    "max": 0.015753018331957032
+   }
+  },
+  {
+   "role": "sub",
+   "group": "identity",
+   "text": "Игра, движок и свой язык (в разработке).\nИИ — инструмент; архитектура и решения — мои.",
+   "x": 1152,
+   "y": 478.1875,
+   "w": 1231.1875,
+   "h": 100.3125,
+   "text_box": {
+    "x": 1152,
+    "y": 480.1875,
+    "w": 801.9375,
+    "h": 95.15625
+   },
+   "font_px": 34.6,
+   "font_weight": 400,
+   "font_family": "\"IBM Plex Sans\", sans-serif",
+   "fg": "mist",
+   "bg": "ink",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.006022900252773424,
+    "max": 0.018405560002963586
+   }
+  },
+  {
+   "role": "pipeline-label",
+   "group": "pipeline",
+   "text": "Замысел",
+   "x": 1155.5,
+   "y": 767.390625,
+   "w": 487.1875,
+   "h": 43.234375,
+   "text_box": {
+    "x": 1155.5,
+    "y": 766.390625,
+    "w": 145.234375,
+    "h": 45
+   },
+   "font_px": 34.6,
+   "font_weight": 500,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "human",
+   "bg": "ink",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.006022900252773424,
+    "max": 0.013566769601091693
+   }
+  },
+  {
+   "role": "pipeline-label",
+   "group": "pipeline",
+   "text": "Архитектура",
+   "x": 1180.390625,
+   "y": 872.5,
+   "w": 487.1875,
+   "h": 43.234375,
+   "text_box": {
+    "x": 1309.875,
+    "y": 871.5,
+    "w": 228.21875,
+    "h": 45
+   },
+   "font_px": 34.6,
+   "font_weight": 500,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "human",
+   "bg": "ink",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.006022900252773424,
+    "max": 0.014517048909840506
+   }
+  },
+  {
+   "role": "pipeline-label",
+   "group": "pipeline",
+   "text": "Реализация с ИИ",
+   "x": 1431.09375,
+   "y": 767.390625,
+   "w": 487.1875,
+   "h": 43.234375,
+   "text_box": {
+    "x": 1519.078125,
+    "y": 766.390625,
+    "w": 311.203125,
+    "h": 45
+   },
+   "font_px": 34.6,
+   "font_weight": 500,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "ai",
+   "bg": "ink",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.006022900252773424,
+    "max": 0.016785977853923755
+   }
+  },
+  {
+   "role": "pipeline-label",
+   "group": "pipeline",
+   "text": "Проверка",
+   "x": 1681.6875,
+   "y": 872.5,
+   "w": 487.1875,
+   "h": 43.234375,
+   "text_box": {
+    "x": 1842.28125,
+    "y": 871.5,
+    "w": 165.984375,
+    "h": 45
+   },
+   "font_px": 34.6,
+   "font_weight": 500,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "verified",
+   "bg": "ink",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.006022900252773424,
+    "max": 0.01584702605681078
+   }
+  },
+  {
+   "role": "pipeline-label",
+   "group": "pipeline",
+   "text": "Git",
+   "x": 1932.296875,
+   "y": 767.390625,
+   "w": 487.1875,
+   "h": 43.234375,
+   "text_box": {
+    "x": 2144.765625,
+    "y": 766.390625,
+    "w": 62.25,
+    "h": 45
+   },
+   "font_px": 34.6,
+   "font_weight": 500,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "mist",
+   "bg": "ink",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.006022900252773424,
+    "max": 0.015753018331957032
+   }
+  },
+  {
+   "role": "pipeline-label",
+   "group": "pipeline",
+   "text": "Продукт",
+   "x": 1957.296875,
+   "y": 872.5,
+   "w": 487.1875,
+   "h": 43.234375,
+   "text_box": {
+    "x": 2299.25,
+    "y": 871.5,
+    "w": 145.234375,
+    "h": 45
+   },
+   "font_px": 34.6,
+   "font_weight": 500,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "paper",
+   "bg": "ink",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.006022900252773424,
+    "max": 0.013773415000726034
+   }
+  },
+  {
+   "role": "gate",
+   "group": "pipeline",
+   "text": null,
+   "x": 2035.46044921875,
+   "y": 827.2573852539062,
+   "w": 30.2509765625,
+   "h": 30.2508544921875,
+   "text_box": null,
+   "font_px": 16,
+   "font_weight": 400,
+   "font_family": "\"IBM Plex Sans\", sans-serif",
+   "fg": null,
+   "bg": null,
+   "overflow": false,
+   "bg_luminance": null
+  },
+  {
+   "role": "gate-label",
+   "group": "pipeline",
+   "text": "каждое изменение принимаю сам",
+   "x": -1938.6875,
+   "y": 942.59375,
+   "w": 4000,
+   "h": 43.234375,
+   "text_box": {
+    "x": 1419.5625,
+    "y": 941.59375,
+    "w": 643.238525390625,
+    "h": 45
+   },
+   "font_px": 34.6,
+   "font_weight": 500,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "human",
+   "bg": "ink",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.006022900252773424,
+    "max": 0.014911071305274482
+   }
+  },
+  {
+   "role": "evidence",
+   "group": "evidence",
+   "text": "Galdhold — воксельная action-RPG · C++20 · Vulkan",
+   "x": 1152,
+   "y": 1156.890625,
+   "w": 1063.609375,
+   "h": 70.5,
+   "text_box": {
+    "x": 1175.5,
+    "y": 1169.390625,
+    "w": 1016.609375,
+    "h": 45
+   },
+   "font_px": 34.6,
+   "font_weight": 400,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "paper",
+   "bg": "graphite",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.01097215454464397,
+    "max": 0.01097215454464397
+   }
+  },
+  {
+   "role": "evidence",
+   "group": "evidence",
+   "text": "150 000+ строк C++ · 5 000+ автоматических проверок · 10.2026",
+   "x": 1152,
+   "y": 1250.1875,
+   "w": 1312.5625,
+   "h": 70.5,
+   "text_box": {
+    "x": 1175.5,
+    "y": 1262.6875,
+    "w": 1265.5625,
+    "h": 45
+   },
+   "font_px": 34.6,
+   "font_weight": 400,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "paper",
+   "bg": "graphite",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.01097215454464397,
+    "max": 0.01097215454464397
+   }
+  }
+ ],
+ "spec": "content/items/CI-0001-personal-presentation/spec/variant-a.yaml",
+ "lang": "ru",
+ "format": "master"
+}

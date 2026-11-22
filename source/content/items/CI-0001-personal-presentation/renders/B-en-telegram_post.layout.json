@@ -1,0 +1,473 @@
+{
+ "width": 1280,
+ "height": 720,
+ "fonts_loaded": [
+  "IBM Plex Sans",
+  "IBM Plex Mono"
+ ],
+ "external_requests": [],
+ "elements": [
+  {
+   "role": "portrait",
+   "group": "person",
+   "text": null,
+   "x": 0,
+   "y": 0,
+   "w": 409.59375,
+   "h": 720,
+   "text_box": null,
+   "font_px": 16,
+   "font_weight": 400,
+   "font_family": "\"IBM Plex Sans\", sans-serif",
+   "fg": null,
+   "bg": null,
+   "overflow": false,
+   "bg_luminance": null
+  },
+  {
+   "role": "face",
+   "group": "person",
+   "text": null,
+   "x": 118.6875,
+   "y": 133.1875,
+   "w": 172.296875,
+   "h": 208.796875,
+   "text_box": null,
+   "font_px": 16,
+   "font_weight": 400,
+   "font_family": "\"IBM Plex Sans\", sans-serif",
+   "fg": null,
+   "bg": null,
+   "overflow": false,
+   "bg_luminance": null
+  },
+  {
+   "role": "name",
+   "group": "name",
+   "text": "dpsmpx",
+   "x": 448,
+   "y": 64.796875,
+   "w": 187.90625,
+   "h": 49,
+   "text_box": {
+    "x": 448,
+    "y": 57.796875,
+    "w": 187.90625,
+    "h": 63
+   },
+   "font_px": 49,
+   "font_weight": 600,
+   "font_family": "\"IBM Plex Sans\", sans-serif",
+   "fg": "paper",
+   "bg": "ink",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.008034353726058405,
+    "max": 0.011024070005553395
+   }
+  },
+  {
+   "role": "role",
+   "group": "identity",
+   "text": "Native systems developer · AI as an instrument",
+   "x": 448,
+   "y": 123.59375,
+   "w": 784,
+   "h": 33.671875,
+   "text_box": {
+    "x": 448,
+    "y": 122.59375,
+    "w": 559.1875,
+    "h": 34
+   },
+   "font_px": 25.9,
+   "font_weight": 500,
+   "font_family": "\"IBM Plex Sans\", sans-serif",
+   "fg": "paper",
+   "bg": "ink",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.006022900252773424,
+    "max": 0.011438573063756403
+   }
+  },
+  {
+   "role": "sub",
+   "group": "sub",
+   "text": "Galdhold · C++20 · Vulkan 1.1 · Android → Windows (Steam)",
+   "x": 448,
+   "y": 162.390625,
+   "w": 784,
+   "h": 19.3125,
+   "text_box": {
+    "x": 448,
+    "y": 162.390625,
+    "w": 471.859375,
+    "h": 18
+   },
+   "font_px": 13.8,
+   "font_weight": 400,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "mist",
+   "bg": "ink",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.006022900252773424,
+    "max": 0.011624484134346543
+   }
+  },
+  {
+   "role": "pipeline-label",
+   "group": "pipeline",
+   "text": "Intent",
+   "x": 448,
+   "y": 309.59375,
+   "w": 238.6875,
+   "h": 35.890625,
+   "text_box": {
+    "x": 542.5,
+    "y": 318.53125,
+    "w": 49.671875,
+    "h": 18
+   },
+   "font_px": 13.8,
+   "font_weight": 400,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "human",
+   "bg": "graphite",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.01097215454464397,
+    "max": 0.01097215454464397
+   }
+  },
+  {
+   "role": "pipeline-label",
+   "group": "pipeline",
+   "text": "Architecture",
+   "x": 720.6875,
+   "y": 309.59375,
+   "w": 238.6875,
+   "h": 35.890625,
+   "text_box": {
+    "x": 790.359375,
+    "y": 318.53125,
+    "w": 99.34375,
+    "h": 18
+   },
+   "font_px": 13.8,
+   "font_weight": 400,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "human",
+   "bg": "graphite",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.01097215454464397,
+    "max": 0.01097215454464397
+   }
+  },
+  {
+   "role": "pipeline-label",
+   "group": "pipeline",
+   "text": "AI implementation",
+   "x": 993.296875,
+   "y": 309.59375,
+   "w": 238.6875,
+   "h": 35.890625,
+   "text_box": {
+    "x": 1042.265625,
+    "y": 318.53125,
+    "w": 140.734375,
+    "h": 18
+   },
+   "font_px": 13.8,
+   "font_weight": 400,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "ai",
+   "bg": "graphite",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.01097215454464397,
+    "max": 0.01097215454464397
+   }
+  },
+  {
+   "role": "pipeline-label",
+   "group": "pipeline",
+   "text": "Verification",
+   "x": 448,
+   "y": 391.5,
+   "w": 238.6875,
+   "h": 35.890625,
+   "text_box": {
+    "x": 517.671875,
+    "y": 400.4375,
+    "w": 99.34375,
+    "h": 18
+   },
+   "font_px": 13.8,
+   "font_weight": 400,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "verified",
+   "bg": "graphite",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.01097215454464397,
+    "max": 0.01097215454464397
+   }
+  },
+  {
+   "role": "pipeline-label",
+   "group": "pipeline",
+   "text": "Git",
+   "x": 720.6875,
+   "y": 391.5,
+   "w": 238.6875,
+   "h": 35.890625,
+   "text_box": {
+    "x": 827.609375,
+    "y": 400.4375,
+    "w": 24.84375,
+    "h": 18
+   },
+   "font_px": 13.8,
+   "font_weight": 400,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "mist",
+   "bg": "graphite",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.01097215454464397,
+    "max": 0.01097215454464397
+   }
+  },
+  {
+   "role": "pipeline-label",
+   "group": "pipeline",
+   "text": "Product",
+   "x": 993.296875,
+   "y": 391.5,
+   "w": 238.6875,
+   "h": 35.890625,
+   "text_box": {
+    "x": 1083.65625,
+    "y": 400.4375,
+    "w": 57.953125,
+    "h": 18
+   },
+   "font_px": 13.8,
+   "font_weight": 400,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "paper",
+   "bg": "graphite",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.01097215454464397,
+    "max": 0.01097215454464397
+   }
+  },
+  {
+   "role": "gate-label",
+   "group": "gates",
+   "text": "◆ decision",
+   "x": 915.59375,
+   "y": 291.59375,
+   "w": 143.1875,
+   "h": 15.328125,
+   "text_box": {
+    "x": 915.59375,
+    "y": 291.59375,
+    "w": 70.8125,
+    "h": 15
+   },
+   "font_px": 11.8,
+   "font_weight": 400,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "human",
+   "bg": "ink",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.006022900252773424,
+    "max": 0.013625329749460366
+   }
+  },
+  {
+   "role": "gate-label",
+   "group": "gates",
+   "text": "◆ approval",
+   "x": 642.890625,
+   "y": 373.59375,
+   "w": 143.1875,
+   "h": 15.328125,
+   "text_box": {
+    "x": 642.890625,
+    "y": 373.59375,
+    "w": 70.8125,
+    "h": 15
+   },
+   "font_px": 11.8,
+   "font_weight": 400,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "human",
+   "bg": "ink",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.006022900252773424,
+    "max": 0.011490488524665828
+   }
+  },
+  {
+   "role": "metric",
+   "group": "metrics",
+   "text": "150,000+",
+   "x": 448,
+   "y": 580,
+   "w": 245.296875,
+   "h": 42.125,
+   "text_box": {
+    "x": 448,
+    "y": 580,
+    "w": 145.703125,
+    "h": 42
+   },
+   "font_px": 32.4,
+   "font_weight": 600,
+   "font_family": "\"IBM Plex Sans\", sans-serif",
+   "fg": "paper",
+   "bg": "ink",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.006022900252773424,
+    "max": 0.009732919609503758
+   }
+  },
+  {
+   "role": "metric-cap",
+   "group": "metrics",
+   "text": "lines of C++ · Oct 2026",
+   "x": 448,
+   "y": 621.5,
+   "w": 245.296875,
+   "h": 16.125,
+   "text_box": {
+    "x": 448,
+    "y": 621.5,
+    "w": 171,
+    "h": 16
+   },
+   "font_px": 12.4,
+   "font_weight": 400,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "mist",
+   "bg": "ink",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.006022900252773424,
+    "max": 0.00853552616125719
+   }
+  },
+  {
+   "role": "metric",
+   "group": "metrics",
+   "text": "5,000+",
+   "x": 717.296875,
+   "y": 580,
+   "w": 245.296875,
+   "h": 42.125,
+   "text_box": {
+    "x": 717.296875,
+    "y": 580,
+    "w": 106.828125,
+    "h": 42
+   },
+   "font_px": 32.4,
+   "font_weight": 600,
+   "font_family": "\"IBM Plex Sans\", sans-serif",
+   "fg": "paper",
+   "bg": "ink",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.008624973058004469,
+    "max": 0.01167803924597011
+   }
+  },
+  {
+   "role": "metric-cap",
+   "group": "metrics",
+   "text": "automated checks · Oct 2026",
+   "x": 717.296875,
+   "y": 621.5,
+   "w": 245.296875,
+   "h": 16.125,
+   "text_box": {
+    "x": 717.296875,
+    "y": 621.5,
+    "w": 200.734375,
+    "h": 16
+   },
+   "font_px": 12.4,
+   "font_weight": 400,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "mist",
+   "bg": "ink",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.006022900252773424,
+    "max": 0.009565516921104095
+   }
+  },
+  {
+   "role": "metric",
+   "group": "metrics",
+   "text": "2 phones",
+   "x": 986.6875,
+   "y": 580,
+   "w": 245.296875,
+   "h": 42.125,
+   "text_box": {
+    "x": 986.6875,
+    "y": 580,
+    "w": 137.078125,
+    "h": 42
+   },
+   "font_px": 32.4,
+   "font_weight": 600,
+   "font_family": "\"IBM Plex Sans\", sans-serif",
+   "fg": "paper",
+   "bg": "ink",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.008740825735713154,
+    "max": 0.01167803924597011
+   }
+  },
+  {
+   "role": "metric-cap",
+   "group": "metrics",
+   "text": "Redmi Note 13 · Poco X7 Pro",
+   "x": 986.6875,
+   "y": 621.5,
+   "w": 245.296875,
+   "h": 16.125,
+   "text_box": {
+    "x": 986.6875,
+    "y": 621.5,
+    "w": 200.734375,
+    "h": 16
+   },
+   "font_px": 12.4,
+   "font_weight": 400,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "mist",
+   "bg": "ink",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.006022900252773424,
+    "max": 0.009145581077498292
+   }
+  }
+ ],
+ "spec": "content/items/CI-0001-personal-presentation/spec/variant-b.yaml",
+ "lang": "en",
+ "format": "telegram_post"
+}

@@ -1,0 +1,256 @@
+{
+ "width": 2560,
+ "height": 1440,
+ "fonts_loaded": [
+  "IBM Plex Sans",
+  "IBM Plex Mono"
+ ],
+ "external_requests": [],
+ "elements": [
+  {
+   "role": "name",
+   "group": "name",
+   "text": "dpsmpx",
+   "x": 548,
+   "y": 528,
+   "w": 368.296875,
+   "h": 96,
+   "text_box": {
+    "x": 548,
+    "y": 514,
+    "w": 368.296875,
+    "h": 124
+   },
+   "font_px": 96,
+   "font_weight": 600,
+   "font_family": "\"IBM Plex Sans\", sans-serif",
+   "fg": "paper",
+   "bg": "ink",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.006022900252773424,
+    "max": 0.01084276497082785
+   }
+  },
+  {
+   "role": "role",
+   "group": "identity",
+   "text": "Разработчик нативных систем · ИИ как инструмент",
+   "x": 548,
+   "y": 643.1875,
+   "w": 1464,
+   "h": 54.59375,
+   "text_box": {
+    "x": 548,
+    "y": 642.1875,
+    "w": 1036.859375,
+    "h": 55
+   },
+   "font_px": 42,
+   "font_weight": 500,
+   "font_family": "\"IBM Plex Sans\", sans-serif",
+   "fg": "paper",
+   "bg": "ink",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.006022900252773424,
+    "max": 0.012160257966283514
+   }
+  },
+  {
+   "role": "pipeline-label",
+   "group": "pipeline",
+   "text": "Замысел",
+   "x": 551.1875,
+   "y": 783.59375,
+   "w": 551.5,
+   "h": 40,
+   "text_box": {
+    "x": 551.1875,
+    "y": 782.59375,
+    "w": 134.40625,
+    "h": 42
+   },
+   "font_px": 32,
+   "font_weight": 500,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "human",
+   "bg": "ink",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.006022900252773424,
+    "max": 0.008740825735713154
+   }
+  },
+  {
+   "role": "pipeline-label",
+   "group": "pipeline",
+   "text": "Архитектура",
+   "x": 577,
+   "y": 880.796875,
+   "w": 551.5,
+   "h": 40,
+   "text_box": {
+    "x": 747.140625,
+    "y": 879.796875,
+    "w": 211.203125,
+    "h": 42
+   },
+   "font_px": 32,
+   "font_weight": 500,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "human",
+   "bg": "ink",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.006022900252773424,
+    "max": 0.010267165245986216
+   }
+  },
+  {
+   "role": "pipeline-label",
+   "group": "pipeline",
+   "text": "Реализация с ИИ",
+   "x": 861.796875,
+   "y": 783.59375,
+   "w": 551.5,
+   "h": 40,
+   "text_box": {
+    "x": 993.53125,
+    "y": 782.59375,
+    "w": 288.015625,
+    "h": 42
+   },
+   "font_px": 32,
+   "font_weight": 500,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "ai",
+   "bg": "ink",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.006022900252773424,
+    "max": 0.013566769601091693
+   }
+  },
+  {
+   "role": "pipeline-label",
+   "group": "pipeline",
+   "text": "Проверка",
+   "x": 1146.6875,
+   "y": 880.796875,
+   "w": 551.5,
+   "h": 40,
+   "text_box": {
+    "x": 1345.625,
+    "y": 879.796875,
+    "w": 153.609375,
+    "h": 42
+   },
+   "font_px": 32,
+   "font_weight": 500,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "verified",
+   "bg": "ink",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.006022900252773424,
+    "max": 0.014364178729932701
+   }
+  },
+  {
+   "role": "pipeline-label",
+   "group": "pipeline",
+   "text": "Git",
+   "x": 1431.59375,
+   "y": 783.59375,
+   "w": 551.5,
+   "h": 40,
+   "text_box": {
+    "x": 1678.53125,
+    "y": 782.59375,
+    "w": 57.609375,
+    "h": 42
+   },
+   "font_px": 32,
+   "font_weight": 500,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "mist",
+   "bg": "ink",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.006022900252773424,
+    "max": 0.0167187995574666
+   }
+  },
+  {
+   "role": "pipeline-label",
+   "group": "pipeline",
+   "text": "Продукт",
+   "x": 1457.296875,
+   "y": 880.796875,
+   "w": 551.5,
+   "h": 40,
+   "text_box": {
+    "x": 1874.390625,
+    "y": 879.796875,
+    "w": 134.40625,
+    "h": 42
+   },
+   "font_px": 32,
+   "font_weight": 500,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "paper",
+   "bg": "ink",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.006022900252773424,
+    "max": 0.01584702605681078
+   }
+  },
+  {
+   "role": "gate",
+   "group": "pipeline",
+   "text": null,
+   "x": 1550.79052734375,
+   "y": 838.9937133789062,
+   "w": 27.9970703125,
+   "h": 27.9969482421875,
+   "text_box": null,
+   "font_px": 16,
+   "font_weight": 400,
+   "font_family": "\"IBM Plex Sans\", sans-serif",
+   "fg": null,
+   "bg": null,
+   "overflow": false,
+   "bg_luminance": null
+  },
+  {
+   "role": "gate-label",
+   "group": "pipeline",
+   "text": "принимаю сам",
+   "x": 554.390625,
+   "y": 710.390625,
+   "w": 265.59375,
+   "h": 40,
+   "text_box": {
+    "x": 551.076904296875,
+    "y": 709.390625,
+    "w": 268.907470703125,
+    "h": 42
+   },
+   "font_px": 32,
+   "font_weight": 500,
+   "font_family": "\"IBM Plex Mono\", monospace",
+   "fg": "human",
+   "bg": "ink",
+   "overflow": false,
+   "bg_luminance": {
+    "p95": 0.006022900252773424,
+    "max": 0.010341704692441077
+   }
+  }
+ ],
+ "spec": "content/items/CI-0001-personal-presentation/spec/variant-d.yaml",
+ "lang": "ru",
+ "format": "youtube_banner"
+}

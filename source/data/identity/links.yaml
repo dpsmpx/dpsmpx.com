@@ -1,0 +1,122 @@
+# Проверенные публичные ссылки автора (social map).
+# status: ok | limited (доступ без входа ограничен) | auth_required | broken_for_public | stale
+# checked: дата проверки из сессии без входа в аккаунты.
+schema: links/v1
+links:
+  - id: L-GH-PROFILE
+    platform: github
+    url: https://github.com/dpsmpx
+    role: профиль, README из dpsmpx/dpsmpx
+    status: ok
+    checked: 2026-10-04
+    notes: README прочитан из клона; HTML-страница профиля из сессии недоступна (403 прокси).
+  - id: L-TG-AUTHOR
+    platform: telegram
+    url: https://t.me/dpsmpx
+    role: личный контакт
+    status: ok
+    checked: 2026-10-04
+  - id: L-TG-DEVLOG
+    platform: telegram
+    url: https://t.me/gh_3D_Voxel_OpenWorld_RPG
+    role: дневник разработки Galdhold
+    status: ok
+    checked: 2026-10-04
+    notes: handle прежнего репозитория (IC-02).
+  - id: L-TG-PHILOSOPHY
+    platform: telegram
+    url: https://t.me/dp_fil
+    role: «Философия?» — вне контент-системы
+    status: ok
+    checked: 2026-10-04
+  - id: L-YT-CHANNEL
+    platform: youtube
+    url: https://www.youtube.com/@dpsmpx
+    role: видео
+    status: ok
+    checked: 2026-10-04
+    channel_id: UCsbGAzdhIytOm3kKaJniLlw
+  - id: L-YT-OLD-HANDLE
+    platform: youtube
+    url: https://www.youtube.com/@9_6ox
+    role: прежний handle того же канала
+    status: stale
+    checked: 2026-10-04
+    notes: открывает UCsbGAzdhIytOm3kKaJniLlw; освобождается через 14 дней после смены (IC-01).
+  - id: L-YT-PRESENTATION
+    platform: youtube
+    url: https://youtu.be/mMDi7HjTBkM
+    role: «VoxelRPG — открытый воксельный мир на Android, который я пишу с нуля»
+    status: limited
+    checked: 2026-10-04
+    notes: страница видео без входа — проверка «вы не бот»; название и обложка — через oEmbed.
+  - id: L-YT-SHORT-ANDORS
+    platform: youtube
+    url: https://youtube.com/shorts/muMPYjvfbWY
+    role: «Automatic Game Debug #andorstrail»
+    status: limited
+    checked: 2026-10-04
+  - id: L-TT-PROFILE
+    platform: tiktok
+    url: https://www.tiktok.com/@dpsmpx
+    role: короткие вертикальные видео (Д19)
+    status: limited
+    checked: 2026-10-04
+    user_id: "7209160379036976133"
+    notes: >-
+      профиль виден без входа; список видео — нет («Что-то пошло не так»). В био ссылка
+      youtube.com/dpsmpx — 404 (IC-10). Аудит — docs/audits/2026-10-04-TIKTOK_AUDIT.md.
+  - id: L-VK
+    platform: vk
+    url: https://vk.com/dpsmpx
+    role: профиль «Dpsmpx Code»
+    status: limited
+    checked: 2026-10-04
+    notes: «Страница доступна только авторизованным пользователям».
+  - id: L-DISCORD
+    platform: discord
+    url: null
+    role: аккаунт и сервер dpsmpx
+    status: auth_required
+    checked: 2026-10-04
+    notes: приглашений dpsmpx/galdhold/voxelrpg нет (Unknown Invite); ОР-6.
+  - id: L-GH-GALDHOLD-OLD
+    platform: github
+    url: https://github.com/dpsmpx/3D_Voxel_OpenWorld_RPG
+    role: ссылка из профиля GitHub и YouTube
+    status: broken_for_public
+    checked: 2026-10-04
+    notes: репозиторий закрыт (Р12) и переименован в Galdhold; посетитель видит 404 (IC-04).
+  - id: L-GH-DPLANG
+    platform: github
+    url: https://github.com/dpsmpx/DPlang
+    role: ссылка из профиля GitHub
+    status: broken_for_public
+    checked: 2026-10-04
+    notes: закрытый репозиторий (IC-04).
+  - id: L-TPH-GUIDE
+    platform: telegraph
+    url: https://telegra.ph/Gajd-razrabotka-krupnyh-proektov-s-pomoshchyu-nejrosetej-09-29
+    role: гайд о методе (подпись dpsmpx)
+    status: ok
+    checked: 2026-10-04
+  - id: L-TPH-ESSAY
+    platform: telegraph
+    url: https://telegra.ph/Pochemu-razrabotka-s-II-dlya-menya-okazalas-namnogo-silnee-obychnoj-10-04
+    role: эссе о методе (подписано настоящим именем, IC-03)
+    status: ok
+    checked: 2026-10-04
+  - id: L-GH-TJTM
+    platform: github
+    url: https://github.com/dpsmpx/TrueJointTileMaker
+    role: открытый репозиторий редактора (страница проекта)
+    status: ok
+    checked: 2026-10-25
+    notes: публичный по списку репозиториев GitHub, клон без входа — есть; HTML-страница из сессии не проверялась.
+  - id: L-GH-ANDORS-LOVE
+    platform: github
+    url: https://github.com/dpsmpx/Andors-Love
+    role: открытый репозиторий игры (страница проекта)
+    status: ok
+    checked: 2026-10-25
+    notes: публичный по списку репозиториев GitHub, клон без входа — есть; HTML-страница из сессии не проверялась.

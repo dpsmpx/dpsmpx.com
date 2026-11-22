@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "claim_keywords/v1",
+  "title": "Слова-утверждения и подкрепляющие факты",
+  "description": "data/facts/claim_keywords.yaml — слово в публикуемом тексте требует одного из фактов в claims (tools/cs/claims.py).",
+  "type": "object",
+  "required": ["schema", "rules"],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {"const": "claim_keywords/v1"},
+    "rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "pattern", "any_of"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"type": "string", "pattern": "^KW-[A-Z0-9-]+$"},
+          "pattern": {"type": "string", "minLength": 1},
+          "any_of": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+          "progress": {"type": "array", "items": {"type": "string"}, "minItems": 1}
+        }
+      }
+    }
+  }
+}

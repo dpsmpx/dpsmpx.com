@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "experiment/v1",
+  "title": "Контролируемый эксперимент",
+  "description": "data/experiments/EXP-NNNN.yaml (docs/content/EXPERIMENTS_AND_ANALYTICS.md). Гипотеза и метрика — до запуска.",
+  "type": "object",
+  "required": ["schema", "id", "item", "hypothesis", "variants", "platform", "metric", "status"],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {"const": "experiment/v1"},
+    "id": {"type": "string", "pattern": "^EXP-[0-9]{4}$"},
+    "item": {"type": "string", "pattern": "^CI-[0-9]{4}$"},
+    "hypothesis": {"type": "string", "minLength": 20},
+    "variants": {"type": "array", "minItems": 2, "items": {"type": "string"}},
+    "audience": {"type": "string"},
+    "platform": {"enum": ["github", "telegram", "youtube", "vk", "discord", "tiktok"]},
+    "mechanism": {"type": "string"},
+    "metric": {"enum": ["watch_time_share", "ctr", "views", "retention", "reactions", "comments", "shares", "subscriber_conversion", "clicks"]},
+    "min_sample": {"type": "integer", "minimum": 1},
+    "status": {"enum": ["planned", "running", "finished", "inconclusive", "cancelled"]},
+    "started": {"type": ["string", "null"], "format": "date"},
+    "ended": {"type": ["string", "null"], "format": "date"},
+    "result": {"type": ["object", "null"]},
+    "decision": {"type": ["string", "null"]}
+  }
+}

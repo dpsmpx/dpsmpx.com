@@ -1,0 +1,52 @@
+# Вариант B — technical: акцент на инженерной системе и числах.
+schema: composition/v1
+variant: B
+label: technical
+layout: technical
+rationale: >-
+  Для технической аудитории: схема крупнее и с воротами решений, три числа с датой.
+  Портрет уже — человек отходит на второй план.
+portrait:
+  input: A-001
+  focus: {x: 0.60, y: 0.29}
+  face: {w: 0.22, h: 0.20}
+  zoom: 1.45
+  treatment: natural
+text:
+  ru:
+    name: dpsmpx
+    role: Разработчик нативных систем · ИИ как инструмент
+    sub: "Galdhold · C++20 · Vulkan 1.1 · Android → Windows (Steam)"
+    pipeline:
+      - {label: Замысел, kind: intent}
+      - {label: Архитектура, kind: architecture}
+      - {label: Реализация с ИИ, kind: implementation}
+      - {label: Проверка, kind: verification}
+      - {label: Git, kind: git}
+      - {label: Продукт, kind: product}
+    gates:
+      - {after: 1, label: решение}
+      - {after: 3, label: приёмка}
+    evidence:
+      - 150 000+ | строк C++ · 10.2026
+      - 5 000+ | автоматических проверок · 10.2026
+      - 2 телефона | Redmi Note 13 · Poco X7 Pro
+  en:
+    name: dpsmpx
+    role: Native systems developer · AI as an instrument
+    sub: "Galdhold · C++20 · Vulkan 1.1 · Android → Windows (Steam)"
+    pipeline:
+      - {label: Intent, kind: intent}
+      - {label: Architecture, kind: architecture}
+      - {label: AI implementation, kind: implementation}
+      - {label: Verification, kind: verification}
+      - {label: Git, kind: git}
+      - {label: Product, kind: product}
+    gates:
+      - {after: 1, label: decision}
+      - {after: 3, label: approval}
+    evidence:
+      - 150,000+ | lines of C++ · Oct 2026
+      - 5,000+ | automated checks · Oct 2026
+      - 2 phones | Redmi Note 13 · Poco X7 Pro
+claims: [AU-HANDLE, AU-ROLE, AU-METHOD, GH-NAME, GH-TECH, GH-LOC, GH-CHECKS, GH-ANDROID, GH-RELEASE-PLAN, GH-COMMITS, ME-NO-CI]

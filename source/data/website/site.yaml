@@ -1,0 +1,48 @@
+# Сайт dpsmpx.com (Д21, Д32, Д35; docs/platforms/WEBSITE.md).
+schema: site/v1
+hosting: beget                           # Д35: .htaccess вместо _headers
+title: {ru: dpsmpx, en: dpsmpx}
+canonical_base: https://dpsmpx.com       # канонические адреса (§79) — не зависят от окружения
+languages: [ru, en]                      # EN — главная, «обо мне», проекты (Д21)
+environments:
+  staging:
+    base_url: http://localhost:8000      # python3 -m tools.cs site serve
+    noindex: true
+    drafts: true
+    deploy: null
+  production:
+    base_url: https://dpsmpx.com
+    noindex: false
+    drafts: false
+    live: true                           # Д34: выпуск разрешён автором 05.10.2026; false — выгрузка отказывает
+    deploy:                              # Д35: rsync по SSH на Beget (tools/cs/site/deploy.py)
+      kind: rsync
+      target_ref: CS_PROD_SITE_DEPLOY_TARGET   # логин@сервер:dpsmpx.com/public_html/ — у автора, не в Git
+      guard_suffix: public_html/         # иной путь — отказ: --delete не тронет чужой каталог
+      protect: [/.well-known/]           # не удалять (выпуск сертификата)
+      mark:                              # Д41: метка ключом автора перед rsync; нет ключа — отказ (mark init)
+        required: true
+        tsa: https://freetsa.org/tsr     # RFC 3161 на манифест выпуска; плюс OpenTimestamps (клиент ots)
+home:
+  projects: [galdhold, dplang]
+  social_links:                          # публичные подписи (role в links.yaml — служебная)
+    - {link: L-TG-DEVLOG, ru: дневник разработки Galdhold, en: Galdhold dev log (in Russian)}
+    - {link: L-YT-CHANNEL, ru: видео, en: videos}
+    - {link: L-GH-PROFILE, ru: открытые проекты, en: open-source projects}
+    - {link: L-TT-PROFILE, ru: короткие видео, en: short videos}
+    - {link: L-TG-AUTHOR, ru: личные сообщения, en: direct messages}
+  contact: L-TG-AUTHOR
+# og_default снят до П2-20 (Д41): изображения контента на сайт — только с меткой.
+# Вернуть: og_default: {item: CI-0001, file: exports/E-en-github_social.png}
+path_section:                            # Д44: путь автора по датам и конечная цель экосистемы (/path/, /en/path/)
+  path: /path/                           # EN — /en/path/
+  data: data/website/path.yaml           # тексты — только факты реестра и вехи прогресса
+ecosystem:                               # Д43, Д51: система по слоям статичным списком — из данных комплекта DPvisualisation
+  path: /ecosystem/
+  kit: website/ecosystem                 # комплект — источник данных списка; сверка по sha256 (MANIFEST.json); на сайт не выгружается (Д51)
+  # роли и стадии репозиториев на странице — только из реестра фактов (Д6, Д43); без факта — не выводятся; «ID@N» — N-я формулировка
+  roles: {galdhold: GH-GENRE, dplang: DP-WHAT, dpverify: VRF-WHAT, smi: SMI-WHAT, dpprofile: PRF-WHAT, dplearn: LRN-WHAT,
+          market: MKT-WHAT, dpmeta: META-WHAT, dpmetaapp: APP-NOW, dpmonetization: MON-WHAT, dpvisualisation: VIS-WHAT@1,
+          aimtrainer: AIM-WHAT, dpclock: CLK-WHAT, andorslove: AL-WHAT, tjtm: TJTM-WHAT}
+  stages: {galdhold: GH-STAGES, dplang: DP-STAGE, smi: SMI-SITE, dpverify: VRF-NOW, dpprofile: PRF-STAGE, dplearn: LRN-STAGE,
+           market: MKT-NOW, dpmeta: META-STAGE, aimtrainer: AIM-STAGE, dpclock: CLK-STAGE, tjtm: TJTM-NOW}

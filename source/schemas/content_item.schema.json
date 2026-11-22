@@ -1,0 +1,732 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "content_item/v1",
+  "title": "ContentItem",
+  "description": "Объект контента (docs/content/CONTENT_MODEL.md; v2 — docs/content/CANONICAL_MODEL.md, Д22, Д31). Требования по состояниям проверяет tools/cs/validate.py.",
+  "type": "object",
+  "required": [
+    "schema",
+    "id",
+    "slug",
+    "title",
+    "type",
+    "pillar",
+    "objective",
+    "state",
+    "created",
+    "history"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {
+      "enum": [
+        "content_item/v1",
+        "content_item/v2"
+      ]
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^CI-[0-9]{4}$"
+    },
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]*$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 3
+    },
+    "type": {
+      "enum": [
+        "article",
+        "campaign",
+        "devlog",
+        "image",
+        "news",
+        "page",
+        "post",
+        "presentation",
+        "presentation_card",
+        "release_announcement",
+        "short_video",
+        "thumbnail",
+        "video_meta"
+      ]
+    },
+    "pillar": {
+      "enum": [
+        "PERSON",
+        "PROJECT",
+        "ENGINEERING",
+        "AI_DEVELOPMENT",
+        "RESULT",
+        "PROCESS",
+        "RESEARCH",
+        "EDUCATION",
+        "MILESTONE",
+        "RELEASE",
+        "OPINION",
+        "COMMUNITY"
+      ]
+    },
+    "topic": {
+      "type": "string"
+    },
+    "objective": {
+      "type": "string",
+      "minLength": 10
+    },
+    "audiences": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "players",
+          "developers",
+          "ai_developers",
+          "technical",
+          "collaborators",
+          "professional"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "platforms": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "github",
+          "telegram",
+          "youtube",
+          "vk",
+          "discord",
+          "tiktok",
+          "website"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "languages": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "ru",
+          "en"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "tone": {
+      "type": "string"
+    },
+    "owner": {
+      "type": "string"
+    },
+    "created": {
+      "type": "string",
+      "format": "date"
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "fact"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "fact": {
+            "type": "string"
+          },
+          "note": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "claims_none_reason": {
+      "type": "string"
+    },
+    "source_projects": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "brief": {
+      "type": "string"
+    },
+    "visual_direction": {
+      "type": "string"
+    },
+    "prompt": {
+      "type": "object",
+      "required": [
+        "id",
+        "version"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "version": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^A-[0-9]{3}$"
+      }
+    },
+    "variants": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "label",
+          "spec",
+          "status"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Z][0-9]?$"
+          },
+          "label": {
+            "type": "string"
+          },
+          "spec": {
+            "type": "string"
+          },
+          "renders": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "status": {
+            "enum": [
+              "candidate",
+              "selected",
+              "rejected",
+              "fallback"
+            ]
+          },
+          "rejection_reason": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "selected_variant": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "file": {
+          "type": "string"
+        },
+        "scores": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": [
+              "factuality",
+              "identity_fit",
+              "visual_quality",
+              "communication",
+              "platform_fit",
+              "strategic_value"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "factuality": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 5
+              },
+              "identity_fit": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 5
+              },
+              "visual_quality": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 5
+              },
+              "communication": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 5
+              },
+              "platform_fit": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 5
+              },
+              "strategic_value": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 5
+              }
+            }
+          }
+        },
+        "issues": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "fatal": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/issue"
+              }
+            },
+            "major": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/issue"
+              }
+            },
+            "minor": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/issue"
+              }
+            }
+          }
+        }
+      }
+    },
+    "gates": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "factual": {
+          "$ref": "#/$defs/gate"
+        },
+        "brand": {
+          "$ref": "#/$defs/gate"
+        },
+        "visual": {
+          "$ref": "#/$defs/gate"
+        },
+        "platform": {
+          "$ref": "#/$defs/gate"
+        },
+        "safety": {
+          "$ref": "#/$defs/gate"
+        },
+        "legal": {
+          "$ref": "#/$defs/gate"
+        },
+        "provenance": {
+          "$ref": "#/$defs/gate"
+        }
+      }
+    },
+    "approval": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "required": [
+        "by",
+        "date"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "by": {
+          "const": "author"
+        },
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "exports": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "format",
+          "file",
+          "lang",
+          "sha256"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "format": {
+            "type": "string"
+          },
+          "file": {
+            "type": "string"
+          },
+          "lang": {
+            "enum": [
+              "ru",
+              "en"
+            ]
+          },
+          "variant": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "status": {
+            "enum": [
+              "preview",
+              "final"
+            ]
+          }
+        }
+      }
+    },
+    "publication": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "platform",
+          "state"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "platform": {
+            "enum": [
+              "github",
+              "telegram",
+              "youtube",
+              "vk",
+              "discord",
+              "tiktok",
+              "website"
+            ]
+          },
+          "state": {
+            "enum": [
+              "not_published",
+              "published",
+              "removed"
+            ]
+          },
+          "url": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "published_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "export": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "experiments": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^EXP-[0-9]{4}$"
+      }
+    },
+    "metrics": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "provenance": {
+      "type": "string"
+    },
+    "blocked_by": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "state": {
+      "enum": [
+        "IDEA",
+        "RESEARCHED",
+        "BRIEFED",
+        "GENERATED",
+        "UNDER_REVIEW",
+        "REVISED",
+        "APPROVED",
+        "EXPORTED",
+        "PUBLISHED",
+        "ARCHIVED",
+        "REJECTED"
+      ]
+    },
+    "history": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "date",
+          "state",
+          "note"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "state": {
+            "type": "string"
+          },
+          "note": {
+            "type": "string",
+            "minLength": 3
+          }
+        }
+      }
+    },
+    "category": {
+      "enum": [
+        "news",
+        "devlog",
+        "article",
+        "release",
+        "page"
+      ]
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9-]+$"
+      },
+      "uniqueItems": true
+    },
+    "brand": {
+      "type": "object",
+      "required": [
+        "mode",
+        "brands"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "mode": {
+          "enum": [
+            "PERSONAL",
+            "PROJECT",
+            "MIXED"
+          ]
+        },
+        "brands": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        }
+      }
+    },
+    "campaign": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^CMP-[0-9]{4}$"
+    },
+    "website": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "string",
+          "pattern": "^/[a-z0-9/-]*/$"
+        },
+        "nav": {
+          "enum": [
+            "progress"
+          ],
+          "description": "пункт меню сайта для страницы (i18n.py)"
+        },
+        "toc": {
+          "type": "boolean",
+          "description": "оглавление по заголовкам h2"
+        }
+      }
+    },
+    "canonical": {
+      "type": "object",
+      "required": [
+        "lang",
+        "current",
+        "versions"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "lang": {
+          "enum": [
+            "ru",
+            "en"
+          ]
+        },
+        "current": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "versions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": [
+              "version",
+              "file",
+              "date"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "version": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "file": {
+                "type": "string",
+                "pattern": "^canonical/v[0-9]+\\.md$"
+              },
+              "date": {
+                "type": "string",
+                "format": "date"
+              },
+              "sha256": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "deps": {
+                "type": "object"
+              },
+              "note": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "targets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "variant"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "variant": {
+            "type": "string"
+          },
+          "destination": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "na": {
+            "type": "string"
+          },
+          "note": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "gate": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "enum": [
+            "pass",
+            "fail",
+            "pending",
+            "n/a"
+          ]
+        },
+        "by": {
+          "enum": [
+            "session",
+            "author",
+            "tool"
+          ]
+        },
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "issue": {
+      "type": "object",
+      "required": [
+        "id",
+        "text",
+        "status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "variant": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "open",
+            "fixed",
+            "accepted"
+          ]
+        },
+        "resolution": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

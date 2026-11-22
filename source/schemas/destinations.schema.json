@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "destinations/v1",
+  "title": "Адресаты публикации",
+  "description": "data/platforms/destinations.yaml (Д25)",
+  "type": "object",
+  "required": [
+    "schema",
+    "destinations"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {
+      "const": "destinations/v1"
+    },
+    "destinations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "platform",
+          "environment",
+          "accepts_brands",
+          "target",
+          "status"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+$"
+          },
+          "platform": {
+            "type": "string"
+          },
+          "environment": {
+            "enum": [
+              "development",
+              "staging",
+              "production"
+            ]
+          },
+          "purpose": {
+            "type": "string"
+          },
+          "accepts_brands": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          },
+          "language": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "link": {
+            "type": "string"
+          },
+          "target": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": [
+                  "string",
+                  "integer",
+                  "null"
+                ]
+              }
+            }
+          },
+          "account": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": [
+                  "string",
+                  "integer",
+                  "null"
+                ]
+              }
+            }
+          },
+          "credential_ref": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^CS_(DEV|STAGING|PROD)_[A-Z0-9_]+$"
+          },
+          "staging_twin": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "active",
+              "not_connected",
+              "blocked",
+              "disabled"
+            ]
+          },
+          "blocked_by": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

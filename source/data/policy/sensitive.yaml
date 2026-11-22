@@ -1,0 +1,80 @@
+# Фильтр чувствительных данных (Д39; docs/platforms/WEBSITE.md, «Фильтр чувствительных данных»).
+#
+# Что не должно выйти наружу через сайт. Сборка сайта проверяет каждый файл
+# выхода (страницы, фиды, API, карту, изображения); совпадение — ошибка
+# сборки, и её видят проверка `site`, предпросмотр, публикация и выгрузка
+# (`site deploy` с ошибками не идёт). Проверить любой каталог или копию сайта:
+# `python3 -m tools.cs site scan <каталог>`. Код — tools/cs/core/sensitive.py.
+#
+# Два слоя: данные идут на сайт только через белые списки (публичная выжимка
+# набора прогресса, Д38), а этот фильтр ловит то, что всё-таки просочилось.
+#
+# Кроме правил ниже, фильтр сам собирает из данных репозитория:
+#   SD-UNDISCLOSED имена репозиториев с visibility: undisclosed (data/progress/scope.yaml)
+#   SD-PERSONAL    имена исключённых личных репозиториев (scope.yaml, excluded, kind: personal)
+#   SD-REF         коммиты закрытых репозиториев: head из наборов прогресса и ref вех (Д17)
+#   SD-META        метаданные изображений: EXIF, XMP, IPTC, текстовые блоки PNG (docs/SECURITY.md)
+# и правила секретов из tools/cs/secrets.py (SD-SECRET).
+#
+# where: raw  — весь текст файла, вместе с разметкой;
+#        text — только видимый текст: без тегов и атрибутов (чтобы координаты SVG не
+#               читались как номер телефона или IP-адрес)
+# show:  false — найденное не печатается в отчёте (секрет не уходит в журнал)
+schema: sensitive/v1
+rules:
+  - id: SD-EMAIL
+    label: адрес почты
+    basis: личные данные (Д2)
+    where: raw
+    show: false
+    pattern: '\b[\w.+-]+@[\w-]+(?:\.[\w-]+)*\.[a-z]{2,}\b'
+  - id: SD-PHONE
+    label: номер телефона
+    basis: личные данные (Д2)
+    where: text
+    show: false
+    pattern: '(?<![\w+])(?:\+7|8)[\s(-]*\d{3}[\s)-]*\d{3}[\s-]*\d{2}[\s-]*\d{2}(?![\w])|\+\d{11,14}\b'
+  - id: SD-IP
+    label: IP-адрес
+    basis: адрес машины или сервера (docs/SECURITY.md)
+    where: text
+    show: true
+    pattern: '(?<![\w.])(?!127\.0\.0\.1\b|0\.0\.0\.0\b)(?:(?:25[0-5]|2[0-4]\d|1?\d?\d)\.){3}(?:25[0-5]|2[0-4]\d|1?\d?\d)(?![\w.])'
+  - id: SD-PATH
+    label: локальный путь машины
+    basis: docs/SECURITY.md — без путей машины автора
+    where: raw
+    show: true
+    pattern: '(?:/home/[\w.-]+|/Users/[\w.-]+|/root/|/data/data/com\.termux|\b[A-Za-z]:\\\\Users\\\\|~/\.ssh|~/\.config/dpsmpx)'
+  - id: SD-HOST
+    label: технический адрес хостинга
+    basis: по нему выводятся логин и сервер выгрузки (Д35)
+    where: raw
+    show: false
+    pattern: '\b[\w-]+\.beget\.tech\b'
+  - id: SD-SESSION
+    label: адрес или id сессии ИИ
+    basis: служебное (Д26)
+    where: raw
+    show: false
+    pattern: 'claude\.ai/code/session_\w+|\bsession_[A-Za-z0-9]{20,}\b'
+  - id: SD-BRANCH
+    label: имя рабочей ветки или служебная строка коммита
+    basis: имена веток и сообщения коммитов не публикуются (Д38)
+    where: raw
+    show: true
+    pattern: '\bccr-[0-9a-f]{8}-[0-9a-z]{6}\b|\bclaude/[a-z0-9]+(?:-[a-z0-9]+){1,3}\b|Co-Authored-By:|Claude-Session:'
+  - id: SD-UNDISCLOSED-WHAT
+    label: признак назначения закрытого проекта без публичного имени
+    basis: слова автора 6.10.2026 — ни имени, ни деталей этого проекта на сайте (Д38, Д43)
+    where: text
+    show: true
+    # по видимому тексту и с границами слова: подстрокой «vpn» встречается в двоичных шрифтах
+    pattern: '\b(?:vpn|впн\w*|xray|v2ray|vless|shadowsocks|wireguard|sing-box|прокси\w*|proxy|туннел\w*|tunnel\w*)\b'
+# Ручной список: слова, которых не должно быть на сайте (город, место работы, учёба —
+# ОР-8). Регистр не важен; ищется подстрокой во всём тексте и в двоичных файлах.
+terms: []
+#  - {term: …, label: …, basis: ОР-8}
+# Исключения: совпадение с правилом, которое публично. value — ровно найденное.
+allow: []
+#  - {rule: SD-EMAIL, value: …, reason: …}

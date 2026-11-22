@@ -1,0 +1,195 @@
+# Границы страницы прогресса (Д38; docs/platforms/WEBSITE.md, «Страница прогресса»).
+#
+# Какие репозитории входят в счёт, как они называются публично и что о них
+# можно сказать. Это граница публичного и внутреннего: сборка сайта берёт
+# отсюда имена и роли, а инструмент сбора (tools/cs/progress/collect.py) —
+# список клонов. Числа здесь не хранятся.
+#
+# visibility: public      — открытый репозиторий, имя и роль публичны
+#             private     — закрытый репозиторий, имя и роль публичны (Д17: только факты и вехи)
+#             undisclosed — закрытый, имя не публикуется (PROJECT_MAP: «не упоминать»);
+#                           на сайте — только числа в общих суммах: ни строки, ни узла карты,
+#                           ни отдельной даты (фильтр Д39)
+# group:      core | control | sync | support — места по слову автора (DPmeta M-10, M-12): ядро,
+#             управление (09.10.2026), слой синхронизации — DPmeta (10.10.2026), поддерживающий слой
+#             (09.10.2026). Архива (ранние проекты до репозитория игры и убранные автором) в счёте нет —
+#             он в excluded с kind: archive (Д38)
+# what:       id факта с публичной ролью (data/facts/facts.yaml)
+# layer:      слой на карте экосистемы
+schema: progress_scope/v1
+timezone: "+03:00"                 # дни — по московскому времени (так датирует коммиты автор)
+authors:                           # чьи коммиты считаются; остальные (исходные проекты форков) — нет
+  ai: [Claude]
+  human: [dpsmpx, "Ваше Имя"]      # «Ваше Имя» — заглушка git config в первом коммите Galdhold (DPprofile F-0049)
+layers:
+  - {id: control, ru: Управление, en: Control}
+  - {id: product, ru: Продукты, en: Products}
+  - {id: engineering, ru: Инженерная основа, en: Engineering foundation}
+  - {id: knowledge, ru: Знание и публикация, en: Knowledge and publishing}
+  - {id: meta, ru: Синхронизация, en: Synchronisation}
+repos:
+  - key: galdhold
+    slug: dpsmpx/Galdhold
+    name: Galdhold
+    group: core
+    visibility: private
+    layer: product
+    what: GH-GENRE
+    project: galdhold
+    former_names: [VoxelRPG]
+    reported:                      # что README игры пишет о себе (verification: reported)
+      - id: hostcheck
+        file: README.md
+        pattern: '([0-9][0-9\u00a0 ]*[0-9]) автоматическими проверками'
+  - key: dplang
+    slug: dpsmpx/DPlang
+    name: DPlang
+    group: core
+    visibility: private
+    layer: product
+    what: DP-WHAT
+    project: dplang
+  - key: dpverify
+    slug: dpsmpx/DP-Verify
+    name: DP-Verify
+    group: core
+    visibility: private
+    layer: engineering
+    what: VRF-WHAT
+  - key: undisclosed
+    slug: dpsmpx/DPpass
+    name: null                     # не публикуется (PROJECT_MAP: «не упоминать»; решение автора 05.10.2026)
+    group: core
+    visibility: undisclosed
+    layer: product
+  - key: smi
+    slug: dpsmpx/SocialMediaImage
+    name: SocialMediaImage
+    group: core
+    visibility: private
+    layer: knowledge
+    what: SMI-WHAT
+  - key: dpprofile
+    slug: dpsmpx/DPprofile
+    name: DPprofile
+    group: core
+    visibility: private
+    layer: knowledge
+    what: PRF-WHAT
+    counters:
+      - {id: facts, glob: "docs/facts/F-*.md"}
+      - {id: insights, glob: "docs/insights/I-*.md"}
+      - {id: sources, file: docs/sources/REGISTRY.md, pattern: '^\| *S-\d+'}
+      - {id: timeline, file: docs/timeline/TIMELINE.md, pattern: '^\| \d{4}-\d\d-\d\d'}
+  - key: dplearn
+    slug: dpsmpx/DPlearn
+    name: DPlearn
+    group: core
+    visibility: private
+    layer: knowledge
+    what: LRN-WHAT
+  - key: market
+    slug: dpsmpx/DP_game_market_analytic_system
+    name: DP_game_market
+    group: core
+    visibility: private
+    layer: knowledge
+    what: MKT-WHAT
+  - key: dpmeta
+    slug: dpsmpx/DPmeta
+    name: DPmeta
+    group: sync                    # «DPmeta - слой синхронизации» — слово автора 10.10.2026 (Д38)
+    visibility: private
+    layer: meta
+    what: META-WHAT
+    counters:
+      - {id: contracts, file: docs/CONTRACTS.md, pattern: '^#{2,3} +C-\d+'}
+      - {id: risks, file: docs/RISKS.md, pattern: '^#{2,3} +RISK-\d+'}
+      - {id: sync_queue, file: docs/SYNC_QUEUE.md, pattern: '^#{2,3} +SQ-\d+'}
+      - {id: principles, file: docs/PRINCIPLES.md, pattern: '^#{2,3} +E-\d+'}
+      - {id: reports, glob: "docs/reports/*.md"}
+  - key: orchestrator
+    slug: dpsmpx/DP_AI_Orcestrator
+    name: DP_AI_Orcestrator
+    group: core                    # «один из основных инструментов системы» — слово автора 09.10.2026
+    visibility: private
+    layer: engineering
+    what: ORC-WHAT
+  - key: dpvis
+    slug: dpsmpx/DPvisualisation
+    name: DPvisualisation
+    group: support                 # «обеспечение системы, поддерживающий слой»
+    visibility: private
+    layer: engineering
+    what: VIS-WHAT
+    what_idx: 1                    # «…на реальных данных» — без «эта схема»: она — в разделе «Экосистема»
+  - key: dpmon
+    slug: dpsmpx/DPmonetization
+    name: DPmonetization
+    group: support                 # «поддерживающий слой»
+    visibility: private
+    layer: engineering             # как в модели DPvisualisation
+    what: MON-WHAT
+  - key: dpmetaapp
+    slug: dpsmpx/DPmetaApp
+    name: DPmetaApp
+    group: control                 # «управление экосистемы, можно выделить немного»
+    visibility: private
+    layer: control
+    what: APP-WHAT
+excluded:                          # с работой в периоде, но вне счёта — и почему
+                                   # kind: fork | profile | script — имя на странице есть;
+                                   #       personal — имени нет, только число (Д2, ОР-8; фильтр Д39)
+  - {slug: dpsmpx/gravitydefied, kind: fork, reason: форк чужого проекта — вне иерархии проектов (Д5)}
+  - {slug: dpsmpx/andors-trail-load, kind: fork, reason: форк чужого проекта — вне иерархии проектов (Д5)}
+  - {slug: dpsmpx/dpsmpx, kind: profile, reason: README профиля GitHub — не проект; правит только автор (DPmeta C-07)}
+  - {slug: dpsmpx/MAIN_OBSIDIAN_PC_works, kind: personal, reason: личные заметки (Д2)}
+  - {slug: dpsmpx/dayplan_neocities, kind: personal, reason: личный планировщик и резюме (Д2)}
+  - {slug: dpsmpx/Mobile-Basic-set-line-numbers, kind: script, reason: одиночный скрипт вне карты проектов}
+  - {slug: dpsmpx/DP_3D_Works, kind: script, reason: одиночный скрипт вне карты проектов}
+                                   # kind: archive — вне текущей системы (слово автора 09.10.2026, Д38): проекты
+                                   # до репозитория игры (why: early) и убранные автором (why: removed); их
+                                   # репозитории открыты — в методике они названы (слово автора 10.10.2026), в
+                                   # счёте, таблицах и на карте их нет.
+                                   # key — ключ в прежних наборах (2026-10-05), чтобы их проверка его узнавала
+  - {slug: dpsmpx/Andors-Love, key: andors_love, kind: archive, why: early, reason: ранний проект — до репозитория игры}
+  - {slug: dpsmpx/TrueJointTileMaker, key: tjtm, kind: archive, why: early, reason: ранний проект — до репозитория игры}
+  - {slug: dpsmpx/PixRogue, key: pixrogue, kind: archive, why: early, reason: ранний проект — до репозитория игры}
+  - {slug: dpsmpx/tanks_blitz_stat_chat, key: tanks, kind: archive, why: early, reason: ранний проект — до репозитория игры}
+  - {slug: dpsmpx/DP_Ecosystem, key: ecosystem, kind: archive, why: removed, reason: убран автором из текущей системы}
+  - {slug: dpsmpx/DP_Repeated_Tasks, key: repeated, kind: archive, why: removed, reason: убран автором из текущей системы}
+relations:                         # связи между репозиториями — из контрактов DPmeta (docs/CONTRACTS.md, main);
+                                   # C-11…C-13 — после вливания ветки DPmeta (TODO.md)
+  - from: galdhold
+    to: dplang
+    both: true
+    source: DPmeta C-01
+    ru: "решения повторены с обеих сторон; Galdhold от DPlang не зависит"
+    en: "decisions are mirrored on both sides; Galdhold does not depend on DPlang"
+  - from: galdhold
+    to: dpprofile
+    source: DPmeta C-04
+    ru: "факты о проекте со ссылкой на коммит, без кода"
+    en: "facts about the project, citing commits, without code"
+  - from: galdhold
+    to: smi
+    source: DPmeta C-04
+    ru: "факты и вехи для публикаций"
+    en: "facts and milestones for publishing"
+  - from: dplang
+    to: dpprofile
+    source: DPmeta C-04
+    ru: "факты о проекте со ссылкой на коммит, без кода"
+    en: "facts about the project, citing commits, without code"
+  - from: dpverify
+    to: galdhold
+    planned: true
+    source: DPmeta C-03
+    ru: "поставка общих проверок копией"
+    en: "shared checks delivered as a copy"
+  - from: dpverify
+    to: dplang
+    planned: true
+    source: DPmeta C-03
+    ru: "поставка общих проверок копией"
+    en: "shared checks delivered as a copy"

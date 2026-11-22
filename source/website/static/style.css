@@ -1,0 +1,394 @@
+/* Тема сайта dpsmpx.com. Цвета и шрифты — токены бренда (assets/brand/tokens.json, Д9):
+   переменные :root генератор пишет перед этим файлом. */
+@font-face { font-family: "IBM Plex Sans"; font-weight: 400; font-display: swap; src: url("/fonts/IBMPlexSans-Regular.woff2") format("woff2"); }
+@font-face { font-family: "IBM Plex Sans"; font-weight: 600; font-display: swap; src: url("/fonts/IBMPlexSans-SemiBold.woff2") format("woff2"); }
+@font-face { font-family: "IBM Plex Mono"; font-weight: 400; font-display: swap; src: url("/fonts/IBMPlexMono-Regular.woff2") format("woff2"); }
+
+/* три начертания (Д51): Regular, SemiBold и Mono Regular; заголовки, знак и выделения — SemiBold (VISUAL_SYSTEM §3, §9) */
+* { box-sizing: border-box; }
+h1, h2, h3, h4, strong, b, th { font-weight: 600; }
+/* длинное слово заголовка переносится, а не уводит страницу вбок на 320 px (P-13 аудита страниц, WCAG 1.4.10) */
+h1, h2, h3 { overflow-wrap: break-word; hyphens: auto; }
+/* Цвета фигур — не токены бренда: группы, состояния, тепловая шкала, «Путь». Тёмная тема — основная (Д9);
+   светлая — по настройке системы (Д49): ряды и линии не ниже 3 к фону и панелям (тест), шкала — от светлого
+   к тёмному, шаг 1 отличим от нуля (≈ 1,5, как в тёмной); шкала ниже 3 — с таблицей значений у каждой фигуры. */
+:root { --c-gald: #c98500; --c-core: #3987e5; --c-bg: #d55181; --c-deferred: #9085e9; --c-periphery: #2a9d8f; --c-hidden: #6b6e75;
+  --c-h1: #184f95; --c-h2: #256abf; --c-h3: #3987e5; --c-h4: #6da7ec; --c-h5: #9ec5f4; --c-h6: #cde2fb;
+  --scroll-shadow: rgba(255, 255, 255, .4); }
+@media (prefers-color-scheme: light) {
+  :root { --c-gald: #8a5d00; --c-core: #2f74c9; --c-bg: #c2416f; --c-deferred: #6e62d6; --c-periphery: #1d7f73; --c-hidden: #6b6e75;
+    --c-h1: #8fbcef; --c-h2: #5f9fe6; --c-h3: #3a83d6; --c-h4: #2a6bbd; --c-h5: #1f5499; --c-h6: #163d70;
+    --scroll-shadow: rgba(0, 0, 0, .35); }
+}
+
+html { background: var(--ink); color: var(--paper); }
+body { margin: 0; font: 17px/1.6 "IBM Plex Sans", system-ui, sans-serif; }
+a { color: var(--paper); text-decoration-color: var(--human); text-underline-offset: 3px; }
+a:hover { color: var(--human); }
+:focus-visible { outline: 2px solid var(--human); outline-offset: 3px; border-radius: 2px; }
+main:focus { outline: none; }
+.skip { position: absolute; left: 12px; top: -48px; z-index: 10; padding: 8px 14px; background: var(--paper);
+  color: var(--ink); border-radius: 4px; font-weight: 600; text-decoration: none; }
+.skip:focus { top: 12px; }
+img { max-width: 100%; height: auto; }
+code, .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+main { max-width: 860px; margin: 0 auto; padding: 24px 20px 64px; }
+/* строка текста — не шире ~70 знаков (Д50); графики, таблицы и схемы — на всю колонку 860 px */
+main p, main li { max-width: 70ch; }
+main figure p, main figure li, main table p, main table li, main .tile p, main .layers li, main .nodes li { max-width: none; }
+
+.site-header { max-width: 860px; margin: 0 auto; padding: 20px; display: flex; gap: 24px;
+  align-items: baseline; justify-content: space-between; flex-wrap: wrap; border-bottom: 1px solid var(--line); }
+.brand { font-weight: 600; font-size: 20px; text-decoration: none; }
+.brand .dot { color: var(--human); }
+/* пункты меню не рвутся по словам; высота цели касания ≥ 24 px (WCAG 2.2, 2.5.8) — и в оглавлении, и в «крошках» */
+nav { display: flex; flex-wrap: wrap; align-items: center; column-gap: 18px; }
+nav a { display: inline-block; padding: 8px 0; white-space: nowrap; text-decoration: none; color: var(--mist); }
+nav a.current, nav a:hover { color: var(--paper); }
+/* меню шапки — цели не меньше 44 × 44 px (2.5.5, Д49); зазор 16 px — меню с «EN» в одну строку с брендом на компьютере */
+.site-header nav { column-gap: 16px; }
+.site-header nav a { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; min-width: 44px; padding-block: 0; }
+nav .lang { margin-left: 4px; padding: 0 10px; border: 1px solid var(--line); border-radius: 4px; }
+
+.banner { background: var(--graphite); border-bottom: 2px solid var(--human); color: var(--paper);
+  padding: 8px 20px; font-size: 14px; text-align: center; }
+.draft { border-left: 3px solid var(--human); padding: 6px 12px; background: var(--graphite);
+  color: var(--mist); font-size: 14px; margin: 12px 0; }
+
+.hero { padding: 32px 0 16px; }
+.hero h1 { font-size: 44px; line-height: 1.1; margin: 0 0 8px; }
+.hero .role { color: var(--mist); margin: 0 0 16px; }
+.hero .lead { font-size: 20px; max-width: 680px; }
+.hero img, .cover { width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--line); margin-top: 16px; }
+
+h2 { font-size: 24px; margin: 40px 0 12px; }
+h3 { font-size: 19px; margin: 24px 0 8px; }
+.muted { color: var(--mist); }
+
+/* flex, а не grid: одна карточка в ряду занимает всю ширину, без пустой дорожки */
+.cards { display: flex; flex-wrap: wrap; gap: 16px; }
+.card { flex: 1 1 240px; background: var(--graphite); border: 1px solid var(--line); border-radius: 8px; padding: 16px 18px; }
+.card.primary { border-color: var(--human); flex-basis: 100%; }
+.card h3 { margin: 0 0 6px; }
+.card .status { color: var(--verified); font-size: 14px; }
+
+.facts { width: 100%; border-collapse: collapse; }
+.facts th { text-align: left; vertical-align: top; color: var(--mist); font-weight: 400; padding: 8px 16px 8px 0; width: 30%; }
+.facts td { padding: 8px 0; border-bottom: 1px solid var(--line); }
+
+.posts { list-style: none; padding: 0; }
+.posts li { padding: 10px 0; border-bottom: 1px solid var(--line); }
+.posts time, .meta { color: var(--mist); font-size: 14px; font-family: "IBM Plex Mono", monospace; }
+.posts .pt { font-size: 17px; margin: 4px 0 2px; }  /* заголовок записи в списке (P-23) */
+.tag { display: inline-block; font-size: 13px; color: var(--ai); margin-right: 8px; padding: 4px 0; }
+
+.links { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 20px; }
+.links a, .feeds a { display: inline-block; padding: 4px 0; }
+.site-footer { max-width: 860px; margin: 0 auto; padding: 24px 20px 40px; border-top: 1px solid var(--line);
+  color: var(--mist); font-size: 14px; }
+.site-footer a { color: var(--mist); display: inline-block; padding: 2px 0; }
+
+/* телефон (проверка — 390 px, П2-14) */
+@media (max-width: 600px) {
+  body { font-size: 16px; }
+  .site-header { padding: 14px 16px 6px; row-gap: 4px; }
+  nav { column-gap: 16px; }
+  main { padding: 16px 16px 48px; }
+  .site-footer { padding: 20px 16px 32px; }
+  .banner { padding: 6px 16px; font-size: 13px; }
+  .hero { padding: 16px 0 8px; }
+  .hero h1 { font-size: 34px; }
+  .hero .lead { font-size: 18px; }
+  h2 { font-size: 22px; margin-top: 32px; }
+  .links { flex-direction: column; gap: 2px; }
+  .facts th { width: 38%; padding-right: 12px; }
+}
+
+/* ---------- страница прогресса (Д38): фигуры SVG без скриптов, цвета — классы ----------
+   Смысловые цвета — токены бренда (VISUAL_SYSTEM §2, §7): решения — human, работа ИИ — ai,
+   проверено — verified. Группы репозиториев, состояния веток и шкала тепловой карты —
+   шаги проверенной палитры dataviz для тёмного фона (validate_palette.js: группы — все пары
+   ΔE ≥ 13 при дальтонизме и ≥ 19 обычным зрением; шкала — монотонная, шаг ΔL ≥ 0,06). */
+.page-progress .lead { font-size: 19px; color: var(--paper); }
+.page-progress h2 { scroll-margin-top: 16px; }
+nav.toc { display: block; margin: 16px 0 8px; padding: 6px 14px; background: var(--graphite);
+  border: 1px solid var(--line); border-radius: 8px; font-size: 14px; }
+nav.toc ol { margin: 0; padding: 0; list-style: none; }  /* в столбик (P-22); номера — в самих заголовках */
+nav.toc li { color: var(--mist); }
+nav.toc a { padding: 3px 0; white-space: normal; color: var(--mist); }
+nav.toc a:hover { color: var(--paper); }
+
+.pfig { margin: 16px 0 32px; padding: 16px 16px 12px; background: var(--graphite); border: 1px solid var(--line); border-radius: 8px; }
+.fig-narrow { display: none; }
+/* «Прогресс» (Д51): одна раскладка — узкая, по ширине колонки, но не шире 480 px */
+.fig-one svg { display: block; width: 100%; max-width: 480px; height: auto; }
+svg.chart { display: block; width: 100%; height: auto; overflow: visible; }
+.pblock { margin-bottom: 12px; }
+/* два столбца — только если в каждый входит узкий график 340 px без ужатия текста (P-03) */
+.pgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); gap: 20px; margin: 8px 0; }
+.mults { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+.mult-t { margin: 8px 0 4px; font-size: 14px; color: var(--mist); }
+.mult-t b { color: var(--paper); font-family: "IBM Plex Mono", monospace; font-weight: 400; }
+
+/* текст в SVG — только текстовые токены, не цвет ряда */
+.t-axis { fill: var(--mist); font-size: 12px; }
+.t-mon, .t-grp { fill: var(--paper); font-weight: 600; }
+.t-lab { fill: var(--paper); font-size: 13px; }
+.t-val { fill: var(--paper); font-size: 12px; font-weight: 600; }
+.t-num { font-family: "IBM Plex Mono", monospace; }
+
+/* сетка и служебные слои */
+.c-grid { stroke: var(--line); stroke-width: 1; }
+.c-base { stroke: var(--mist); stroke-width: 1; }
+.c-wash { fill: var(--paper); fill-opacity: .035; }
+.c-hit { fill: transparent; }
+g:hover > .c-hit { fill: var(--paper); fill-opacity: .06; }
+
+/* смысловые цвета (фигуры и образцы в подписях) */
+.c-human { fill: var(--human); background: var(--human); }
+.c-ai { fill: var(--ai); background: var(--ai); }
+.c-ver { fill: var(--verified); background: var(--verified); }
+.c-paper { fill: var(--paper); background: var(--paper); }
+/* группы репозиториев и состояния веток */
+.c-gald { fill: var(--c-gald); background: var(--c-gald); }
+.c-core { fill: var(--c-core); background: var(--c-core); }
+.c-bg { fill: var(--c-bg); background: var(--c-bg); }
+.c-st-in_review { fill: var(--c-core); background: var(--c-core); }
+.c-st-active { fill: var(--c-gald); background: var(--c-gald); }
+.c-st-docs { fill: var(--c-bg); background: var(--c-bg); }
+.c-st-deferred { fill: var(--c-deferred); background: var(--c-deferred); }
+/* площади и линии */
+.c-fill { fill-opacity: .4; }
+.c-line { fill: none; stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+.c-thin { stroke-width: 1.5; }
+.c-human-line { stroke: var(--human); }
+.c-ai-line { stroke: var(--ai); }
+.c-ver-line { stroke: var(--verified); }
+.c-paper-line { stroke: var(--paper); }
+.c-core-line { stroke: var(--c-core); }
+.c-dot { stroke: var(--graphite); stroke-width: 2; }
+/* тепловая карта: 0 — подложка, дальше — одна синяя шкала, к большему — ярче на фоне (в светлой теме — темнее) */
+.c-h0 { fill: var(--line); fill-opacity: .55; background: var(--line); }
+.c-h1 { fill: var(--c-h1); background: var(--c-h1); }
+.c-h2 { fill: var(--c-h2); background: var(--c-h2); }
+.c-h3 { fill: var(--c-h3); background: var(--c-h3); }
+.c-h4 { fill: var(--c-h4); background: var(--c-h4); }
+.c-h5 { fill: var(--c-h5); background: var(--c-h5); }
+.c-h6 { fill: var(--c-h6); background: var(--c-h6); }
+
+/* подпись фигуры: легенда, вид данных, источник */
+.pfig figcaption { margin-top: 10px; font-size: 13px; color: var(--mist); line-height: 1.5; }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 16px; margin-bottom: 6px; color: var(--paper); }
+.key { display: inline-flex; align-items: center; gap: 6px; }
+.sw { display: inline-block; width: 10px; height: 10px; border-radius: 2px; }
+.fsrc { display: block; }
+.dkind { display: inline-block; margin-right: 6px; padding: 0 6px; border: 1px solid var(--line); border-radius: 3px;
+  font: 12px/1.6 "IBM Plex Mono", monospace; color: var(--mist); }
+.dk-measured { border-style: solid; }
+.dk-reported { border-style: dashed; }
+.dk-derived, .dk-facts { border-style: dotted; }
+.dk-milestone { border-color: var(--mist); }
+
+/* таблица значений под фигурой */
+.fdata { margin-top: 8px; font-size: 14px; }
+.fdata summary { cursor: pointer; padding: 4px 0; color: var(--mist); }
+.fdata summary:hover { color: var(--paper); }
+.tscroll { overflow-x: auto; }
+/* признак прокрутки вбок — тени у края, где ещё есть столбцы (P-10 аудита страниц): фон цвета фигуры
+   прокручивается вместе с таблицей (local) и закрывает тень у начала и у конца; без скриптов (CSP) */
+.pfig .tscroll {
+  background:
+    linear-gradient(to right, var(--graphite) 30%, transparent) left / 32px 100% no-repeat local,
+    linear-gradient(to left, var(--graphite) 30%, transparent) right / 32px 100% no-repeat local,
+    radial-gradient(farthest-side at 0 50%, var(--scroll-shadow), transparent) left / 16px 100% no-repeat scroll,
+    radial-gradient(farthest-side at 100% 50%, var(--scroll-shadow), transparent) right / 16px 100% no-repeat scroll;
+}
+.tscroll:focus-visible { outline-offset: 2px; }
+.num-table th, .num-table td { padding: 4px 10px 4px 0; font-size: 13px; width: auto; white-space: nowrap; }
+.num-table .num { text-align: right; font-family: "IBM Plex Mono", monospace; }
+
+/* срез */
+.snap-when { margin: 0 0 10px; font-size: 14px; color: var(--mist); }
+.tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin-bottom: 14px; }
+.tile { background: var(--ink); border: 1px solid var(--line); border-radius: 6px; padding: 10px 12px; }
+.tv { font-size: 26px; font-weight: 600; line-height: 1.2; font-variant-numeric: tabular-nums; }
+.tile-sm .tv { font-size: 20px; }
+.tl { color: var(--paper); font-size: 13px; line-height: 1.4; }
+.tnote { display: block; margin-top: 2px; color: var(--mist); font-size: 12px; line-height: 1.4; }
+.tile .dkind { margin-top: 6px; }
+.facts.stages th, .facts.stages td { padding: 8px 12px 8px 0; font-size: 14px; vertical-align: top; }
+.facts.stages th { width: auto; }
+.facts.stages thead th { color: var(--mist); font-weight: 400; border-bottom: 1px solid var(--line); }
+
+/* карта экосистемы */
+.layers { display: grid; gap: 14px; }
+.layer { border-left: 2px solid var(--line); padding-left: 12px; }
+.layer-t { margin: 0 0 6px; font-size: 13px; color: var(--mist); }
+.nodes { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.node { display: flex; flex-direction: column; background: var(--ink); border: 1px solid var(--line); border-radius: 6px;
+  padding: 6px 10px; font-size: 14px; max-width: 100%; }
+.node span { color: var(--mist); font-size: 13px; }
+.rels { list-style: none; margin: 0; padding: 0; font-size: 14px; }
+.rels li { padding: 6px 0; border-bottom: 1px solid var(--line); }
+.rels .meta { margin-left: 4px; font-size: 12px; }
+
+/* вехи */
+.ptl { list-style: none; margin: 0; padding: 0; }
+.ptl li { display: grid; grid-template-columns: 48px 12px 1fr; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--line); }
+.ptl time { color: var(--mist); font: 13px/1.6 "IBM Plex Mono", monospace; }
+.mk { display: inline-block; width: 9px; height: 9px; margin-top: 7px; transform: rotate(45deg); }
+.ev { font-size: 15px; }
+.evk { margin-right: 6px; color: var(--mist); font: 12px "IBM Plex Mono", monospace; }
+.ev .meta { display: block; font-size: 12px; }
+
+/* методика */
+.facts-dl { display: grid; grid-template-columns: max-content 1fr; gap: 4px 16px; margin: 0 0 12px; font-size: 14px; }
+.facts-dl dt { color: var(--mist); }
+.facts-dl dd { margin: 0; }
+.facts.formulas th, .facts.formulas td { padding: 6px 10px 6px 0; font-size: 13px; vertical-align: top; width: auto; }
+.facts.formulas code { font-size: 12px; white-space: nowrap; }
+.facts.formulas .num { text-align: right; white-space: nowrap; font-family: "IBM Plex Mono", monospace; }
+.plain { list-style: none; margin: 0; padding: 0; font-size: 14px; }
+.plain li { padding: 3px 0; }
+
+@media (max-width: 600px) {
+  .fig-wide { display: none; }
+  .fig-narrow { display: block; }
+  .pfig { margin: 12px -6px 28px; padding: 12px 10px 10px; }
+  .pgrid { grid-template-columns: 1fr; }
+  .tiles { grid-template-columns: 1fr 1fr; }
+  .tv { font-size: 22px; }
+  .page-progress .lead { font-size: 17px; }
+  .facts-dl { grid-template-columns: 1fr; gap: 0; }
+  .facts-dl dd { margin-bottom: 6px; }
+  /* «Как считалось» на телефоне — карточками (P-10): величина, формула, значение — строками, а не столбцами;
+     имя величины целиком в строке и переносится только если не помещается вся */
+  .facts.formulas thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%);
+    white-space: nowrap; }
+  .facts.formulas tr { display: block; padding: 8px 0; border-bottom: 1px solid var(--line); }
+  .facts.formulas th, .facts.formulas td { display: block; padding: 2px 0; border: 0; }
+  .facts.formulas .num { text-align: left; }
+  .facts.formulas code { white-space: normal; overflow-wrap: break-word; }
+  /* таблица стадий на телефоне — карточками: колонки не помещаются в 360 px */
+  /* заголовки столбцов спрятаны от глаз, но остаются в дереве доступности (P-20 аудита страниц) */
+  .facts.stages thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%);
+    white-space: nowrap; }
+  .facts.stages tr { display: block; padding: 8px 0; border-bottom: 1px solid var(--line); }
+  .facts.stages th, .facts.stages td { display: block; padding: 2px 0; border: 0; }
+  .facts.stages th { color: var(--paper); font-weight: 600; }
+  .facts.stages td + td { color: var(--mist); }
+}
+
+/* Статьи (раздел /articles/): блоки кода — схемы со стрелками, отступы сохраняются; длинная строка
+   прокручивается внутри блока, а не ломает страницу на телефоне */
+pre { background: var(--graphite); border: 1px solid var(--line); border-radius: 6px; padding: 12px 16px;
+  overflow-x: auto; font-size: 14px; line-height: 1.45; }
+pre code { font-family: "IBM Plex Mono", ui-monospace, monospace; white-space: pre; overflow-wrap: normal; }
+article :not(pre) > code { overflow-wrap: anywhere; }  /* длинные имена файлов не выталкивают страницу вбок */
+article.article .lead { font-size: 19px; color: var(--mist); margin-top: 0; }
+article.article h2 { margin-top: 2em; scroll-margin-top: 16px; }
+article.article h3 { margin-top: 1.4em; }
+nav.crumbs { font-size: 14px; column-gap: 6px; color: var(--mist); }
+nav.crumbs a { padding: 4px 0; }
+
+/* ---------- экосистема (Д43): схема DPvisualisation шире колонки текста ----------
+   Ширина — до 1440px, с полями 16px от края окна; стили самой схемы — dpvis.css комплекта. */
+.page-ecosystem .lead { font-size: 19px; color: var(--paper); }
+.page-ecosystem .dpvis-host { width: min(1440px, calc(100vw - 32px)); margin: 24px 0 32px calc(50% - min(720px, 50vw - 16px)); }
+.page-ecosystem .eco-static h3 { margin-top: 1.4em; }
+.page-ecosystem .eco-static ul { padding-left: 1.2em; }
+
+/* ---------- путь (Д44): маршрут и конечная цель — SVG без скриптов, цвета — классы ----------
+   Группы репозиториев на маршруте — шаги той же проверенной палитры, что у страницы прогресса:
+   игра, ядро на срезе 5 октября, новые после среза; без публичного имени — нейтральный. */
+.page-path .lead { font-size: 19px; color: var(--paper); }
+.page-path h2 { scroll-margin-top: 16px; }
+.pv-game { fill: var(--c-gald); background: var(--c-gald); }
+.pv-core { fill: var(--c-core); background: var(--c-core); }
+.pv-new { fill: var(--c-deferred); background: var(--c-deferred); }
+.pv-periphery { fill: var(--c-periphery); background: var(--c-periphery); }
+.pv-hidden { fill: var(--c-hidden); background: var(--c-hidden); }
+.sq-new { stroke: var(--paper); stroke-width: 1.5; }
+.sq-fin { fill-opacity: .45; stroke: var(--verified); stroke-width: 1.2; stroke-dasharray: 2 2; }
+.r-year { fill: none; stroke: var(--line); stroke-width: 1.5; }
+.sw-fin { border: 1.5px dashed var(--verified); }
+.sw-new { border: 1.5px solid var(--paper); }  /* как .sq-new: появился на этой станции (P-16) */
+.r-line { stroke: var(--paper); stroke-width: 2; }
+.r-gap { stroke-dasharray: 1 6; stroke-linecap: round; }
+.r-plan { stroke: var(--mist); stroke-dasharray: 6 5; }
+.r-dot { fill: var(--human); stroke: var(--graphite); stroke-width: 3; }
+.r-dot-plan { fill: var(--graphite); stroke: var(--mist); stroke-width: 2; stroke-dasharray: 3 2; }
+.r-dot-active { fill: var(--graphite); stroke: var(--human); stroke-width: 2; stroke-dasharray: 3 2; }
+.r-activet { fill: var(--human); font-weight: 600; }
+.r-now { fill: var(--graphite); stroke: var(--human); stroke-width: 2; }
+.r-nowdot { fill: var(--human); }
+.r-nowline { stroke: var(--human); stroke-width: 1; stroke-dasharray: 3 4; }
+.r-nowt { fill: var(--human); font-weight: 600; }
+.r-title { font-weight: 600; }
+.r-frame { fill: none; stroke: var(--human); stroke-width: 1.5; stroke-dasharray: 5 4; }
+.r-framet { fill: var(--human); font-weight: 600; }
+/* маршрут списком: линия и станции — псевдоэлементы, на телефоне это и есть рисунок пути */
+.route { list-style: none; margin: 12px 0 0; padding: 0 0 0 28px; }
+.route > li { position: relative; padding: 0 0 20px; }
+.route > li::before { content: ""; position: absolute; left: -28px; top: 5px; width: 14px; height: 14px;
+  border-radius: 50%; background: var(--human); box-sizing: border-box; }
+.route > li::after { content: ""; position: absolute; left: -22px; top: 22px; bottom: 0; border-left: 2px solid var(--paper); }
+.route > li:first-child::after { border-left-style: dotted; }
+.route > li:last-child { padding-bottom: 0; }
+.route > li:last-child::after { display: none; }
+.route > li.st-now::before { background: var(--ink); border: 3px solid var(--human); }
+.route > li.st-now::after, .route > li.st-plan::after { border-left: 2px dashed var(--mist); }
+.route > li.st-plan::before { background: var(--ink); border: 2px dashed var(--mist); }
+.route > li.st-active::before { border-color: var(--human); }
+.st-when { margin: 0; color: var(--mist); font: 13px/1.6 "IBM Plex Mono", monospace; }
+.route h3 { margin: 0 0 4px; font-size: 18px; }
+.route p { margin: 0 0 6px; }
+.route .st-nowt { color: var(--human); font-weight: 600; }
+.st-plan h3 { color: var(--mist); }
+.st-active h3 { color: inherit; }
+.route .st-active-t { color: var(--human); font-weight: 600; }
+.chips { list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { display: inline-flex; align-items: center; gap: 6px; padding: 2px 8px; border: 1px solid var(--line);
+  border-radius: 4px; font-size: 14px; background: var(--graphite); }
+/* конечная цель */
+.goal-rule { margin: 8px 0 20px; padding: 12px 16px; border-left: 3px solid var(--human); background: var(--graphite);
+  border-radius: 0 6px 6px 0; }
+.goal-rule p { margin: 0 0 6px; font-size: 18px; }
+.goal-rule footer { color: var(--mist); font-size: 14px; }
+.g-box { fill: var(--ink); stroke: var(--mist); stroke-width: 1.2; }
+.g-box.g-plan { stroke: var(--human); stroke-dasharray: 5 4; }
+.g-boxt { font-weight: 600; }
+.g-appt { font-size: 16px; font-weight: 600; }
+.g-tag { fill: var(--human); }
+.g-link { fill: none; stroke: var(--mist); stroke-width: 1.2; stroke-dasharray: 4 4; }
+.g-dom { fill: var(--paper); fill-opacity: .03; stroke: var(--line); stroke-width: 1; }
+.g-domt { font-size: 14px; font-weight: 600; }
+.g-chip { fill: var(--ink); stroke: var(--line); stroke-width: 1; }
+.g-chip.g-plan { stroke: var(--mist); stroke-dasharray: 4 3; }
+.g-chipt { font-size: 12px; }
+.dirs-d { margin-top: 4px; }
+.dirs-d summary { font-size: 15px; }
+.dirs { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 0 28px; }
+.dir h3 { font-size: 16px; margin: 12px 0 4px; }
+.dir ul { margin: 0; padding-left: 1.1em; font-size: 15px; }
+.path-src { font-size: 14px; margin-top: 28px; }
+/* главная: маршрут одной строкой */
+.route-strip { list-style: none; margin: 8px 0; padding: 0; display: flex; flex-wrap: wrap; row-gap: 10px; }
+.route-strip li { display: flex; flex-direction: column; margin-right: 16px; font-size: 15px; font-weight: 600; }
+.route-strip li:not(:last-child) .rs-t::after { content: " →"; color: var(--mist); font-weight: 400; }
+.rs-when { font: 12px/1.6 "IBM Plex Mono", monospace; color: var(--mist); }
+.route-strip .rs-now { color: var(--human); }
+.route-strip .rs-plan { color: var(--mist); }
+.route-strip .rs-active .rs-when { color: var(--human); }
+
+/* широкий маршрут (780) — без ужатия только при колонке от 780 px: окно от 854 px (P-03, P-16) */
+@media (max-width: 860px) {
+  .page-path .fig-wide { display: none; }
+  .page-path .fig-narrow { display: block; }
+  .page-path .fig-narrow svg { max-width: 440px; margin: 0 auto; }
+}
+@media (max-width: 600px) {
+  .page-path .lead { font-size: 17px; }
+  .route h3 { font-size: 17px; }
+  .route-strip li { margin-right: 12px; font-size: 14px; }
+}

@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "item_provenance/v1",
+  "title": "Происхождение выходов объекта контента",
+  "description": "content/items/<id>/provenance.yaml — как получен каждый рендер и экспорт. Пишет tools/cs/render.py.",
+  "type": "object",
+  "required": ["schema", "item", "outputs"],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {"const": "item_provenance/v1"},
+    "item": {"type": "string", "pattern": "^CI-[0-9]{4}$"},
+    "outputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["file", "sha256", "variant", "format", "lang", "method", "inputs", "spec", "spec_sha256", "tool", "date"],
+        "additionalProperties": false,
+        "properties": {
+          "file": {"type": "string"},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "variant": {"type": "string"},
+          "format": {"type": "string"},
+          "lang": {"enum": ["ru", "en"]},
+          "kind": {"enum": ["render", "export"]},
+          "method": {"type": "string"},
+          "inputs": {"type": "array", "items": {"type": "string"}},
+          "spec": {"type": "string"},
+          "spec_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "prompt": {"type": "string"},
+          "tool": {"type": "string"},
+          "tool_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$", "description": "хэш tools/cs/render.py + tools/render/render.js на момент рендера"},
+          "modifications": {"type": "array", "items": {"type": "string"}},
+          "layout": {"type": "string"},
+          "date": {"type": "string", "format": "date"}
+        }
+      }
+    }
+  }
+}

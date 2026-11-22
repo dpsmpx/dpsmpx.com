@@ -1,0 +1,102 @@
+# Запрещённые и устаревшие формулировки (Д6, Д7).
+#
+# Проверяются в публикуемом тексте объектов контента: поля copy/text в
+# content/items/*/item.yaml, файлы content/items/*/copy/*.md и строки
+# спецификаций композиции (tools/cs/claims.py). Документация не проверяется —
+# в ней эти формулировки встречаются как примеры.
+#
+# severity: fatal — блокирует гейт Factual; major — нужна правка или
+#           обоснование в критике; minor — предупреждение.
+# unless:   формулировка допустима, если в окне ±60 символов есть это
+#           выражение (например, «прежде VoxelRPG»).
+schema: forbidden/v1
+rules:
+  # ------------------------------------------------ anti-hype (Д7)
+  - id: AH-SUPERLATIVE
+    severity: fatal
+    pattern: '(?i)\b(лучш(ий|ая|ее|его)\s+(разработчик|программист|в мире|игр\w*)|best\s+(programmer|developer|in the world))'
+    reason: Превосходная степень без доказательства.
+    instead: Показать результат и дать читателю сделать вывод.
+  - id: AH-UNIQUE
+    severity: fatal
+    pattern: '(?i)(уникальн\w*\s+в\s+мире|не\s+имеет\s+аналогов|не\s+имеющ\w*\s+аналогов|аналогов\s+нет|unique in the world|unprecedented|no one else)'
+    reason: Утверждение об уникальности не проверяемо.
+    instead: Назвать конкретное отличие (что сделано, как проверено).
+  - id: AH-NOBODY
+    severity: fatal
+    pattern: '(?i)(никто\s+(так\s+|больше\s+|ещё\s+)?не\s+дела|такого\s+никто|nobody\s+(else\s+)?does)'
+    reason: Утверждение о всех остальных разработчиках не проверяемо.
+  - id: AH-SPEEDUP
+    severity: fatal
+    pattern: '(?i)(в\s+\d+([.,]\d+)?\s+раз\w*\s+быстр|\b\d+([.,]\d+)?\s*[xх×]\s+(быстрее|faster)|\d+x\s+productiv)'
+    reason: Ускорение без методики сравнения (GH-SPEEDUP — HYPOTHESIS, не публикуется).
+  - id: AH-IMPOSSIBLE
+    severity: fatal
+    pattern: '(?i)(невозможно\s+(сделать\s+)?быстрее|impossible to do faster)'
+    reason: Непроверяемое утверждение.
+  - id: AH-AI-PRAISE
+    severity: fatal
+    pattern: '(?i)((ии|нейросеть|нейронка|grok|chatgpt|claude|gpt)\s+(оценил\w*|поставил\w*|сказал\w*|считает|признал\w*|похвалил\w*)|\b\d([.,]\d)?\s*/\s*10\b)'
+    reason: Оценка от ИИ — не доказательство (CLAIM_POLICY §4).
+    instead: Перевести в проверенный факт или наблюдение.
+  - id: AH-STUDIO-BUDGET
+    severity: fatal
+    pattern: '(?i)(студи\w+\s+с\s+бюджетом|\b99\s*%\s+разработчик|99% of developers)'
+    reason: Сравнение с выдуманной базой.
+
+  # ------------------------------------------------ устаревшее и неверное (facts.yaml)
+  - id: CL-PATENT
+    severity: fatal
+    pattern: '(?i)(запатентова\w*|получил\w*\s+патент|patented)'
+    reason: Подана заявка на регистрацию программы для ЭВМ — это не патент и не регистрация (GH-ROSPATENT).
+    instead: «подал заявку на регистрацию программы в Роспатенте»
+  - id: CL-WINDOWS-RUNS
+    severity: fatal
+    pattern: '(?i)(работает\s+на\s+(windows|пк|компьютере)|runs\s+on\s+windows)'
+    reason: На настоящей Windows игра не запускалась (GH-WINDOWS).
+    instead: «готовится версия для Windows»
+  - id: CL-PLATFORM-ARROW
+    severity: fatal
+    pattern: '(?i)android\s*(→|->|—>|=>)\s*(windows|steam|пк)'
+    reason: Стрелка платформ читается как «уже вышла и переходит на Windows» (GH-WINDOWS, GH-RELEASE-PLAN; критика CI-0001, B-1).
+    instead: «выпуск планируется на Android и Windows (Steam)»
+  - id: CL-ANY-ANDROID
+    severity: fatal
+    pattern: '(?i)(на\s+любом\s+android|any\s+android\s+(phone|device))'
+    reason: Проверено на двух моделях телефонов (GH-ANDROID).
+  - id: CL-STALE-LOC
+    severity: fatal
+    pattern: '(?i)(115\s?000\s+строк|130\s*(тыс|k)\w*\s+строк|153\s?(k|тыс))'
+    reason: Устаревшее число строк (GH-LOC).
+  - id: CL-STALE-FPS
+    severity: fatal
+    pattern: '(?i)(80\s*[–-]\s*100\+?\s*fps|100\+?\s*fps|\b9\d([.,]\d)?\s*fps)'
+    reason: Замер сентября до смены рендера; актуален GH-PERF-2026-09-30.
+  - id: CL-OPEN-SOURCE
+    severity: fatal
+    pattern: '(?i)(открыт\w*\s+(исходн\w+\s+)?код|open[\s-]source|source[\s-]available|исходники\s+доступны)'
+    reason: Код Galdhold и DPlang закрыт (GH-PRIVATE, DP-PRIVATE).
+  - id: CL-CI
+    severity: major
+    pattern: '\bCI\b'
+    reason: GitHub Actions не используются с 03.10.2026 (ME-NO-CI).
+    instead: «автоматические проверки»
+  - id: CL-DPLANG-READY
+    severity: fatal
+    pattern: '(?i)(dplang\s+(готов|работает|выпущен)|компилятор\s+dplang\s+(готов|работает)|готовый\s+язык)'
+    reason: Выпущенного компилятора нет (DP-STAGE).
+  - id: CL-ZERO-ASSETS
+    severity: major
+    pattern: '(?i)(ни\s+одного\s+чужого\s+ассета|zero\s+third[\s-]party\s+assets)'
+    reason: Происхождение шрифта 5×7 уточняется (GH-ASSETS).
+    instead: «графика, звук и музыка генерируются процедурно»
+  - id: CL-FROM-ZERO
+    severity: major
+    pattern: '(?i)(с\s+нуля\s+за\s+\d+|from\s+scratch\s+in\s+\d+)'
+    reason: Первый коммит — 30 801 строка (GH-FROM-ZERO, INTERPRETATION).
+  - id: CL-OLD-NAME
+    severity: major
+    pattern: 'VoxelRPG'
+    unless: '(?i)(прежде|ранее|бывш\w*|formerly|previously|раньше)'
+    reason: Игра называется Galdhold (Д16).
+    instead: «Galdhold» или «Galdhold (прежде VoxelRPG)»

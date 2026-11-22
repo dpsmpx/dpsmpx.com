@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "path/v1",
+  "title": "Раздел «Путь» сайта (Д44): станции пути и конечная цель",
+  "type": "object",
+  "required": ["schema", "as_of", "nodes", "stations", "goal"],
+  "additionalProperties": false,
+  "$defs": {
+    "text": {
+      "description": "Текст страницы: формулировка факта (fact, idx — номер в allowed_wording) или веха страницы прогресса (milestone)",
+      "type": "object",
+      "additionalProperties": false,
+      "oneOf": [{"required": ["fact"]}, {"required": ["milestone"]}],
+      "properties": {
+        "fact": {"type": "string", "pattern": "^[A-Z]{2,5}(-[A-Z0-9]+)+$"},
+        "idx": {"type": "integer", "minimum": 0},
+        "milestone": {"type": "string", "pattern": "^M-[0-9]+$"}
+      }
+    },
+    "label": {
+      "description": "Подпись на двух языках",
+      "type": "object",
+      "required": ["ru", "en"],
+      "additionalProperties": false,
+      "properties": {"ru": {"type": "string", "minLength": 1}, "en": {"type": "string", "minLength": 1}}
+    },
+    "nodeRef": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"}
+  },
+  "properties": {
+    "schema": {"const": "path/v1"},
+    "as_of": {"type": "string", "format": "date"},
+    "nodes": {
+      "type": "object",
+      "propertyNames": {"$ref": "#/$defs/nodeRef"},
+      "additionalProperties": {
+        "type": "object",
+        "required": ["name", "kind"],
+        "additionalProperties": false,
+        "properties": {
+          "name": {"oneOf": [{"type": "string", "minLength": 1}, {"$ref": "#/$defs/label"}]},
+          "kind": {"enum": ["repo", "service", "other"]},
+          "group": {"enum": ["game", "core", "new", "periphery", "hidden"]},
+          "role": {"$ref": "#/$defs/text"},
+          "stage": {"$ref": "#/$defs/text"},
+          "plan": {"type": "boolean"}
+        }
+      }
+    },
+    "stations": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "texts"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z][a-z0-9-]*$"},
+          "date": {"type": "string", "format": "date"},
+          "date_to": {"type": "string", "format": "date"},
+          "when": {"$ref": "#/$defs/label"},
+          "title": {"$ref": "#/$defs/label"},
+          "repos": {"type": "array", "items": {"$ref": "#/$defs/nodeRef"}},
+          "merged": {
+            "description": "Репозитории, которые на этой станции вошли в другой: {вошедший: куда}; дальше по маршруту — без отдельного квадрата",
+            "type": "object",
+            "propertyNames": {"$ref": "#/$defs/nodeRef"},
+            "additionalProperties": {"$ref": "#/$defs/nodeRef"}
+          },
+          "texts": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/text"}},
+          "plan": {"type": "boolean"},
+          "started": {
+            "description": "Станция плана, которая уже идёт: с какого дня и факт об этом (фаза B, DPmetaApp D-29)",
+            "type": "object",
+            "required": ["date", "text"],
+            "additionalProperties": false,
+            "properties": {"date": {"type": "string", "format": "date"}, "text": {"$ref": "#/$defs/text"}}
+          }
+        }
+      }
+    },
+    "goal": {
+      "type": "object",
+      "required": ["source", "app", "cores", "domains", "base", "rule"],
+      "additionalProperties": false,
+      "properties": {
+        "source": {"type": "string", "pattern": "^[A-Z]{2,5}(-[A-Z0-9]+)+$"},
+        "app": {
+          "type": "object", "required": ["node", "text"], "additionalProperties": false,
+          "properties": {"node": {"$ref": "#/$defs/nodeRef"}, "text": {"$ref": "#/$defs/text"}}
+        },
+        "cores": {
+          "type": "array", "minItems": 1,
+          "items": {
+            "type": "object", "required": ["title", "text"], "additionalProperties": false,
+            "properties": {"title": {"$ref": "#/$defs/label"}, "text": {"$ref": "#/$defs/text"}}
+          }
+        },
+        "domains": {
+          "type": "array", "minItems": 1,
+          "items": {
+            "type": "object", "required": ["id", "title", "nodes"], "additionalProperties": false,
+            "properties": {
+              "id": {"type": "string", "pattern": "^[a-z][a-z0-9-]*$"},
+              "title": {"$ref": "#/$defs/label"},
+              "nodes": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/nodeRef"}}
+            }
+          }
+        },
+        "base": {
+          "type": "object", "required": ["node", "text"], "additionalProperties": false,
+          "properties": {"node": {"$ref": "#/$defs/nodeRef"}, "text": {"$ref": "#/$defs/text"}}
+        },
+        "rule": {"$ref": "#/$defs/text"}
+      }
+    }
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "project/v1",
+  "title": "Проект — каноническая сущность",
+  "description": "data/projects/<id>.yaml (PLATFORM_VISION §7, Д28)",
+  "type": "object",
+  "required": [
+    "schema",
+    "id",
+    "name",
+    "weight",
+    "brand",
+    "page"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {
+      "const": "project/v1"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "name": {
+      "type": "string"
+    },
+    "former_names": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "weight": {
+      "enum": [
+        "primary",
+        "secondary",
+        "background",
+        "archive"
+      ]
+    },
+    "brand": {
+      "type": "string"
+    },
+    "order": {
+      "type": "integer"
+    },
+    "page": {
+      "type": "boolean"
+    },
+    "tagline": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "status": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "facts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "label",
+          "facts"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "label": {
+            "enum": [
+              "technology",
+              "platforms",
+              "status",
+              "scale",
+              "code",
+              "plan"
+            ]
+          },
+          "facts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "links": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^L-[A-Z0-9-]+$"
+          },
+          "ru": {
+            "type": "string"
+          },
+          "en": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "repository": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "download": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "media": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

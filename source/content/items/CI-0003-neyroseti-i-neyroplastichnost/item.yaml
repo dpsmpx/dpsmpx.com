@@ -1,0 +1,256 @@
+# Объект контента (docs/content/CANONICAL_MODEL.md). Схема — schemas/content_item.schema.json.
+# Статья автора (раздел /articles/, Д42): текст — канон и вариант website.ru; период — {{progress:…}}.
+schema: content_item/v2
+id: CI-0003
+slug: neyroseti-i-neyroplastichnost
+title: Нейросети и нейропластичность
+type: article
+pillar: AI_DEVELOPMENT
+category: article
+brand:
+  mode: PERSONAL
+  brands:
+  - author
+website:
+  toc: true
+topic: как долгая работа в связке с нейросетями меняет когнитивную среду и рабочие привычки — на опыте
+  24 дней и экосистемы проектов
+objective: Показать читателю, что главный эффект работы с ИИ — не скорость написания кода, а смена уровня
+  абстракции и рабочих привычек мышления, — на опыте 24 дней и экосистемы проектов, с явной границей между
+  наблюдением и гипотезой о нейропластичности.
+audiences:
+- ai_developers
+- developers
+- professional
+- technical
+platforms:
+- website
+languages:
+- ru
+tone: размышление от первого лица; спокойно и точно; наблюдение отделено от гипотезы; без эпитетов о себе
+owner: author
+created: '2026-10-05'
+tags:
+- ai
+- method
+- neuroplasticity
+- ecosystem
+claims:
+- fact: AU-METHOD
+- fact: AU-MEMORY
+- fact: GH-NAME
+- fact: GH-GENRE
+- fact: GH-ENGINE
+- fact: GH-LOC
+- fact: DP-WHAT
+- fact: LRN-WHAT
+- fact: VRF-WHAT
+- fact: PRF-WHAT
+- fact: PRF-STAGE
+- fact: META-WHAT
+- fact: META-NO-DEPS
+- fact: SMI-WHAT
+- fact: MKT-WHAT
+- fact: TJTM-WHAT
+- fact: GH-COMBAT
+- fact: DP-COMPILER
+- fact: DP-DOCS
+- fact: META-SYNC
+- fact: TJTM-PORT
+- fact: LRN-STAGE
+- fact: VRF-STAGE
+- fact: CORE-SCALE-2026-10-05
+- fact: META-SOT
+- fact: META-PROCESS
+- fact: GH-STAGES
+canonical:
+  lang: ru
+  current: 3
+  versions:
+  - version: 1
+    file: canonical/v1.md
+    date: '2026-10-05'
+    note: текст автора 05.10.2026 с разметкой; закрытый прикладной проект — без имени и подробностей (Д42)
+    sha256: 89f69ce00f489b03f39e1afe212d5d78664f7547384f9e79815eced77aa12a10
+    deps:
+      facts: {}
+      links: {}
+      releases: {}
+      datasets:
+        '2026-10-05': b4eb09f271093055
+  - version: 2
+    file: canonical/v2.md
+    date: '2026-10-12'
+    note: 'ответы автора 12.10.2026 (В7): «и компилятор (в разработке)», «мета-уровень (синхронизация)»;
+      больше ничего не менялось; утверждения статьи — фактами GH-COMBAT, DP-COMPILER, DP-DOCS, META-SYNC,
+      TJTM-PORT'
+    sha256: 2b7397a7f91987909df97ff11b82a726e524d8a87e5e4b7a5e5a89b3782d8df7
+    deps:
+      facts: {}
+      links: {}
+      releases: {}
+      datasets:
+        '2026-10-05': eb5bdad921bccc6e
+  - version: 3
+    file: canonical/v3.md
+    date: 2026-10-12
+    note: 'ревизия по критике отдельным проходом (CRITIQUE.md): правки текста приняты автором 12.10.2026 (C3-1, C3-2,
+      C3-7, C3-8, C3-9); разметка для телефона (C3-3); claims — по C3-2 и C3-4'
+    sha256: 0d907bdff8044ec77236d76880db6234d4dfa5c1a7305bb36501fe59134c5596
+    deps:
+      facts: {}
+      links: {}
+      releases: {}
+      datasets:
+        '2026-10-05': eb5bdad921bccc6e
+source_projects:
+- galdhold
+- dplang
+brief: docs/content/products/articles/neyroseti-i-neyroplastichnost/BRIEF.md
+provenance: provenance.yaml
+targets:
+- variant: website.ru
+  destination: site-production
+gates:
+  factual:
+    status: pass
+    by: tool
+    date: 2026-10-12
+    note: 'claims: 27 фактов — FACT, public, сроки перепроверки не истекли; anti-hype — 0 совпадений; major C3-1, C3-2
+      закрыты ревизией (повторный проход)'
+  brand:
+    status: pass
+    by: author
+    date: 2026-10-12
+    note: автор одобрил website.ru v3 для публикации («одобряю», approve; sha256 49c0f422…; коммит 5b0fb9f)
+  visual:
+    status: pass
+    by: tool
+    date: 2026-10-12
+    note: 'siteshots: страница статьи в Chromium, 390 и 1280 px (tools/check.sh, 12.10.2026); изображений в статье нет'
+  platform:
+    status: pass
+    by: tool
+    date: 2026-10-12
+    note: 'site: сборка staging и production со статьёй без ошибок — раздел «Статьи», оглавление, время чтения'
+  safety:
+    status: pass
+    by: session
+    date: 2026-10-12
+    note: 'критика отдельным проходом: имени автора, личных данных, имени и подробностей закрытого прикладного проекта
+      нет (Д40, Д42); фильтр чувствительных данных сборки (Д39) — без находок'
+  legal:
+    status: pass
+    by: session
+    date: 2026-10-12
+    note: текст автора; сторонних изображений, шрифтов и цитат нет
+  provenance:
+    status: pass
+    by: tool
+    date: 2026-10-12
+    note: provenance.yaml объекта; каноны v1–v3 и вариант зафиксированы с sha256 (canonical seal, variant seal)
+approval:
+  by: author
+  date: 2026-10-12
+  note: 'одобрение варианта website.ru v3 командой approve (sha256 49c0f422c795…; коммит 5b0fb9f)'
+state: PUBLISHED
+review:
+  file: docs/content/products/articles/neyroseti-i-neyroplastichnost/CRITIQUE.md
+  scores:
+    website.ru:
+      factuality: 3
+      identity_fit: 4
+      visual_quality: 4
+      communication: 4
+      platform_fit: 4
+      strategic_value: 5
+  issues:
+    major:
+    - id: C3-1
+      variant: website.ru
+      text: дата среза (5 октября) видна только в конце; «за последние 24 дня» читается от даты публикации
+      status: fixed
+      resolution: 'решение автора 12.10.2026: «— по 5 октября 2026 года —» в начале (подстановка period_end), канон v3'
+    - id: C3-2
+      variant: website.ru
+      text: замысел DPlearn и DP-Verify подан как работающий механизм (LRN-STAGE, VRF-STAGE)
+      status: fixed
+      resolution: 'решение автора 12.10.2026: «должна помогать», «задуман проверять», фраза «своих целей в DPlearn
+        пока нет»; LRN-STAGE и VRF-STAGE — в claims; канон v3'
+    minor:
+    - id: C3-3
+      variant: website.ru
+      text: однострочные блоки кода, фраза в блоке кода, длинные строки схемы на 390 px
+      status: fixed
+      resolution: курсив вместо однострочных блоков, переносы в схеме, `DPlearn` в заголовке — канон v3
+    - id: C3-4
+      text: CORE-SCALE-2026-10-05 нет в claims; строки 182, 382–384 без факта
+      status: fixed
+      resolution: CORE-SCALE-2026-10-05 в claims; факты META-SOT (M-02) и META-PROCESS (M-04, E-01) по DPmeta fec807c
+    - id: N1
+      text: 'повторный проход: новые факты были только в каноне v3, не в claims объекта (гейт Factual читает item.yaml)'
+      status: fixed
+      resolution: LRN-STAGE, VRF-STAGE, CORE-SCALE-2026-10-05, META-SOT, META-PROCESS, GH-STAGES — в claims
+    - id: C3-5
+      text: бриф §2 и история объекта отстают от 12.10
+      status: fixed
+      resolution: бриф §2 — по фактам 12.10.2026; история — канон v2, критика, ревизия
+    - id: C3-6
+      variant: website.ru
+      text: «коммерческий и профильный контуры» — какой проект коммерческий
+      status: accepted
+      resolution: 'ответ автора 12.10.2026: это Galdhold (коммерческая версия, GH-STAGES) — оставить'
+    - id: C3-7
+      variant: website.ru
+      text: «Основание кейса» — источники закрыты, сверка 12.10 не видна
+      status: fixed
+      resolution: строка «Репозитории закрыты; утверждения о проектах сверены с первоисточниками 12 октября 2026 года»
+    - id: C3-8
+      variant: website.ru
+      text: формулировки сильнее наблюдения («эксперимент», «уже тренирует», «саморазвивающуюся», «очень сильная идея»)
+      status: fixed
+      resolution: правки приняты автором 12.10.2026 — канон v3
+    - id: C3-9
+      variant: website.ru
+      text: «AI-assisted cognitive engineering» — у термина другой устоявшийся смысл
+      status: fixed
+      resolution: оговорка «в другом смысле, чем классическая cognitive engineering» — канон v3
+history:
+- date: '2026-10-05'
+  state: IDEA
+  note: 'объект заведён по поручению автора: первая статья раздела «Статьи» — текст автора «Нейросети
+    и нейропластичность»'
+- date: '2026-10-05'
+  state: RESEARCHED
+  note: 'утверждения статьи сверены с реестром фактов: 11 подтверждены, 5 без факта или расходятся (бриф,
+    §2); решения автора: закрытый прикладной проект — без имени и подробностей, репозитории называть можно
+    (Д42)'
+- date: '2026-10-05'
+  state: BRIEFED
+  note: бриф — docs/content/products/articles/neyroseti-i-neyroplastichnost/BRIEF.md
+- date: '2026-10-05'
+  state: GENERATED
+  note: 'генерации нет — текст автора: канон v1 с разметкой (заголовки, списки, схемы — блоки кода), период
+    — подстановкой; вариант website.ru — тот же текст. Дальше — критика отдельным проходом, ревизия по
+    решениям автора (бриф, §2)'
+- date: '2026-10-12'
+  state: UNDER_REVIEW
+  note: 'канон v2 и website.ru v2 — правки автора по В7; факты GH-COMBAT, DP-COMPILER, DP-DOCS, META-SYNC, TJTM-PORT;
+    критика отдельным проходом (CRITIQUE.md): fatal нет, major C3-1, C3-2'
+- date: '2026-10-12'
+  state: REVISED
+  note: 'канон v3 и website.ru v3: правки текста приняты автором (C3-1, C3-2, C3-7, C3-8, C3-9), C3-6 — оставить
+    (Galdhold); разметка C3-3; claims и факты META-SOT, META-PROCESS (C3-4)'
+- date: '2026-10-12'
+  state: UNDER_REVIEW
+  note: повторный проход по ревизии — CRITIQUE.md, «Ревизия»; дальше — одобрение автора (Д12)
+- date: '2026-10-12'
+  state: APPROVED
+  note: 'автор одобрил website.ru v3 (approve, sha256 49c0f422c795…; коммит 5b0fb9f); гейты — gates'
+- date: '2026-10-12'
+  state: EXPORTED
+  note: текст площадки — одобренный вариант (Д12); экспорта изображений нет — в статье их нет
+- date: '2026-10-12'
+  state: PUBLISHED
+  note: 'https://dpsmpx.com/articles/neyroseti-i-neyroplastichnost/ — publish --production автором, 17:24 UTC
+    (data/publications/production.jsonl, PUB-7dc7c90da278); проверено снаружи: 200, CSP script-src ''none'''

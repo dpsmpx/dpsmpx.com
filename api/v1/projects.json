@@ -1,0 +1,97 @@
+{
+ "version": 1,
+ "projects": [
+  {
+   "id": "galdhold",
+   "name": "Galdhold",
+   "weight": "primary",
+   "url": {
+    "ru": "http://localhost:8000/projects/galdhold/",
+    "en": "http://localhost:8000/en/projects/galdhold/"
+   },
+   "tagline": {
+    "ru": "воксельная action-RPG с открытым процедурным миром",
+    "en": "a voxel action-RPG with an open procedural world"
+   },
+   "links": [
+    "https://t.me/gh_3D_Voxel_OpenWorld_RPG",
+    "https://youtu.be/mMDi7HjTBkM",
+    "https://www.youtube.com/@dpsmpx"
+   ]
+  },
+  {
+   "id": "dplang",
+   "name": "DPlang",
+   "weight": "secondary",
+   "url": {
+    "ru": "http://localhost:8000/projects/dplang/",
+    "en": "http://localhost:8000/en/projects/dplang/"
+   },
+   "tagline": {
+    "ru": "разрабатываю собственный язык программирования — DPlang",
+    "en": "I'm designing my own programming language, DPlang"
+   },
+   "links": []
+  },
+  {
+   "id": "aim-trainer",
+   "name": "DP AIM Trainer",
+   "weight": "background",
+   "url": {
+    "ru": "http://localhost:8000/projects/aim-trainer/",
+    "en": "http://localhost:8000/en/projects/aim-trainer/"
+   },
+   "tagline": {
+    "ru": "замер реакции и разминка перед шутерами: конструктор замеров, рекорды по параметрам, реплеи лучших попыток",
+    "en": "reaction testing and warm-up before shooters: a test builder, records per settings, replays of the best attempts"
+   },
+   "links": []
+  },
+  {
+   "id": "dp-clock",
+   "name": "DP_Clock",
+   "weight": "background",
+   "url": {
+    "ru": "http://localhost:8000/projects/dp-clock/",
+    "en": "http://localhost:8000/en/projects/dp-clock/"
+   },
+   "tagline": {
+    "ru": "своё приложение часов для Android: будильники, таймеры, мировые часы, виджеты",
+    "en": "my own Android clock app: alarms, timers, world clock, widgets"
+   },
+   "links": []
+  },
+  {
+   "id": "truejointtilemaker",
+   "name": "True Joint Tile Maker",
+   "weight": "background",
+   "url": {
+    "ru": "http://localhost:8000/projects/truejointtilemaker/",
+    "en": "http://localhost:8000/en/projects/truejointtilemaker/"
+   },
+   "tagline": {
+    "ru": "редактор пиксельной графики и карт для Andors-Love",
+    "en": "pixel-art and map editor for Andors-Love"
+   },
+   "links": [
+    "https://github.com/dpsmpx/TrueJointTileMaker"
+   ]
+  },
+  {
+   "id": "andors-love",
+   "name": "Andors-Love",
+   "weight": "background",
+   "url": {
+    "ru": "http://localhost:8000/projects/andors-love/",
+    "en": "http://localhost:8000/en/projects/andors-love/"
+   },
+   "tagline": {
+    "ru": "пошаговая RPG на C++",
+    "en": "turn-based RPG in C++"
+   },
+   "links": [
+    "https://github.com/dpsmpx/Andors-Love"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,25 @@
+# Слова-утверждения → факты, которые их подкрепляют (Д6, docs/content/CLAIM_POLICY.md).
+#
+# Если в публикуемом тексте (спецификации варианта, copy/*.md) есть слово из pattern,
+# среди claims варианта (для copy — объекта) должен быть хотя бы один факт из any_of.
+# Ловит то, что не видят запреты и проверка чисел: «движок» без GH-ENGINE, «Windows»
+# без GH-WINDOWS. Проверка — tools/cs/claims.py; схема — schemas/claim_keywords.schema.json.
+#
+# progress — величины наборов прогресса (tools/cs/progress/dataset.py, METRICS), которые тоже
+# подкрепляют слово, если стоят в том же тексте подстановкой {{progress:…}} (Д38): измерение
+# истории git — источник не хуже факта.
+schema: claim_keywords/v1
+rules:
+  - {id: KW-ENGINE, pattern: '(?i)\bдвиж(ок|ка|ке|ком)\b|\bengine\b', any_of: [GH-ENGINE]}
+  - {id: KW-LANGUAGE, pattern: '(?i)\bязык(а|е|ом)?\b|\blanguage\b|\bDPlang\b', any_of: [DP-WHAT]}
+  - {id: KW-WINDOWS, pattern: '(?i)\bWindows\b|\bSteam\b', any_of: [GH-WINDOWS, GH-RELEASE-PLAN]}
+  - {id: KW-ANDROID, pattern: '(?i)\bAndroid\b|телефон|\bphones?\b|\bRedmi\b|\bPoco\b', any_of: [GH-ANDROID, GH-RELEASE-PLAN, APP-WHAT]}
+  - {id: KW-GALDHOLD, pattern: '\bGaldhold\b', any_of: [GH-NAME]}
+  - {id: KW-GENRE, pattern: '(?i)воксел|\bvoxel\b|action-RPG|процедурн|\bprocedural\b', any_of: [GH-GENRE, GH-ASSETS]}
+  - {id: KW-TECH, pattern: '(?i)C\+\+|\bVulkan\b', any_of: [GH-TECH, AU-STACK]}
+  - {id: KW-LOC, pattern: '(?i)\bстрок\b|\blines of\b', any_of: [GH-LOC, CORE-SCALE-2026-10-05], progress: [lines_start, lines_end, tests_start, tests_end]}
+  - {id: KW-CHECKS, pattern: '(?i)\bпроверок\b|\bautomated checks\b', any_of: [GH-CHECKS, VRF-WHAT], progress: [hostcheck_start, hostcheck_end]}
+  - {id: KW-VERIFY, pattern: '(?i)\bПроверка\b|\bVerification\b', any_of: [ME-NO-CI, VRF-WHAT]}
+  - {id: KW-AI, pattern: '\bИИ\b|\bAI\b', any_of: [AU-METHOD], progress: [ai_share, commits_ai]}
+  - {id: KW-MERGE, pattern: '(?i)слияни|\bmerges?\b|принимаю сам', any_of: [AU-METHOD, GH-COMMITS], progress: [merges, pr_median_minutes, pr_within_hour]}
+  - {id: KW-GIT, pattern: '\bGit\b', any_of: [AU-MEMORY]}

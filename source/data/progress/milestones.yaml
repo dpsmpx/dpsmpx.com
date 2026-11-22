@@ -1,0 +1,206 @@
+# Вехи страницы прогресса (Д38): качественные события с доказательствами.
+#
+# Веха — не измерение: на странице она подписана, а не выдаётся за число.
+# Каждая — с источником (вид, где, ссылка, дата, способ проверки — как у
+# фактов, CLAIM_POLICY §6); fact — id в data/facts/facts.yaml, если веха
+# повторяет факт. Тексты — публичные: без кода, путей, имён веток и
+# внутреннего (Д17, граница — data/progress/scope.yaml). На странице вместо
+# источника — его вид («история git», «журнал решений проекта», …).
+#
+# kind: decision (решение автора) | verification | device | release (проверено,
+#       выпущено, замерено) | start | build | world | graphics | process |
+#       platform | repository | publishing | structure (работа и новые системы)
+schema: progress_milestones/v1
+milestones:
+  - id: M-01
+    date: 2026-09-11
+    kind: start
+    repos: [galdhold]
+    fact: GH-REPO-START
+    ru: Первый коммит Galdhold (прежде VoxelRPG) — 234 файла и 30 801 строка, написанные до репозитория.
+    en: The first commit of Galdhold (formerly VoxelRPG) — 234 files and 30,801 lines written before the repository existed.
+    evidence:
+      - {kind: code, source: "dpsmpx/Galdhold — первый коммит", ref: 758804f, date: 2026-09-11, verification: re-measured}
+      - {kind: doc, source: "dpsmpx/DPprofile, хронология: F-0013, F-0014", date: 2026-10-04, verification: reported}
+  - id: M-02
+    date: 2026-09-11
+    kind: build
+    repos: [galdhold]
+    ru: Полное ревью проекта; в тот же день код снова собирается и линкуется без ошибок, исправлены дефекты во время работы.
+    en: A full project review; the same day the code builds and links without errors again, and runtime defects are fixed.
+    evidence:
+      - {kind: code, source: "dpsmpx/Galdhold — коммиты «полное ревью», «проект компилируется и линкуется без ошибок», «дефекты рантайма»", ref: "6d3974a, 9a0c1f1, 4fdb275", date: 2026-09-11, verification: re-measured}
+  - id: M-03
+    date: 2026-09-12
+    kind: verification
+    repos: [galdhold]
+    ru: В игре появляется своя команда автоматических проверок (hostcheck).
+    en: The game gets its own automated check command (hostcheck).
+    evidence:
+      - {kind: code, source: "dpsmpx/Galdhold — появление команды hostcheck", ref: 1d4b368, date: 2026-09-12, verification: re-measured}
+      - {kind: doc, source: "dpsmpx/DPprofile, хронология: F-0016", date: 2026-10-04, verification: reported}
+  - id: M-04
+    date: 2026-09-18
+    kind: verification
+    repos: [galdhold]
+    ru: Автоматических проверок игры — больше тысячи; к 3 октября — больше пяти тысяч.
+    en: The game's automated checks pass one thousand; by 3 October, five thousand.
+    evidence:
+      - {kind: doc, source: "dpsmpx/Galdhold README.md — число проверок на даты изменений (набор прогресса, reported.hostcheck)", date: 2026-10-05, verification: reported}
+  - id: M-05
+    date: 2026-09-22
+    kind: release
+    repos: [galdhold]
+    ru: Первый релиз APK на GitHub; до 30 сентября — ещё семь.
+    en: The first APK release on GitHub; seven more by 30 September.
+    evidence:
+      - {kind: platform_page, source: "GitHub, релизы dpsmpx/Galdhold: v22.09.26 … 3009261627 (8 релизов)", date: 2026-10-05, verification: observed}
+      - {kind: doc, source: "dpsmpx/DPprofile, хронология: F-0017, F-0023", date: 2026-10-04, verification: reported}
+  - id: M-06
+    date: 2026-09-25
+    kind: world
+    repos: [galdhold]
+    ru: Реки строятся сетью водосборов вместо следов по клеткам; дальше — растительность на сетке мира.
+    en: Rivers come from a watershed network instead of per-cell traces; vegetation on the world grid follows.
+    evidence:
+      - {kind: code, source: "dpsmpx/Galdhold — слияния PR #100, #103, #109", ref: "5d90f46, a766297, 99a8bda", date: 2026-09-27, verification: re-measured}
+  - id: M-07
+    date: 2026-09-25
+    kind: process
+    repos: [galdhold]
+    ru: В репозитории игры появляются правила для сессий ИИ (CLAUDE.md), на следующий день — список незавершённого (TODO.md).
+    en: The game repository gets rules for AI sessions (CLAUDE.md), and the next day a list of unfinished work (TODO.md).
+    evidence:
+      - {kind: doc, source: "dpsmpx/DPprofile, хронология: F-0018, F-0019", date: 2026-10-04, verification: reported}
+      - {kind: code, source: "dpsmpx/Galdhold — появление TODO.md", ref: 87c29f7, date: 2026-09-26, verification: re-measured}
+  - id: M-08
+    date: 2026-09-27
+    kind: graphics
+    repos: [galdhold]
+    ru: Настройки графики — пресеты, внутреннее разрешение, сглаживание MSAA и FXAA, тени солнца.
+    en: Graphics settings — presets, internal resolution, MSAA and FXAA anti-aliasing, sun shadows.
+    evidence:
+      - {kind: code, source: "dpsmpx/Galdhold — слияние PR #112", ref: 868a474, date: 2026-09-27, verification: re-measured}
+  - id: M-09
+    date: 2026-09-29
+    kind: decision
+    repos: [galdhold]
+    ru: Журнал архитектурных решений игры (Р0–Р11) — движок и игра в одном репозитории, движок самостоятелен, границу проверяет автоматическая проверка.
+    en: The game's architecture decision log (Р0–Р11) — the engine and the game share a repository, the engine stands on its own, and an automated check guards the boundary.
+    evidence:
+      - {kind: decision, source: "dpsmpx/Galdhold — слияние PR #122, журнал решений Р0–Р11", ref: 858d5f2, date: 2026-09-29, verification: decision}
+      - {kind: doc, source: "dpsmpx/DPprofile, хронология: F-0020, F-0021, F-0022", date: 2026-10-04, verification: reported}
+  - id: M-10
+    date: 2026-09-30
+    kind: device
+    repos: [galdhold]
+    fact: GH-PERF-2026-09-30
+    ru: Замер на телефоне — 55–68 кадров/с на пресете Low; движок становится отдельной целью сборки.
+    en: A phone measurement — 55–68 fps on the Low preset; the engine becomes a separate build target.
+    evidence:
+      - {kind: doc, source: "dpsmpx/Galdhold README.md, замер 30.09.2026", ref: f2ba263, date: 2026-10-04, verification: reported}
+      - {kind: code, source: "dpsmpx/Galdhold — слияние PR #124", ref: 24f0db0, date: 2026-09-30, verification: re-measured}
+  - id: M-11
+    date: 2026-10-01
+    kind: decision
+    repos: [galdhold]
+    fact: GH-PRIVATE
+    ru: Код игры закрыт (Р12). Закрыт этап 3 — живое поселение, к ночи — этап 4 «Регионы».
+    en: The game's code goes closed source (Р12). Stage 3, a living settlement, is closed, and by night stage 4, Regions.
+    evidence:
+      - {kind: decision, source: "dpsmpx/Galdhold, журнал решений: Р12", ref: f2ba263, date: 2026-10-04, verification: decision}
+      - {kind: code, source: "dpsmpx/Galdhold — слияния PR #131, #132", ref: "32af10c, fca0ee0", date: 2026-10-02, verification: re-measured}
+  - id: M-12
+    date: 2026-10-02
+    kind: platform
+    repos: [galdhold]
+    fact: GH-RELEASE-PLAN
+    ru: Решения о выпуске — Android и Windows, Steam Playtest до выпуска; первая сборка для Windows кросс-компиляцией.
+    en: Release decisions — Android and Windows, a Steam Playtest before release; the first Windows build via cross-compilation.
+    evidence:
+      - {kind: decision, source: "dpsmpx/Galdhold, журнал решений: Р2, Р14; слияние PR #138", ref: dd5609b, date: 2026-10-02, verification: decision}
+      - {kind: code, source: "dpsmpx/Galdhold — слияние PR #143", ref: e3a078f, date: 2026-10-02, verification: re-measured}
+  - id: M-13
+    date: 2026-10-03
+    kind: repository
+    repos: [dplang]
+    ru: Начат DPlang — сразу с журналом решений, правилами и проверками; Galdhold от него не зависит (Р18).
+    en: DPlang starts — with a decision log, rules and checks from day one; Galdhold does not depend on it (Р18).
+    evidence:
+      - {kind: code, source: "dpsmpx/DPlang — первый коммит", ref: 8a39522, date: 2026-10-03, verification: re-measured}
+      - {kind: doc, source: "dpsmpx/DPprofile, хронология: F-0028, F-0035, F-0036", date: 2026-10-04, verification: reported}
+  - id: M-14
+    date: 2026-10-04
+    kind: decision
+    repos: [galdhold]
+    fact: GH-NAME
+    ru: Игра получает имя Galdhold (Р20).
+    en: The game is named Galdhold (Р20).
+    evidence:
+      - {kind: decision, source: "dpsmpx/Galdhold, журнал решений: Р20", ref: f2ba263, date: 2026-10-04, verification: decision}
+  - id: M-15
+    date: 2026-10-04
+    kind: repository
+    repos: [smi]
+    ru: Начата система контента; в тот же день — генератор сайта dpsmpx.com.
+    en: The content system starts; the dpsmpx.com site generator follows the same day.
+    evidence:
+      - {kind: code, source: "dpsmpx/SocialMediaImage — первый коммит; ядро платформы с генератором сайта", ref: "46b3afe, 5e5f9ca", date: 2026-10-04, verification: re-measured}
+  - id: M-16
+    date: 2026-10-04
+    kind: repository
+    repos: [dpverify, dpprofile, dplearn, market, undisclosed]
+    ru: Ещё пять репозиториев ядра — DP-Verify, DPprofile, DPlearn, анализ рынка игр и закрытый проект. У четырёх журнал решений появился в первый же день, DP-Verify начался с технического задания.
+    en: Five more core repositories — DP-Verify, DPprofile, DPlearn, game market analysis and an undisclosed project. Four had a decision log on day one; DP-Verify started from a technical specification.
+    evidence:
+      - {kind: code, source: "первые коммиты: DP-Verify 0faac92, DPprofile c86ba57, DPlearn b9a403f, DP_game_market_analytic_system 5c2e551; закрытый проект — по набору прогресса", date: 2026-10-04, verification: re-measured}
+      - {kind: code, source: "журналы решений на конец дня — набор прогресса, counters.decisions", date: 2026-10-05, verification: re-measured}
+  - id: M-17
+    date: 2026-10-05
+    kind: structure
+    repos: [dpmeta]
+    ru: DPmeta — первый проход по всей экосистеме — карта, контракты между репозиториями, риски.
+    en: DPmeta — the first pass over the whole ecosystem — a map, contracts between repositories, risks.
+    evidence:
+      - {kind: code, source: "dpsmpx/DPmeta — первый проход консолидации", ref: 0f8357d, date: 2026-10-05, verification: re-measured}
+  - id: M-18
+    date: 2026-10-05
+    kind: verification
+    repos: [dpverify]
+    ru: DP-Verify 0.3.0 — проверки выбираются по изменениям, есть исключения и базовая линия.
+    en: DP-Verify 0.3.0 — checks are selected by what changed, with waivers and a baseline.
+    evidence:
+      - {kind: code, source: "dpsmpx/DP-Verify — слияние PR #7, версия 0.3.0", ref: c3d3d3e, date: 2026-10-05, verification: re-measured}
+  - id: M-19
+    date: 2026-10-05
+    kind: publishing
+    repos: [smi]
+    ru: Домен dpsmpx.com зарегистрирован; первая штатная выгрузка сайта.
+    en: The dpsmpx.com domain is registered; the first regular site deployment.
+    evidence:
+      - {kind: code, source: "dpsmpx/SocialMediaImage — ОР-11 закрыт; первая штатная выгрузка", ref: "a9b559c, a110c88", date: 2026-10-05, verification: re-measured}
+  - id: M-20
+    date: 2026-10-05
+    kind: repository
+    repos: [dpmetaapp, dpvis, dpmon]
+    ru: Начаты управление и поддерживающий слой — DPmetaApp, DPvisualisation и DPmonetization.
+    en: Control and the support layer start — DPmetaApp, DPvisualisation and DPmonetization.
+    evidence:
+      - {kind: code, source: "первые коммиты: DPmetaApp 31ffc56, DPvisualisation 9769a94, DPmonetization e999df6", date: 2026-10-05, verification: re-measured}
+  - id: M-21
+    date: 2026-10-06
+    kind: repository
+    repos: [orchestrator]
+    ru: Начат DP_AI_Orcestrator — управляющий слой для параллельных сессий ИИ; журнал решений — с первого дня.
+    en: DP_AI_Orcestrator starts — a control layer for parallel AI sessions, with a decision log from day one.
+    evidence:
+      - {kind: code, source: "dpsmpx/DP_AI_Orcestrator — первый коммит", ref: 3ea2aea, date: 2026-10-06, verification: re-measured}
+      - {kind: code, source: "журнал решений на конец дня — набор прогресса, counters.decisions", date: 2026-10-09, verification: re-measured}
+  - id: M-22
+    date: 2026-10-09
+    kind: decision
+    repos: [dpmetaapp, dpvis, dpmon, orchestrator, dpmeta]
+    ru: Автор делит экосистему на ядро, управление и поддерживающий слой, DPmeta — отдельно; ранние проекты до репозитория игры и убранные автором — архив, вне счёта.
+    en: The author divides the ecosystem into the core, control and a support layer, with DPmeta apart; early projects that predate the game repository and ones the author removed become an archive outside the count.
+    evidence:
+      - {kind: decision, source: "dpsmpx/DPmeta docs/DECISIONS.md M-10 (ветка claude/dreamy-bardeen-xe4k6r; граница архива уточнена 10.10.2026)", ref: 93a3939, date: 2026-10-10, verification: decision}

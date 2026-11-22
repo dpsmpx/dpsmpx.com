@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "publication/v1",
+  "title": "Событие журнала публикаций",
+  "description": "строка data/publications/<окружение>.jsonl (Д24)",
+  "type": "object",
+  "required": [
+    "schema",
+    "ts",
+    "publication_id",
+    "event",
+    "environment"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "schema": {
+      "const": "publication/v1"
+    },
+    "ts": {
+      "type": "string"
+    },
+    "publication_id": {
+      "type": "string",
+      "pattern": "^PUB-[0-9a-f]{12}$"
+    },
+    "idempotency_key": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "event": {
+      "enum": [
+        "SCHEDULED",
+        "PUBLISHING",
+        "PUBLISHED",
+        "FAILED",
+        "RETRY",
+        "UNKNOWN",
+        "SUPERSEDED",
+        "ARCHIVED",
+        "DELETED",
+        "CANCELLED"
+      ]
+    },
+    "environment": {
+      "enum": [
+        "development",
+        "staging",
+        "production"
+      ]
+    },
+    "item": {
+      "type": "string"
+    },
+    "variant": {
+      "type": "string"
+    },
+    "platform": {
+      "type": "string"
+    },
+    "destination": {
+      "type": "string"
+    },
+    "remote_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "remote_url": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "error": {
+      "type": "object",
+      "required": [
+        "code"
+      ]
+    },
+    "attempt": {
+      "type": "integer"
+    }
+  }
+}

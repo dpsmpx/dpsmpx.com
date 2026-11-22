@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "facts/v1",
+  "title": "Реестр утверждений",
+  "type": "object",
+  "required": ["schema", "as_of", "facts"],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {"const": "facts/v1"},
+    "as_of": {"type": "string", "format": "date"},
+    "retired": {
+      "type": "array",
+      "description": "Выведенные из реестра id: ссылки в документах — история; подстановка в контент их не знает",
+      "items": {
+        "type": "object",
+        "required": ["id", "date", "reason"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"type": "string", "pattern": "^[A-Z]{2,5}(-[A-Z0-9]+)+$"},
+          "date": {"type": "string", "format": "date"},
+          "reason": {"type": "string"}
+        }
+      }
+    },
+    "facts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "subject", "class", "risk", "public", "statement", "evidence"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"type": "string", "pattern": "^[A-Z]{2,5}(-[A-Z0-9]+)+$"},
+          "subject": {"type": "string"},
+          "class": {"enum": ["FACT", "INTERPRETATION", "HYPOTHESIS"]},
+          "risk": {"enum": ["high", "medium", "low"]},
+          "public": {"type": "boolean"},
+          "statement": {"type": "string", "minLength": 10},
+          "allowed_wording": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "ru": {"type": "array", "items": {"type": "string"}},
+              "en": {"type": "array", "items": {"type": "string"}}
+            }
+          },
+          "supersedes": {"type": "array", "items": {"type": "string"}},
+          "recheck_by": {"type": "string", "format": "date"},
+          "notes": {"type": "string"},
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["kind", "source", "date", "verification"],
+              "additionalProperties": false,
+              "properties": {
+                "kind": {"enum": ["code", "doc", "decision", "measurement", "public_post", "platform_page"]},
+                "source": {"type": "string"},
+                "ref": {"type": "string"},
+                "date": {"type": "string", "format": "date"},
+                "verification": {"enum": ["re-measured", "reported", "observed", "decision", "self-reported"]}
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

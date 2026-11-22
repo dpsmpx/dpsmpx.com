@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "brands/v1",
+  "title": "Бренды",
+  "description": "data/identity/brands.yaml (Д27)",
+  "type": "object",
+  "required": [
+    "schema",
+    "brands"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {
+      "const": "brands/v1"
+    },
+    "brands": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "name",
+          "tone",
+          "topics_allowed",
+          "official_links"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "PERSONAL",
+              "PROJECT"
+            ]
+          },
+          "project": {
+            "type": "string"
+          },
+          "name": {
+            "type": "object",
+            "properties": {
+              "ru": {
+                "type": "string"
+              },
+              "en": {
+                "type": "string"
+              }
+            }
+          },
+          "tone": {
+            "type": "string"
+          },
+          "visual": {
+            "type": "string"
+          },
+          "topics_allowed": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "topics_forbidden": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "cta": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "official_links": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

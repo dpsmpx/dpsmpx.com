@@ -1,0 +1,2 @@
+# Создаёт tools/cs/site/build.py (П2-18); на сервере не править.
+ErrorDocument 404 /en/404.html

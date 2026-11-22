@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "canonical/v1",
+  "title": "Каноническая версия (заголовок canonical/vN.md)",
+  "description": "docs/content/CANONICAL_MODEL.md, Д22. Текст — в разметке канона без разметки площадок.",
+  "type": "object",
+  "required": [
+    "schema",
+    "item",
+    "version",
+    "lang",
+    "title"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {
+      "const": "canonical/v1"
+    },
+    "item": {
+      "type": "string",
+      "pattern": "^CI-[0-9]{4}$"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "lang": {
+      "enum": [
+        "ru",
+        "en"
+      ]
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 3
+    },
+    "summary": {
+      "type": "string",
+      "maxLength": 300
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "media": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "cta": {
+      "type": "string"
+    },
+    "trust": {
+      "enum": [
+        "unverified",
+        "validated"
+      ]
+    },
+    "generation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "provider"
+      ],
+      "properties": {
+        "provider": {
+          "enum": [
+            "session",
+            "template",
+            "human",
+            "external"
+          ]
+        },
+        "model": {
+          "type": "string"
+        },
+        "prompt": {
+          "type": "string"
+        },
+        "cache_key": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "change_note": {
+      "type": "string"
+    }
+  }
+}

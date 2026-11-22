@@ -1,0 +1,191 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "assets/v1",
+  "title": "Реестр входных ассетов (provenance)",
+  "description": "data/provenance/assets.yaml — откуда каждый входной материал и на каком праве (docs/PROVENANCE.md).",
+  "type": "object",
+  "required": [
+    "schema",
+    "assets"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {
+      "const": "assets/v1"
+    },
+    "assets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "path",
+          "sha256",
+          "source",
+          "creator",
+          "date",
+          "license",
+          "rights_basis",
+          "allowed_use"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^A-[0-9]{3}$"
+          },
+          "kind": {
+            "enum": [
+              "REFERENCE_IMAGE",
+              "font",
+              "icon",
+              "logo",
+              "screenshot",
+              "project_render",
+              "generated",
+              "stock",
+              "music",
+              "other",
+              "video"
+            ]
+          },
+          "path": {
+            "type": "string"
+          },
+          "files": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "path",
+                "sha256"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                }
+              }
+            }
+          },
+          "sha256": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "source": {
+            "type": "string"
+          },
+          "creator": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "license": {
+            "type": "string"
+          },
+          "rights_basis": {
+            "type": "string"
+          },
+          "allowed_use": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "forbidden_use": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "generation": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "method": {
+                "type": "string"
+              },
+              "tool": {
+                "type": "string"
+              },
+              "model": {
+                "type": "string"
+              },
+              "prompt": {
+                "type": "string"
+              },
+              "prompt_version": {
+                "type": "integer"
+              }
+            }
+          },
+          "modifications": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "privacy": {
+            "type": "string"
+          },
+          "open_questions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "project": {
+            "type": "string"
+          },
+          "dimensions": {
+            "type": "object",
+            "properties": {
+              "width": {
+                "type": "integer"
+              },
+              "height": {
+                "type": "integer"
+              },
+              "duration_s": {
+                "type": "number"
+              }
+            }
+          },
+          "variants": {
+            "type": "object",
+            "description": "производные файлы по назначению: master, website, telegram, vk, youtube_thumbnail, discord, github (§40)",
+            "additionalProperties": {
+              "type": "object",
+              "required": [
+                "path",
+                "sha256"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

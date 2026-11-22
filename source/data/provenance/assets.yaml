@@ -1,0 +1,65 @@
+# Реестр входных ассетов (docs/PROVENANCE.md). Схема — schemas/assets.schema.json.
+# Каждый файл в assets/ (кроме README) — здесь, с хэшем; без записи не используется.
+schema: assets/v1
+assets:
+  - id: A-001
+    kind: REFERENCE_IMAGE
+    path: assets/reference/author/2026-10-04-author-reference-01.jpg
+    sha256: 2202da191c6d2df910ff5cbed712b4fcd77f830464e83b1e1dea0dee24aef792
+    source: прислана автором в сессии Claude Code 4 октября 2026 со словами «Референс моего образа»
+    creator: снимок сделан не автором (вид со стороны); фотограф — UNKNOWN
+    date: 2026-10-04
+    license: использование для личного бренда автора — по его решению (Д18)
+    rights_basis: изображённый — сам автор, согласие на использование образа дано присылкой референса; права фотографа подтверждает автор
+    allowed_use:
+      - портрет автора в его личных работах после утверждения автором
+      - кадрирование, тон, виньетка, маска краёв (Д10)
+    forbidden_use:
+      - изменение черт, формы лица и тела, генеративное «улучшение»
+      - генерация нового образа по мотивам фото
+      - показ интерьера, предметов на столе и окна (личное, Д18)
+      - передача фото в сторонние сервисы генерации
+    generation: null
+    modifications: []
+    privacy: >-
+      JPEG 1152×1536 без EXIF/XMP и комментариев (проверено по сегментам: APP0, APP2/ICC);
+      геометок нет. На снимке — домашний интерьер: в работах он затемняется.
+    open_questions:
+      - кто фотограф и согласен ли он на публичное использование (RIGHTS_MATRIX, «фотография автора»)
+  - id: A-002
+    kind: font
+    path: assets/brand/fonts
+    sha256: null
+    files:
+      - {path: assets/brand/fonts/IBMPlexSans-Regular.woff2, sha256: ba711a3085ff9f27440b6b9c4550cfc47c97bf36591d5da958b975bb3add8c1a}
+      - {path: assets/brand/fonts/IBMPlexSans-Medium.woff2, sha256: 5660f8a658f8bb50dbc005232f885eadffd2bc1c235c4f6fbb63469d1f9cde6d}
+      - {path: assets/brand/fonts/IBMPlexSans-SemiBold.woff2, sha256: f78048030eab62e860efa39a0df79e2e5581bf122eb95b9bc42c0b8a4988d205}
+      - {path: assets/brand/fonts/IBMPlexSans-Bold.woff2, sha256: fa7130d854a660b39a7fc9e6e0f2dc23dba5f1346e2adea3e1fe37b6d884133d}
+      - {path: assets/brand/fonts/IBMPlexMono-Regular.woff2, sha256: ba204497f16b6d334cee9d1e963a831b73e3a56e1d6300a8489d18df7214b350}
+      - {path: assets/brand/fonts/IBMPlexMono-Medium.woff2, sha256: 33faf307fa6031fb4062276d7320a6d632de890cbb347576fd80cfa01077bc25}
+      - {path: assets/brand/fonts/OFL-IBM-Plex.txt, sha256: 7e6b2818edbd8f6a01ae80641cc8f16a51080d08fb4e532be3a0b6f74adb07da}
+    source: npm-пакеты @ibm/plex-sans 1.1.0 и @ibm/plex-mono 2.5.0 (registry.npmjs.org), каталог fonts/complete/woff2
+    creator: IBM Corp. (Mike Abbink, Bold Monday)
+    date: 2026-10-04
+    license: SIL Open Font License 1.1 (Reserved Font Name «Plex»)
+    rights_basis: OFL 1.1 разрешает использование, встраивание и распространение со шрифтом текста лицензии; изображения с текстом — не «Font Software»
+    allowed_use:
+      - текст в изображениях, документах и страницах
+      - распространение файлов шрифта вместе с OFL-IBM-Plex.txt
+    forbidden_use:
+      - продажа шрифта отдельно
+      - изменённый шрифт под именем «Plex»
+    generation: null
+    modifications: []
+  - id: A-003
+    kind: other
+    path: assets/brand/tokens.json
+    sha256: ade4893f96132660672a2251291218cc8247adfa38a1565ad73b61d13beee1a5   # правка токенов — изменение основ (docs/PROCESS.md): хэш обновляется вместе с записью в DECISIONS
+    source: создано в этом репозитории (docs/brand/VISUAL_SYSTEM.md)
+    creator: сессия Claude Code по заданию автора
+    date: 2026-10-04
+    license: собственность автора
+    rights_basis: создано для автора в его репозитории
+    allowed_use: [все работы автора]
+    generation: null
+    modifications: []

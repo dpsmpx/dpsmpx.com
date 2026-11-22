@@ -1,0 +1,19 @@
+# Каноническая сущность проекта (PLATFORM_VISION §7, Д28): страница из фактов реестра.
+# Периферийный проект — поручение автора 25.10.2026.
+schema: project/v1
+id: andors-love
+name: Andors-Love
+former_names: []
+weight: background
+brand: author
+order: 6
+page: true
+tagline: AL-WHAT
+status: null
+facts:
+  - {label: code, facts: [AL-OPEN]}
+links:
+  - {id: L-GH-ANDORS-LOVE, ru: репозиторий на GitHub, en: repository on GitHub}
+repository: https://github.com/dpsmpx/Andors-Love
+download: null
+media: []

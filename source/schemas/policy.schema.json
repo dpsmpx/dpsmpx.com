@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "policy/v1",
+  "title": "Политика публикации",
+  "description": "data/policy/publication.yaml (Д12, Д24–Д26)",
+  "type": "object",
+  "required": [
+    "schema",
+    "approval",
+    "auto_publish_classes",
+    "roles",
+    "retry"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {
+      "const": "policy/v1"
+    },
+    "approval": {
+      "type": "object",
+      "required": [
+        "by",
+        "required"
+      ],
+      "properties": {
+        "by": {
+          "const": "author"
+        },
+        "required": {
+          "type": "object",
+          "required": [
+            "production"
+          ],
+          "properties": {
+            "production": {
+              "const": true
+            }
+          }
+        }
+      }
+    },
+    "auto_publish_classes": {
+      "type": "array"
+    },
+    "roles": {
+      "type": "object"
+    },
+    "session_modes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "retry": {
+      "type": "object",
+      "properties": {
+        "max_attempts": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10
+        },
+        "max_total_attempts": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 20
+        },
+        "base_delay_s": {
+          "type": "number"
+        },
+        "multiplier": {
+          "type": "number"
+        },
+        "max_delay_s": {
+          "type": "number"
+        },
+        "jitter": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "on_update": {
+      "enum": [
+        "edit",
+        "new",
+        "manual"
+      ]
+    },
+    "outage": {
+      "type": "object"
+    },
+    "utm": {
+      "type": "object"
+    },
+    "retention": {
+      "type": "object"
+    },
+    "local_session_production": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Д36: площадки production для локальной сессии Claude Code"
+    }
+  }
+}

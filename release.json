@@ -1,0 +1,105 @@
+{
+  "objects": {
+    "articles/neyroseti-i-neyroplastichnost/index.html": {
+      "object": "CI-0003",
+      "variant": "website.ru",
+      "version": 3
+    },
+    "en/progress/index.html": {
+      "object": "CI-0002",
+      "variant": "website.en",
+      "version": 4
+    },
+    "progress/index.html": {
+      "object": "CI-0002",
+      "variant": "website.ru",
+      "version": 4
+    },
+    "en/about/index.html": {
+      "object": "CI-0001",
+      "variant": "website.en",
+      "version": 3
+    },
+    "media/CI-0001/E-en-github_social.png": {
+      "object": "CI-0001",
+      "variant": "website.en",
+      "version": 3
+    },
+    "about/index.html": {
+      "object": "CI-0001",
+      "variant": "website.ru",
+      "version": 3
+    },
+    "media/CI-0001/E-ru-telegram_post.jpg": {
+      "object": "CI-0001",
+      "variant": "website.ru",
+      "version": 3
+    }
+  },
+  "schema": "mobile-release/v1",
+  "id": "38a85abe652247289502624f92270154",
+  "created_at": "2026-11-15T04:09:02.906066+00:00",
+  "mode": "staging",
+  "source": "f1863b554db94693e23fd4e6f0fa982f0703a16bc7b849996b22c0439372a01c",
+  "files": {
+    ".htaccess": "3b39c5df55741b54e815676a41bbc0028a12581ec05e30c0fca9f16e554c3e5b",
+    "404.html": "ac911bf419374a4e77f684a22f1f6b2338e52a953715916dc02e3903794810b7",
+    "about/index.html": "918b2c7c8e7c36d1275b861d64be5905623f087b94ad64352f9f0d705c699ff3",
+    "api/v1/index.json": "5de37cc9e4a1f93b12f9431793d4ee3fe1924285e7c9f31d66c59485f0a28224",
+    "api/v1/news.json": "31fc0d7ce40db193d2eb9127fa8ddd3172c0ef51f22b935ee35cba9a0a38e752",
+    "api/v1/progress.json": "0fc0935c9088bff38b802928cdceaf7d55dc3ad2c0bfd64406d58afd841028a1",
+    "api/v1/projects.json": "f09e7255a5bde2f37040dd338c2eafe49654f42dc2213a1517359c20646a9c6d",
+    "articles/index.html": "fa1aa075ae6c75690d087dcab09484770fc613c12504d64f0138a8c0deef6001",
+    "articles/neyroseti-i-neyroplastichnost/index.html": "8744fa6a5b628360411cffaaa173392c2e5a2def3187de3baf7093575ffb6276",
+    "ecosystem/index.html": "86bc2e9b020b2a973ddd7b784f2ff157a24d6d9e3d9da16ce88306f431f2d57d",
+    "en/.htaccess": "2867ce9ae9e09c8bca2459ca97a7f5d67d269833f7eb75edcd43309fcc2caea3",
+    "en/404.html": "b45a659f238734de80c6d3493410f41e64f8374c432658c101739c873bfa7913",
+    "en/about/index.html": "4401266126cc395bf35f41df9101183f4b99f05402cdcaf6b6817f02053a065b",
+    "en/index.html": "34078e26f25103c2c4f3655787e7cfbc5615bdcdd0771a70ca10587183a1c0fe",
+    "en/path/index.html": "eaf0e0325a33d365b165a7c86d51e68f89588a33117a45457243f8337d328601",
+    "en/progress/index.html": "05d3999b942ec98df370d4a72f6e3a1e4450bf5a94035931ec0f6de8f061ded3",
+    "en/projects/aim-trainer/index.html": "7570dda3fd91e859c701b44ab33d43eccf6a49e80909c8246cc70cea61766d06",
+    "en/projects/andors-love/index.html": "e1221c46d51bb1cb7b843a1bb4133cc67c6596e8c187cd4c52b3ac5a41e3291b",
+    "en/projects/dp-clock/index.html": "1dbaa21543d031242bd3d32dec9c0c20f6ab8f287ab5d89096f9eea49d5652ad",
+    "en/projects/dplang/index.html": "dfee90148df1f3e7bb83c740ca6beae0fa4d1893b6bc13895984acdeae3778a0",
+    "en/projects/galdhold/index.html": "5e444daee5190d9e3dd6a94b224573297319e0eb1ad78fff77ff7fd4ee9c9024",
+    "en/projects/index.html": "8549fc2885424a61d900b1c4d6c5260d84f3c373734109e202d708b08e58d001",
+    "en/projects/truejointtilemaker/index.html": "afc0548e4ee356366562a6cdea600e22011b6ec1a45848fdb38fa98a6b3a4f95",
+    "favicon.svg": "fe31e175acf5ca527bf936c8d15ab19b4b8edf641f596f04f41ace50e790198c",
+    "feed.json": "9e502416a8e03519e943bdffa73e2d1984f72fba8693600a6650c34ab659d4fe",
+    "feed.xml": "fcc8753b2113c1154298ddefb05f9de55405de3500c6ea8436aed30ce5f684d1",
+    "fonts/IBMPlexMono-Regular.woff2": "ba204497f16b6d334cee9d1e963a831b73e3a56e1d6300a8489d18df7214b350",
+    "fonts/IBMPlexSans-Regular.woff2": "ba711a3085ff9f27440b6b9c4550cfc47c97bf36591d5da958b975bb3add8c1a",
+    "fonts/IBMPlexSans-SemiBold.woff2": "f78048030eab62e860efa39a0df79e2e5581bf122eb95b9bc42c0b8a4988d205",
+    "fonts/OFL-IBM-Plex.txt": "7e6b2818edbd8f6a01ae80641cc8f16a51080d08fb4e532be3a0b6f74adb07da",
+    "index.html": "df72f83eb85334bbd6b93fb20cfa3c8a0a42f651af831cacc4cff6cb6f44e58b",
+    "media/CI-0001/E-en-github_social.png": "ec1dece8a067ae21ba950233f8c4c5656279b32adcb1f2bbad4f1501a5a2aaec",
+    "media/CI-0001/E-ru-telegram_post.jpg": "ff5618dbbd10154834da6dedcc76a7155654d2d05480633fb993c3af6260ae1d",
+    "news/index.html": "2c5f6165dc1a4570e46817b8f0388c069643af8591bcd8dbcceb3b30cdb68206",
+    "path/index.html": "6bdc2899ed62815d51e7e3008f8601135faea83b3c8569e58816be7ea37d83f5",
+    "progress/index.html": "f5132c373b7884cba8560fc1bbb75357359609be61f50bee7f292ea66777b972",
+    "projects/aim-trainer/index.html": "85ac989ef3c42c1886577896765a7fc6fbcc179ce7a76f2310851c20e0802a56",
+    "projects/andors-love/index.html": "bb86147b87327c98137bcbc4f2be0dbd1d5388b3e16792904f286f9595a56dee",
+    "projects/dp-clock/index.html": "ba35947451878d2eb50c6de4042bedb90ec4ffb628e147b6c09e10a659946afa",
+    "projects/dplang/index.html": "5f36dd56be062ad5c9ddaa89f2801292abd13cf7366bc0abd7642bb59abdd6f2",
+    "projects/galdhold/index.html": "41b1c533c255f3a657d8f1f6cf8a068e435a86041a61decae66097d6f52d0031",
+    "projects/index.html": "ee1b5fedb87c0808500dc10c959d89054182a2e0e35528a2b4b76cb396a8ef02",
+    "projects/truejointtilemaker/index.html": "5eeef7917eca90159b363623255170472a528a43eb33ce902da46028065729e4",
+    "robots.txt": "331ea9090db0c9f6f597bd9840fd5b171830f6e0b3ba1cb24dfa91f0c95aedc1",
+    "rss.xml": "46ee9d4022f9ab37ca876237fcd1a65a93b66816bb0df2a6e37df8b42e2480d1",
+    "sitemap.xml": "647f3ee66aa733dee8dfef131acf571317d5fa48b1283471fe609b715f35c776",
+    "style.css": "a7ece09dc28bfd8d42424c552c50ecf68ac83348a2b38f6ceed4328c531d426c",
+    "tags/ai/index.html": "d1baa4bd02c4a6c86abd418a7ae9f7e4cfeffd4f0395006195745ecdcb607db8",
+    "tags/ecosystem/index.html": "f42ef01fa9d4d408359851ba4c1d2fec3c83defccafe7f59f54d63bc2883bf06",
+    "tags/method/index.html": "a25189852dee7abf22160f636b510837c77e61cf3c744c51d739b561cdd3266e",
+    "tags/neuroplasticity/index.html": "d44935afbbb1dc1c6bf8db532a504c0d1b0a769c219d7fe76d3eaaeccc216e10"
+  },
+  "pages": 30,
+  "errors": [],
+  "validation": {
+    "findings": [],
+    "errors": 0,
+    "warnings": 0
+  },
+  "published_at": null
+}

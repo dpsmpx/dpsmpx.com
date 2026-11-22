@@ -1,0 +1,112 @@
+# Адресаты публикации (Д25, PLATFORM_VISION §51–55).
+#
+# Публикация идёт только по явным id отсюда — никогда по имени канала или
+# свободному тексту (§52). Перед публикацией адаптер сверяет, от чьего
+# имени (account.id) и куда (target.id) пойдёт запрос.
+#
+# environment: development | staging | production
+# staging_twin: тестовый адресат для безопасного режима (--safe)
+# credential_ref: ИМЯ переменной окружения с токеном, не значение (Д12;
+#   docs/operations/CREDENTIALS.md). Имена: CS_<DEV|STAGING|PROD>_…
+# status: active — подключён и сверен; not_connected — нет id или токена;
+#   blocked — ждёт решения (blocked_by).
+schema: destinations/v1
+destinations:
+  # ----------------------------------------------------------------- сайт
+  - id: site-production
+    platform: website
+    environment: production
+    purpose: рабочий сайт dpsmpx.com (Д21)
+    accepts_brands: [author, galdhold, dplang]
+    language: null
+    target: {id: dpsmpx.com, base_url: "https://dpsmpx.com"}
+    credential_ref: CS_PROD_SITE_DEPLOY_TARGET   # адрес выгрузки rsync на Beget (Д35) — у автора
+    staging_twin: site-staging
+    status: active                       # Д34: выпуск разрешён 05.10.2026; SSH и --dry-run проверены автором
+  - id: site-staging
+    platform: website
+    environment: staging
+    purpose: staging сайта — локальная сборка build/site/staging, закрыта от индексации
+    accepts_brands: [author, galdhold, dplang]
+    language: null
+    target: {id: staging, base_url: "http://localhost:8000"}
+    credential_ref: null
+    status: active
+  # ----------------------------------------------------------------- Telegram
+  - id: tg-devlog
+    platform: telegram
+    environment: production
+    purpose: канал-дневник «Galdhold (dev log)» — личный дневник автора о Galdhold
+    accepts_brands: [author, galdhold]
+    language: ru
+    link: L-TG-DEVLOG
+    target: {id: null, username: gh_3D_Voxel_OpenWorld_RPG, title: "Galdhold (dev log)"}
+    account: {id: null}        # id бота-публикатора — после подключения
+    credential_ref: CS_PROD_TELEGRAM_BOT_TOKEN
+    staging_twin: tg-test
+    status: not_connected
+    notes: подключение — docs/operations/CREDENTIALS.md, «Telegram»; числовой id канала и бота записывает автор
+  - id: tg-test
+    platform: telegram
+    environment: staging
+    purpose: закрытый тестовый канал для безопасного режима
+    accepts_brands: [author, galdhold, dplang]
+    language: ru
+    target: {id: null, username: null, title: null}
+    account: {id: null}
+    credential_ref: CS_STAGING_TELEGRAM_BOT_TOKEN
+    status: not_connected
+    notes: закрытый канал без подписчиков; отдельный бот или тот же бот с отдельным токеном-переменной
+  # ----------------------------------------------------------------- ручной путь (Д33)
+  - id: vk-author
+    platform: vk
+    environment: production
+    purpose: "VK автора — сообщество dpsmpx (Д40: у личной страницы поля «имя + фамилия»)"
+    accepts_brands: [author, galdhold]
+    language: ru
+    link: L-VK
+    target: {id: null}
+    credential_ref: null
+    status: blocked
+    blocked_by: ["автор: сообщество dpsmpx в VK", "VK: право wall"]
+  - id: yt-channel
+    platform: youtube
+    environment: production
+    purpose: канал YouTube @dpsmpx — описания и обложки видео
+    accepts_brands: [author, galdhold]
+    language: ru
+    link: L-YT-CHANNEL
+    target: {id: UCsbGAzdhIytOm3kKaJniLlw}
+    credential_ref: CS_PROD_YOUTUBE_OAUTH
+    status: not_connected
+  - id: discord-server
+    platform: discord
+    environment: production
+    purpose: сервер сообщества — объявления (ОР-6)
+    accepts_brands: [galdhold]
+    language: ru
+    target: {id: null}
+    credential_ref: CS_PROD_DISCORD_WEBHOOK_URL
+    status: blocked
+    blocked_by: [ОР-6]
+  - id: github-profile
+    platform: github
+    environment: production
+    purpose: README профиля dpsmpx/dpsmpx (правку принимает автор) и релизы открытых репозиториев
+    accepts_brands: [author]
+    language: en
+    link: L-GH-PROFILE
+    target: {id: dpsmpx/dpsmpx}
+    credential_ref: CS_PROD_GITHUB_TOKEN
+    status: not_connected
+  - id: tiktok-author
+    platform: tiktok
+    environment: production
+    purpose: TikTok @dpsmpx — вертикальные клипы (Д19)
+    accepts_brands: [author, galdhold]
+    language: ru
+    link: L-TT-PROFILE
+    target: {id: "7209160379036976133"}
+    credential_ref: null
+    status: blocked
+    blocked_by: ["TikTok: аудит клиента API"]

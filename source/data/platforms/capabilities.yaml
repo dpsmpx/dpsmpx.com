@@ -1,0 +1,176 @@
+# Возможности площадок для публикации (PLATFORM_VISION §3, Д33).
+#
+# Источник истины матрицы docs/platforms/PUBLISHING_CAPABILITY_MATRIX.md:
+# таблицу там пишет `python3 -m tools.cs capabilities --write`, проверка
+# `capabilities` сверяет её с этим файлом. Сменился API площадки — правится
+# этот файл (с источником и датой), а не модель контента.
+#
+# Операции: read, create, edit, delete, media, schedule, analytics.
+# status:
+#   api        — официальный API делает это для нашего типа аккаунта
+#   restricted — API есть, но доступ даёт площадка (запрос, аудит) — пока не получен
+#   own        — делает наша система (свой сайт, свой планировщик)
+#   manual     — только руками в интерфейсе площадки
+#   no         — невозможно
+# automation — уровень для автора на дату checked:
+#   FULLY_AUTOMATED | SEMI_AUTOMATED | MANUAL_APPROVAL_REQUIRED | MANUAL_ONLY | UNSUPPORTED
+# Уровень говорит, что площадка позволяет; одобрение автора нужно всегда (Д12).
+schema: capabilities/v1
+checked: 2026-10-04
+research: docs/research/publishing/PLATFORM_APIS.md
+platforms:
+  - id: website
+    name: Сайт dpsmpx.com
+    adapter: website
+    adapter_status: implemented
+    automation: FULLY_AUTOMATED
+    auth: хостинг Beget, rsync по SSH с машины автора — ключ и адрес у автора (Д35, Д36)
+    blocked_by: []
+    operations:
+      read: {status: "own"}
+      create: {status: "own"}
+      edit: {status: "own", note: "новая версия записи, адрес не меняется"}
+      delete: {status: "own", note: "снятие с публикации; запись остаётся в журнале и архиве Git"}
+      media: {status: "own", note: "лимиты хостинга Beget на файл не проверены (UNKNOWN)"}
+      schedule: {status: "own", note: "планировщик системы"}
+      analytics: {status: "manual", note: "без счётчиков до решения фазы 10"}
+    limits: {}
+    sources: [docs/research/publishing/WEBSITE.md]
+  - id: telegram
+    name: Telegram — канал через бота
+    adapter: telegram
+    adapter_status: implemented
+    automation: FULLY_AUTOMATED
+    auth: токен бота (@BotFather, бессрочный, отзыв /revoke); бот — админ канала с can_post_messages
+    blocked_by: []
+    operations:
+      read: {status: "api", note: "посты каналов приходят боту обновлениями; истории канала нет"}
+      create: {status: "api", note: "sendMessage, sendPhoto, sendMediaGroup"}
+      edit: {status: "api", note: "editMessageText, editMessageCaption, editMessageMedia"}
+      delete: {status: "api", note: "только младше 48 часов"}
+      media: {status: "api", note: "фото ≤ 10 МБ, файлы ≤ 50 МБ"}
+      schedule: {status: "own", note: "в Bot API отложенной публикации нет"}
+      analytics: {status: "manual", note: "статистики в Bot API нет; выгрузка вручную (Д15)"}
+    limits:
+      text_max_chars: 4096
+      caption_max_chars: 1024
+      photo_max_bytes: 10485760
+      file_max_bytes: 52428800
+      album_items: [2, 10]
+      rate: ~1 сообщение/с в один чат; 429 с retry_after
+    sources: ["core.telegram.org/bots/api (Bot API 10.3, 24.08.2026)", core.telegram.org/bots/faq]
+  - id: telegram_profile
+    name: Telegram — личный профиль @dpsmpx
+    adapter: null
+    adapter_status: none
+    automation: MANUAL_ONLY
+    auth: вход в аккаунт автора — исключён (Д12)
+    blocked_by: []
+    operations:
+      read: {status: "manual"}
+      create: {status: "manual", note: "Bot API не публикует от имени пользователя"}
+      edit: {status: "manual"}
+      delete: {status: "manual"}
+      media: {status: "manual"}
+      schedule: {status: "manual", note: "отложенные сообщения — в клиенте"}
+      analytics: {status: "no"}
+    limits: {}
+    sources: [core.telegram.org/bots/api]
+  - id: vk
+    name: VK — стена (страница или сообщество)
+    adapter: vk
+    adapter_status: stub
+    automation: MANUAL_APPROVAL_REQUIRED
+    auth: ключ пользователя (1 час) с правом wall — выдаётся по запросу в поддержку VK
+    blocked_by: ["автор: страница или сообщество (docs/platforms/VK.md)", "VK: право wall"]
+    operations:
+      read: {status: "api", note: "wall.getById (сервисный ключ)"}
+      create: {status: "restricted", note: "wall.post — право wall в исключительных случаях; guid от дублей на 1 час"}
+      edit: {status: "restricted", note: "wall.edit"}
+      delete: {status: "restricted", note: "wall.delete"}
+      media: {status: "restricted", note: "photos.getWallUploadServer — право photos по запросу"}
+      schedule: {status: "restricted", note: "publish_date"}
+      analytics: {status: "restricted", note: "stats.getPostReach — ключ пользователя"}
+    limits:
+      media_max_items: 10
+      links_max: 1
+      rate: по типу ключа; ошибка 6, капча при количественных лимитах
+    sources: [dev.vk.com/ru/method/wall.post, dev.vk.com/ru/api/api-requests, dev.vk.com/ru/api/access-token/getting-started]
+  - id: youtube
+    name: YouTube — канал @dpsmpx
+    adapter: youtube
+    adapter_status: stub
+    automation: SEMI_AUTOMATED
+    auth: OAuth 2.0 (refresh token; в режиме Testing — 7 дней)
+    blocked_by: []
+    operations:
+      read: {status: "api", note: "videos.list, videos.batchGetStats"}
+      create: {status: "restricted", note: "videos.insert — без аудита проекта только приватно; 100 вызовов в сутки"}
+      edit: {status: "api", note: "videos.update — название, описание, теги, статус (50 единиц)"}
+      delete: {status: "api", note: "videos.delete (50 единиц)"}
+      media: {status: "api", note: "thumbnails.set — JPEG/PNG до 50 МБ с 14.09.2026"}
+      schedule: {status: "api", note: "status.publishAt при privacyStatus private"}
+      analytics: {status: "api", note: "YouTube Analytics и Reporting API; пока Д15 — ручной импорт"}
+    limits:
+      title_max_chars: 100
+      description_max_bytes: 5000
+      tags_max_chars: 500
+      quota: insert и search — по 100 вызовов в сутки; остальное — 10 000 единиц
+    sources: [developers.google.com/youtube/v3/docs/videos, developers.google.com/youtube/v3/determine_quota_cost, "developers.google.com/youtube/v3/revision_history (до 30.09.2026)"]
+  - id: discord
+    name: Discord — канал сервера через вебхук
+    adapter: discord
+    adapter_status: stub
+    automation: FULLY_AUTOMATED
+    auth: URL вебхука (содержит токен — секрет)
+    blocked_by: [ОР-6]
+    operations:
+      read: {status: "api", note: "Get Webhook Message — свои сообщения"}
+      create: {status: "api", note: "Execute Webhook (wait=true — вернуть сообщение)"}
+      edit: {status: "api", note: "Edit Webhook Message"}
+      delete: {status: "api", note: "Delete Webhook Message"}
+      media: {status: "api", note: "файл до 20 МиБ"}
+      schedule: {status: "own", note: "планировщик системы; события сервера — через бота"}
+      analytics: {status: "manual", note: "аналитика сервера — в клиенте"}
+    limits:
+      text_max_chars: 2000
+      embeds_max: 10
+      embed_total_chars: 6000
+      file_max_bytes: 20971520
+      rate: 50 запросов/с глобально; маршруты — по заголовкам X-RateLimit
+    sources: [discord.com/developers/docs/resources/webhook, discord.com/developers/docs/topics/rate-limits, discord.com/developers/docs/reference]
+  - id: github
+    name: GitHub — релизы открытых репозиториев, README профиля
+    adapter: github
+    adapter_status: stub
+    automation: FULLY_AUTOMATED
+    auth: fine-grained PAT или GitHub App с Contents write — на конкретные репозитории
+    blocked_by: []
+    operations:
+      read: {status: "api", note: "релизы, теги, вехи — источник фактов"}
+      create: {status: "api", note: "POST /repos/{owner}/{repo}/releases"}
+      edit: {status: "api"}
+      delete: {status: "api"}
+      media: {status: "api", note: "ассеты релиза"}
+      schedule: {status: "own"}
+      analytics: {status: "api", note: "трафик репозитория — для своих репозиториев"}
+    limits:
+      rate: 5000 запросов/ч с токеном; 60/ч без; ≤ 100 одновременных
+    sources: [docs.github.com/en/rest/releases/releases, docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api]
+  - id: tiktok
+    name: TikTok — @dpsmpx
+    adapter: null
+    adapter_status: none
+    automation: MANUAL_APPROVAL_REQUIRED
+    auth: OAuth автора; Direct Post без аудита — только SELF_ONLY
+    blocked_by: ["TikTok: аудит клиента API"]
+    operations:
+      read: {status: "restricted"}
+      create: {status: "restricted", note: "Content Posting API — без аудита только приватно; ~15 постов в сутки"}
+      edit: {status: "manual"}
+      delete: {status: "manual"}
+      media: {status: "restricted"}
+      schedule: {status: "manual"}
+      analytics: {status: "manual"}
+    limits: {}
+    sources: [developers.tiktok.com/doc/content-posting-api-get-started, developers.tiktok.com/doc/content-sharing-guidelines]

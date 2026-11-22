@@ -1,0 +1,23 @@
+# Кампания (PLATFORM_VISION §12, §116): первый продукт через новую систему.
+schema: campaign/v1
+id: CMP-0001
+title: Презентация автора — dpsmpx
+objective: >-
+  Одной канонической историей и одним утверждённым изображением показать на сайте и площадках,
+  кто такой dpsmpx: разработчик нативных систем, который строит игру, движок и язык
+  с ИИ как инструментом и сам принимает архитектурные решения.
+items: [CI-0001]
+launch: null            # после утверждения CI-0001 автором и запуска сайта (ОР-11)
+status: draft
+schedule:
+  - {item: CI-0001, variant: website.ru, destination: site-production}
+  - {item: CI-0001, variant: website.en, destination: site-production}
+  - {item: CI-0001, variant: telegram.ru, destination: tg-devlog, note: закрепить после публикации (IC-09)}
+  - {item: CI-0001, variant: vk.ru, destination: vk-author}
+  - {item: CI-0001, variant: github.en, destination: github-profile}
+  - {item: CI-0001, variant: youtube.ru, na: шапка канала — загрузка в Studio без текста}
+  - {item: CI-0001, variant: discord.ru, na: "ОР-6"}
+results: {}
+notes: >-
+  Порядок §116: идентичность → канон → изображение → ревизия → сайт → Telegram → VK → (Discord) →
+  YouTube → записи публикаций. Блокеры — item.yaml CI-0001 (blocked_by) и ОР-11.

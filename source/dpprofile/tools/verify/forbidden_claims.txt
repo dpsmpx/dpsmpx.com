@@ -1,0 +1,92 @@
+# Запрещённые формулировки (D-07; docs/direction/SCOPE.md, «Запрещено»).
+#
+# Строка: «класс: регулярное выражение» (Python, без учёта регистра).
+# Список ловит частые случаи и не исчерпывает запрет: оценка другими
+# словами — тоже нарушение. Где какой класс проверяется —
+# tools/verify/check_forbidden.py.
+#
+#   hype         — оценки, лозунги, превосходные степени, прогнозы успеха
+#   inference    — маркеры вывода и догадки: в фактах их быть не может
+#   prescriptive — предписания: в описании метода их нет, пока нет решения
+
+hype: лучш\w*\s+в\s+мире
+hype: лучш\w*\s+из\s+лучших
+hype: самы\w*\s+лучш
+hype: мирового\s+уровня
+hype: революц
+hype: уникальн
+hype: невероятн
+hype: потрясающ
+hype: гениальн
+hype: прорыв
+hype: нов\w*\s+горизонт
+hype: вдохнов
+hype: \bмечт
+hype: легендарн
+hype: блестящ
+hype: великолепн
+hype: беспрецедентн
+hype: безупречн
+hype: феноменальн
+hype: впечатля
+hype: героическ
+hype: путь\s+геро
+hype: огромн
+hype: колоссальн
+hype: грандиозн
+hype: рекордн
+hype: всего\s+за\b
+hype: всего\s+лишь
+hype: гарантир\w*\s+успех
+hype: обреч\w*\s+на\s+успех
+hype: станет\s+(хитом|успешн|популярн|лучш)
+hype: успешн
+hype: best\s+in\s+the\s+world
+hype: world[- ]class
+hype: revolutionar
+hype: game[- ]?chang
+hype: groundbreaking
+hype: \bamazing
+hype: \bincredibl
+hype: unprecedented
+hype: \bgenius
+hype: visionary
+hype: new\s+horizons
+hype: \binspir
+
+inference: следовательно
+inference: \bпоэтому\b
+inference: \bзначит\b
+inference: таким\s+образом
+inference: доказыва
+inference: свидетельству
+inference: очевидн
+inference: по-видимому
+inference: \bвидимо\b
+inference: вероятно
+inference: скорее\s+всего
+inference: \bвозможно\b
+inference: \bкажется\b
+inference: говорит\s+о\s+том
+inference: показыва\w*,?\s+что
+inference: что\s+означает
+inference: \btherefore\b
+inference: \bthus\b
+inference: \bproves?\b
+inference: \bprobably\b
+inference: \blikely\b
+inference: \bapparently\b
+inference: \bobviously\b
+inference: \bclearly\b
+
+prescriptive: \bследует\b
+prescriptive: \bнужно\b
+prescriptive: \bнадо\b
+prescriptive: необходимо
+prescriptive: \bдолж(ен|на|но|ны)\b
+prescriptive: рекоменд
+prescriptive: \bделай
+prescriptive: \bсоветую\b|\bсоветуем\b
+prescriptive: лучше\s+всего
+prescriptive: \bиспользуйте\b|\bприменяйте\b|\bпишите\b
+prescriptive: \bshould\b|\bmust\b|\brecommend
